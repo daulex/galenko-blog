@@ -1,0 +1,27 @@
+.primary-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 100%;
+    width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+
+    a.logo{
+        display: block;
+        width: 96px;
+        img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    }
+    .primary-nav{
+        margin: 0;
+        padding: 0 20px 0 0;
+        li{
+            display: inline-block;
+        }
+    }
+}

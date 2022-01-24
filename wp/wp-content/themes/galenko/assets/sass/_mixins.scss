@@ -1,0 +1,33 @@
+// Input styles
+@mixin input-placeholder {
+	&.placeholder { @content; }
+	&:-moz-placeholder { @content; }
+	&::-moz-placeholder { @content; }
+	&:-ms-input-placeholder { @content; }
+	&::-webkit-input-placeholder { @content; }
+}
+
+// Media queries
+@mixin media-breakpoint-up($breakpoint) { 
+	@if map-has-key($grid-breakpoints, $breakpoint) {
+		@media (min-width: #{map-get($grid-breakpoints, $breakpoint)+1}) {
+			@content;
+		}
+	}
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+			+ "Please make sure it is defined in `$breakpoints` map.";
+	}
+}
+
+@mixin media-breakpoint-down($breakpoint) { 
+	@if map-has-key($grid-breakpoints, $breakpoint) {
+		@media (max-width: #{map-get($grid-breakpoints, $breakpoint)}) {
+			@content;
+		}
+	}
+	@else {
+		@warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+			+ "Please make sure it is defined in `$breakpoints` map.";
+	}
+}

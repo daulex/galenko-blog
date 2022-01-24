@@ -1,0 +1,31 @@
+.mceContentBody,
+.mce-content-body {
+	padding: 20px !important;
+	background: #fff !important;
+}
+
+.editor-content,
+html .mceContentBody {
+
+	h1, .h1 {}
+	h2, .h2 {}
+	h3, .h3 {}
+	h4, .h4 {}
+
+	p {
+		margin: 0 0 1.44em 0;
+		a {}
+	}
+
+	ul, ol {
+		margin-top: 0;
+		margin-bottom: 1.44em;
+	}
+
+	blockquote, q {}
+	
+	> *:last-child {
+		margin-bottom: 0;
+	}
+
+}
