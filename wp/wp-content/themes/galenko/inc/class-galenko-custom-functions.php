@@ -32,4 +32,7 @@ class Galenko_Custom_Functions {
 
 		return $output;
 	}
+    public function kg_icons($icon){
+        return '<svg class="icon icon-'.$icon.'"><use xlink:href="#icon-'.$icon.'"></use></svg>';
+    }
 }

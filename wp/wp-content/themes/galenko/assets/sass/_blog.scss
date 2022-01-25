@@ -5,14 +5,20 @@
     margin-right: auto;
     .read-more{
         display: inline-block;
-        text-decoration: none;
         &:hover{
             text-decoration: underline;
         }
     }
     article{
         padding-bottom: 20px;
+        margin-bottom: 30px;
         border-bottom: 1px solid #eee;
+        h2 > a{
+            color: #333;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
         &:last-of-type{
             padding-bottom: 0;
             border-bottom: none;
@@ -25,8 +31,26 @@
     width: 700px;
     margin-left: auto;
     margin-right: auto;
+    .post-meta{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+        margin-bottom: 15px;
+        a{
+        }
+        &__categories{
+            margin-right: 15px;
+        }
+        .icon{
+            width: 14px;
+            height: 14px;
+            transform: translateY(2px);
+        }
+    }
     .back{
-        text-decoration: none;
         &:hover{
             text-decoration: underline;
         }

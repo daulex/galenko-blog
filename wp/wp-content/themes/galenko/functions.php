@@ -19,6 +19,8 @@ add_action( 'after_setup_theme', 'register_navwalker' );
 
 
 $theme_setup = new Awave_Theme_Setup;
+$custom_functions = new Galenko_Custom_Functions;
+
 
 $theme_setup->addNavMenus( array( 
 	'primary' => __( 'Primary Menu', 'awave' )
