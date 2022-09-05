@@ -1,20 +1,24 @@
+
 .mceContentBody,
 .mce-content-body {
 	padding: 20px !important;
 	background: #fff !important;
 }
 
+.single.single-post #main,
 .editor-content,
 html .mceContentBody {
 
-	h1, .h1 {}
-	h2, .h2 {}
-	h3, .h3 {}
-	h4, .h4 {}
+	// h1, .h1 {}
+	// h2, .h2 {}
+	// h3, .h3 {}
+	// h4, .h4 {}
 
 	p {
 		margin: 0 0 1.44em 0;
-		a {}
+		a {
+			text-decoration: underline;
+		}
 	}
 
 	ul, ol {
@@ -22,10 +26,16 @@ html .mceContentBody {
 		margin-bottom: 1.44em;
 	}
 
-	blockquote, q {}
+	blockquote, q {
+		padding-left: 30px;
+	}
 	
 	> *:last-child {
 		margin-bottom: 0;
+	}
+	img{
+		max-width: 100%;
+		height: auto;
 	}
 
 }
