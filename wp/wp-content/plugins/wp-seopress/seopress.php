@@ -3,15 +3,15 @@
 Plugin Name: SEOPress
 Plugin URI: https://www.seopress.org/
 Description: One of the best SEO plugins for WordPress.
-Author: SEOPress
-Version: 5.3.1
+Author: The SEO Guys at SEOPress
+Version: 6.0.2
 Author URI: https://www.seopress.org/
 License: GPLv2
 Text Domain: wp-seopress
 Domain Path: /languages
 */
 
-/*  Copyright 2016 - 2021 - Benjamin Denis  (email : contact@seopress.org)
+/*  Copyright 2016 - 2022 - Benjamin Denis  (email : contact@seopress.org)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as
@@ -70,7 +70,7 @@ register_deactivation_hook(__FILE__, 'seopress_deactivation');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Define
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-define('SEOPRESS_VERSION', '5.3.1');
+define('SEOPRESS_VERSION', '6.0.2');
 define('SEOPRESS_AUTHOR', 'Benjamin Denis');
 define('SEOPRESS_PLUGIN_DIR_PATH', plugin_dir_path(__FILE__));
 define('SEOPRESS_PLUGIN_DIR_URL', plugin_dir_url(__FILE__));
@@ -80,14 +80,15 @@ define('SEOPRESS_TEMPLATE_SITEMAP_DIR', SEOPRESS_TEMPLATE_DIR . '/sitemap');
 define('SEOPRESS_TEMPLATE_JSON_SCHEMAS', SEOPRESS_TEMPLATE_DIR . '/json-schemas');
 
 define('SEOPRESS_DIRURL', plugin_dir_url(__FILE__));
-define('SEOPRESS_URL_DIST', SEOPRESS_DIRURL . 'public');
+define('SEOPRESS_URL_PUBLIC', SEOPRESS_DIRURL . 'public');
 define('SEOPRESS_URL_ASSETS', SEOPRESS_DIRURL . 'assets');
 define('SEOPRESS_DIR_LANGUAGES', dirname(plugin_basename(__FILE__)) . '/languages/');
 
 use SEOPress\Core\Kernel;
 
+require_once __DIR__ . '/seopress-autoload.php';
+
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    require_once __DIR__ . '/vendor/autoload.php';
     require_once __DIR__ . '/seopress-functions.php';
     require_once __DIR__ . '/inc/admin/cron.php';
 
@@ -188,9 +189,9 @@ function seopress_init($hook) {
         include_once dirname(__FILE__) . '/inc/admin/page-builders/elementor/elementor-addon.php';
     }
 
-    //Block Editor
+    // Block Editor
     if (version_compare($wp_version, '5.0', '>=')) {
-        include_once dirname(__FILE__) . '/inc/admin/page-builders/gutenberg/gutenberg-addon.php';
+        include_once dirname(__FILE__) . '/inc/admin/page-builders/gutenberg/blocks.php';
     }
 }
 add_action('plugins_loaded', 'seopress_init', 999);
@@ -198,12 +199,19 @@ add_action('plugins_loaded', 'seopress_init', 999);
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Loads dynamic variables for titles, metas, schemas...
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-function seopress_dyn_variables_init($variables) {
-    $variables = include dirname(__FILE__) . '/inc/functions/variables/dynamic-variables.php';
-
-    return $variables;
+/**
+ * Render dynamic variables
+ * @param array $variables
+ * @param object $post
+ * @param boolean $is_oembed
+ * @return array $variables
+ * @author Benjamin
+ */
+function seopress_dyn_variables_init($variables, $post = '', $is_oembed = false) {
+    include_once dirname(__FILE__) . '/inc/functions/variables/dynamic-variables.php';
+    return SEOPress\Helpers\CachedMemoizeFunctions::memoize('seopress_get_dynamic_variables')($variables, $post, $is_oembed);
 }
-add_filter('seopress_dyn_variables_fn', 'seopress_dyn_variables_init');
+add_filter('seopress_dyn_variables_fn', 'seopress_dyn_variables_init', 10, 3);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Loads the JS/CSS in admin
@@ -231,6 +239,7 @@ function seopress_add_admin_options_scripts($hook) {
         'seopress-social'               => true,
         'seopress-google-analytics'     => true,
         'seopress-pro-page'             => true,
+        'seopress-instant-indexing'     => true,
         'seopress-advanced'             => true,
         'seopress-import-export'        => true,
         'seopress-bot-batch'            => true,
@@ -358,14 +367,22 @@ function seopress_add_admin_options_scripts($hook) {
             ],
             'i18n'								=> [
                 'migration'								=> __('Migration completed!', 'wp-seopress'),
+                'video'								=> __('Regeneration completed!', 'wp-seopress'),
                 'export'								   => __('Export completed!', 'wp-seopress'),
             ],
         ];
         wp_localize_script('seopress-migrate-ajax', 'seopressAjaxMigrate', $seopress_migrate);
+
+        //Force regenerate video xml sitemap
+        $seopress_video_regenerate = [
+            'seopress_nonce'        => wp_create_nonce('seopress_video_regenerate_nonce'),
+            'seopress_video_regenerate'         => admin_url('admin-ajax.php'),
+        ];
+        wp_localize_script('seopress-migrate-ajax', 'seopressAjaxVdeoRegenerate', $seopress_video_regenerate);
     }
 
     //Tabs
-    if ('seopress-titles' === $_GET['page'] || 'seopress-xml-sitemap' === $_GET['page'] || 'seopress-social' === $_GET['page'] || 'seopress-google-analytics' === $_GET['page'] || 'seopress-advanced' === $_GET['page'] || 'seopress-import-export' === $_GET['page']) {
+    if ('seopress-titles' === $_GET['page'] || 'seopress-xml-sitemap' === $_GET['page'] || 'seopress-social' === $_GET['page'] || 'seopress-google-analytics' === $_GET['page'] || 'seopress-advanced' === $_GET['page'] || 'seopress-import-export' === $_GET['page'] || 'seopress-instant-indexing' === $_GET['page'] || 'seopress-insights-settings' === $_GET['page']) {
         wp_enqueue_script('seopress-admin-tabs-js', plugins_url('assets/js/seopress-tabs' . $prefix . '.js', __FILE__), ['jquery-ui-tabs'], SEOPRESS_VERSION);
     }
 
@@ -397,6 +414,21 @@ function seopress_add_admin_options_scripts($hook) {
     if ('seopress-social' === $_GET['page']) {
         wp_enqueue_script('seopress-media-uploader-js', plugins_url('assets/js/seopress-media-uploader' . $prefix . '.js', __FILE__), ['jquery'], SEOPRESS_VERSION, false);
         wp_enqueue_media();
+    }
+
+    //Instant Indexing
+    if ('seopress-instant-indexing' === $_GET['page']) {
+        $seopress_instant_indexing_post = [
+            'seopress_nonce'               => wp_create_nonce('seopress_instant_indexing_post_nonce'),
+            'seopress_instant_indexing_post' => admin_url('admin-ajax.php'),
+        ];
+        wp_localize_script('seopress-admin-tabs-js', 'seopressAjaxInstantIndexingPost', $seopress_instant_indexing_post);
+
+        $seopress_instant_indexing_generate_api_key = [
+            'seopress_nonce'               => wp_create_nonce('seopress_instant_indexing_generate_api_key_nonce'),
+            'seopress_instant_indexing_generate_api_key' => admin_url('admin-ajax.php'),
+        ];
+        wp_localize_script('seopress-admin-tabs-js', 'seopressAjaxInstantIndexingApiKey', $seopress_instant_indexing_generate_api_key);
     }
 
     //CSV Importer
@@ -435,22 +467,19 @@ function seopress_admin_body_class($classes) {
         return $classes;
     }
     $_pages = [
-        'seopress_csv_importer'     => true,
-        'seopress-option'           => true,
-        'seopress-network-option'   => true,
-        'seopress-titles'           => true,
-        'seopress-xml-sitemap'      => true,
-        'seopress-social'           => true,
-        'seopress-google-analytics' => true,
-        'seopress-advanced'         => true,
-        'seopress-import-export'    => true,
-        'seopress-pro-page'         => true,
-        'seopress-bot-batch'        => true,
-        'seopress-license'          => true,
-        'seopress-insights'             => true,
-        'seopress-insights-rankings'    => true,
-        'seopress-insights-backlinks'   => true,
-        'seopress-insights-trends'      => true,
+        'seopress_csv_importer'             => true,
+        'seopress-option'                   => true,
+        'seopress-network-option'           => true,
+        'seopress-titles'                   => true,
+        'seopress-xml-sitemap'              => true,
+        'seopress-social'                   => true,
+        'seopress-google-analytics'         => true,
+        'seopress-advanced'                 => true,
+        'seopress-import-export'            => true,
+        'seopress-pro-page'                 => true,
+        'seopress-instant-indexing'         => true,
+        'seopress-bot-batch'                => true,
+        'seopress-license'                  => true
     ];
     if (isset($_pages[$_GET['page']])) {
         $classes .= ' seopress-styles ';
@@ -477,6 +506,7 @@ remove_filter('wp_robots', 'wp_robots_max_image_preview_large');
  *
  * @since 4.6
  * @todo use wp_robots API
+ * @updated 5.8
  */
 function seopress_robots_wc_pages($robots) {
     include_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -492,6 +522,17 @@ function seopress_robots_wc_pages($robots) {
                     return $robots;
                 }
             }
+        }
+    }
+    //remove noindex on search archive pages
+    if (is_search()) {
+        if ('0' === get_option('blog_public')) {
+            return $robots;
+        } else {
+            unset($robots);
+            $robots = [];
+
+            return $robots;
         }
     }
 
@@ -592,6 +633,62 @@ function seopress_plugin_action_links($links, $file) {
     return $links;
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Upgrade notice
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Display an upgrade message in the plugins list
+ *
+ * @since 5.7
+ *
+ * @param string $pluin_data, $new_data
+ *
+ * @return void
+ *
+ * @author Benjamin
+ */
+function seopress_plugin_update_message( $plugin_data, $new_data ) {
+    if (isset($plugin_data['new_version']) && $plugin_data['new_version'] <= '5.9') {
+        echo '<br /><strong><em>' . sprintf( __( 'Important changes related to XML sitemaps in version 5.8: <a href="%s" target="_blank">Learn more</a>.', 'wp-seopress' ), 'https://www.seopress.org/docs/xml-sitemap' ).'</em></strong>';
+
+    }
+}
+add_action( 'in_plugin_update_message-wp-seopress/seopress.php', 'seopress_plugin_update_message', 10, 2 );
+
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Update notice
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Display an update message if PRO version is too old compare to Free version
+ *
+ * @since 6.0
+ *
+ * @return void
+ *
+ * @author Benjamin
+ */
+function seopress_notice() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+
+    if ( is_plugin_active('wp-seopress-pro/seopress-pro.php') && version_compare(SEOPRESS_PRO_VERSION, '5.4', '<')) {
+        $docs = seopress_get_docs_links();
+        ?>
+<div class="notice notice-warning">
+    <p>
+        <?php _e('A new <strong>SEOPress PRO</strong> update (v<code>6.0</code>) is available (current installed version <code>'.SEOPRESS_PRO_VERSION.'</code>). <br>Please update now to get new features and prevent any issues.', 'wp-seopress'); ?>
+    </p>
+    <p>
+        <a href="<?php echo $docs['downloads']; ?>" class="button button-primary" target="_blank">
+            <?php _e('Update SEOPress PRO', 'wp-seopress'); ?>
+        </a>
+    </p>
+</div>
+<?php
+    }
+}
+add_action('admin_notices', 'seopress_notice');
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //Test if a feature is ON
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -774,6 +871,7 @@ if ('1' == seopress_xml_sitemap_general_enable_option() && '1' == seopress_get_t
             unset($q['seopress_paged']);
             unset($q['seopress_author']);
             unset($q['seopress_sitemap_xsl']);
+            unset($q['seopress_sitemap_video_xsl']);
         }
 
         return $q;

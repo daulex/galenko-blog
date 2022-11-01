@@ -60,6 +60,11 @@ function seopress_sanitize_options_fields($input){
         'seopress_google_analytics_cb_btn_sec_bg_hov',
         'seopress_google_analytics_cb_btn_sec_col_hov',
         'seopress_google_analytics_cb_width',
+        'seopress_instant_indexing_bing_api_key',
+        'seopress_instant_indexing_manual_batch',
+        'seopress_google_analytics_clarity_project_id',
+        'seopress_google_analytics_matomo_widget_auth_token',
+        //'seopress_instant_indexing_google_api_key',
     ];
 
     $seopress_esc_attr = [
@@ -81,9 +86,14 @@ function seopress_sanitize_options_fields($input){
         }
     }
 
-
     foreach ($seopress_sanitize_fields as $value) {
-        if ( ! empty($input['seopress_google_analytics_opt_out_msg']) && 'seopress_google_analytics_opt_out_msg' == $value) {
+        if ( ! empty($input['seopress_google_analytics_matomo_widget_auth_token']) && 'seopress_google_analytics_matomo_widget_auth_token' == $value) {
+            $options = get_option('seopress_google_analytics_option_name');
+
+            $token = isset($options['seopress_google_analytics_matomo_widget_auth_token']) ? $options['seopress_google_analytics_matomo_widget_auth_token'] : null;
+
+            $input[$value] = $input[$value] ==='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx' ? $token : sanitize_text_field($input[$value]);
+        } elseif ( ! empty($input['seopress_google_analytics_opt_out_msg']) && 'seopress_google_analytics_opt_out_msg' == $value) {
             $args = [
                     'strong' => [],
                     'em'     => [],
@@ -96,6 +106,8 @@ function seopress_sanitize_options_fields($input){
             $input[$value] = wp_kses($input[$value], $args);
         } elseif (( ! empty($input['seopress_google_analytics_other_tracking']) && 'seopress_google_analytics_other_tracking' == $value) || ( ! empty($input['seopress_google_analytics_other_tracking_body']) && 'seopress_google_analytics_other_tracking_body' == $value) || ( ! empty($input['seopress_google_analytics_other_tracking_footer']) && 'seopress_google_analytics_other_tracking_footer' == $value)) {
             $input[$value] = $input[$value]; //No sanitization for this field
+        } elseif ( ! empty($input['seopress_instant_indexing_manual_batch']) && 'seopress_instant_indexing_manual_batch' == $value) {
+            $input[$value] = sanitize_textarea_field($input[$value]);
         } elseif ( ! empty($input[$value])) {
             $input[$value] = sanitize_text_field($input[$value]);
         }

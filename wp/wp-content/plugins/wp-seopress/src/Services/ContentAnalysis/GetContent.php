@@ -110,7 +110,7 @@ class GetContent
      */
     protected function analyzeKeywordsDensity($analyzes, $data, $post)
     {
-        if (! empty($data['kws_density']['matches']) && isset($data['words_counter'])) {
+        if (! empty($data['kws_density']['matches']) && isset($data['words_counter']) && $data['words_counter'] > 0) {
             $target_kws_density = $data['kws_density']['matches'];
 
             $desc = '<ul>';
@@ -260,7 +260,7 @@ class GetContent
         } else {
             $desc .= '<p><span class="dashicons dashicons-no-alt"></span>' . __('None of your target keywords were found in Heading 3 (H3).', 'wp-seopress') . '</p>';
             if ('high' != $analyzes['headings']['impact']) {
-                $analyzes['headings']['impact'] = 'medium';
+                $analyzes['headings']['impact'] = 'low';
             }
         }
         $analyzes['headings']['desc'] = $desc;
@@ -303,7 +303,9 @@ class GetContent
                 $analyzes['meta_title']['impact'] = 'medium';
                 $desc .= '<p><span class="dashicons dashicons-no-alt"></span>' . __('Your custom title is too long.', 'wp-seopress') . '</p>';
             } else {
-                $analyzes['meta_title']['impact'] = 'good';
+                if (!empty($analyzes['meta_title']['impact']) && $analyzes['meta_title']['impact'] !== 'medium') {
+                    $analyzes['meta_title']['impact'] = 'good';
+                }
                 $desc .= '<p><span class="dashicons dashicons-yes"></span>' . __('The length of your title is correct', 'wp-seopress') . '</p>';
             }
             $analyzes['meta_title']['desc'] = $desc;
@@ -350,7 +352,9 @@ class GetContent
                 $analyzes['meta_desc']['impact'] = 'medium';
                 $desc .= '<p><span class="dashicons dashicons-no-alt"></span>' . __('You custom meta description is too long.', 'wp-seopress') . '</p>';
             } else {
-                $analyzes['meta_desc']['impact'] = 'good';
+                if (!empty($analyzes['meta_desc']['impact']) && $analyzes['meta_desc']['impact'] !== 'medium') {
+                    $analyzes['meta_desc']['impact'] = 'good';
+                }
                 $desc .= '<p><span class="dashicons dashicons-yes"></span>' . __('The length of your meta description is correct', 'wp-seopress') . '</p>';
             }
             $analyzes['meta_desc']['desc'] = $desc;
@@ -719,8 +723,9 @@ class GetContent
      */
     protected function analyzeImgAlt($analyzes, $data, $post)
     {
-        if (! empty($data['img'])) {
-            $images = isset($data['img']['images']) ? $data['img']['images'] : null;
+        if (! empty($data['img']['images']['without_alt'])) {
+            $images = isset($data['img']['images']['without_alt']) ? $data['img']['images']['without_alt'] : null;
+            $context = isset($data['img']['images']['img_with_context']) ? $data['img']['images']['img_with_context'] : null;
 
             $desc = '<div class="wrap-analysis-img">';
 
@@ -732,17 +737,20 @@ class GetContent
                 if (! empty($images)) {
                     $desc .= '<ul class="attachments">';
                     foreach ($images as $img) {
-                        $desc .= '<li class="attachment"><img src="' . $img . '"/></li>';
+                        $desc .= '<li class="attachment"><figure><img src="' . $img . '"/><figcaption style="word-break: break-all;">'.$img.'</figcaption></figure></li>';
                     }
                     $desc .= '</ul>';
                 }
-            } else {
-                $desc .= '<p><span class="dashicons dashicons-yes"></span>' . __('All alternative tags are filled in. Good work!', 'wp-seopress') . '</p>';
+
+                $desc .= '<p>' . __('Note that we scan all your source code, it means, some missing alternative texts of images might be located in your header, sidebar or footer.', 'wp-seopress') . '</p>';
             }
             $desc .= '</div>';
 
             $analyzes['img_alt']['desc'] = $desc;
-        } else {
+        } elseif(!empty($data['img']['images']['with_alt']) && empty($data['img']['images']['without_alt'])) {
+            $analyzes['img_alt']['impact'] = 'good';
+            $analyzes['img_alt']['desc'] = '<p><span class="dashicons dashicons-yes"></span>' . __('All alternative tags are filled in. Good work!', 'wp-seopress') . '</p>';
+        } elseif (empty($data['img']['images']['with_alt']) && empty($data['img']['images']['without_alt'])) {
             $analyzes['img_alt']['impact'] = 'medium';
             $analyzes['img_alt']['desc']   = '<p><span class="dashicons dashicons-no-alt"></span>' . __('We could not find any image in your content. Content with media is a plus for your SEO.', 'wp-seopress') . '</p>';
         }
@@ -856,7 +864,8 @@ class GetContent
         if (! empty($data['all_canonical'])) {
             $count = count($data['all_canonical']);
 
-            $desc .= '<p>' . sprintf(__('We found %s canonical URL in your source code. Below, the list:', 'wp-seopress'), $count) . '</p>';
+            $desc .= '<p>' . sprintf(_n('We found %s canonical URL in your source code. Below, the list:', 'We found %s canonical URLs in your source code. Below, the list:', $count, 'wp-seopress'), number_format_i18n($count)) . '</p>';
+
             $desc .= '<ul>';
             foreach ($data['all_canonical'] as $link) {
                 $desc .= '<li><span class="dashicons dashicons-minus"></span><a href="' . $link . '" target="_blank">' . $link . '</a><span class="dashicons dashicons-external"></span></li>';

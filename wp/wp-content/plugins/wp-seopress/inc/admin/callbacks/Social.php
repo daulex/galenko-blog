@@ -9,7 +9,7 @@ function seopress_social_knowledge_type_callback()
     $selected = isset($options['seopress_social_knowledge_type']) ? $options['seopress_social_knowledge_type'] : null; ?>
 
 <select id="seopress_social_knowledge_type" name="seopress_social_option_name[seopress_social_knowledge_type]">
-    <option <?php if ('None' == $selected) { ?>
+    <option <?php if ('none' == $selected) { ?>
         selected="selected"
         <?php } ?>
         value="none"><?php _e('None (will disable this feature)', 'wp-seopress'); ?>
@@ -20,7 +20,7 @@ function seopress_social_knowledge_type_callback()
         value="Person"><?php _e('Person', 'wp-seopress'); ?>
     </option>
     <option <?php if ('Organization' == $selected) { ?>
-        selected="selected
+        selected="selected"
         <?php } ?>
         value="Organization"><?php _e('Organization', 'wp-seopress'); ?>
     </option>
@@ -307,6 +307,8 @@ function seopress_social_facebook_img_callback()
 
 <p class="description"><?php _e('Minimum size: 200x200px, ideal ratio 1.91:1, 8Mb max. (eg: 1640x856px or 3280x1712px for retina screens)', 'wp-seopress'); ?>
 </p>
+<p class="description"><?php _e('If no default image is set, we‘ll use your site icon defined from the Customizer.', 'wp-seopress'); ?>
+</p>
 
 <?php if (isset($options['seopress_social_facebook_img'])) {
         esc_attr($options['seopress_social_facebook_img']);
@@ -319,18 +321,19 @@ function seopress_social_facebook_img_default_callback()
 
     $check = isset($options['seopress_social_facebook_img_default']); ?>
 
-<input id="seopress_social_facebook_img_default"
-    name="seopress_social_option_name[seopress_social_facebook_img_default]" type="checkbox" <?php if ('1' == $check) { ?>
-checked="yes"
-<?php } ?>
-value="1"/>
-
-<label for="seopress_social_facebook_img_default"><?php _e('Override every <strong>og:image</strong> tag with this default image (except if a custom og:image has already been set from the SEO metabox).', 'wp-seopress'); ?></label>
+<label for="seopress_social_facebook_img_default">
+    <input id="seopress_social_facebook_img_default"
+        name="seopress_social_option_name[seopress_social_facebook_img_default]" type="checkbox" <?php if ('1' == $check) { ?>
+    checked="yes"
+    <?php } ?>
+    value="1"/>
+    <?php _e('Override every <strong>og:image</strong> tag with this default image (except if a custom og:image has already been set from the SEO metabox).', 'wp-seopress'); ?>
+</label>
 
 <?php $def_og_img = isset($options['seopress_social_facebook_img']) ? $options['seopress_social_facebook_img'] : '';
 
     if ('' == $def_og_img) { ?>
-<div class="seopress-notice is-warning">
+<div class="seopress-notice is-warning is-inline">
     <p>
         <?php _e('Please define a <strong>default OG Image</strong> from the field above', 'wp-seopress'); ?>
     </p>
@@ -401,7 +404,7 @@ function seopress_social_facebook_link_ownership_id_callback()
     $check   = isset($options['seopress_social_facebook_link_ownership_id']) ? $options['seopress_social_facebook_link_ownership_id'] : null;
 
     printf(
-        '<input type="text" name="seopress_social_option_name[seopress_social_facebook_link_ownership_id]" value="%s"/>',
+        '<input type="text" placeholder="' . __('1234567890','wp-seopress') . '" name="seopress_social_option_name[seopress_social_facebook_link_ownership_id]" value="%s"/>',
         esc_html($check)
     ); ?>
 
@@ -426,7 +429,7 @@ function seopress_social_facebook_admin_id_callback()
     $check   = isset($options['seopress_social_facebook_admin_id']) ? $options['seopress_social_facebook_admin_id'] : null;
 
     printf(
-        '<input type="text" name="seopress_social_option_name[seopress_social_facebook_admin_id]" value="%s"/>',
+        '<input type="text" placeholder="' . __('1234567890','wp-seopress') . '" name="seopress_social_option_name[seopress_social_facebook_admin_id]" value="%s"/>',
         esc_html($check)
     ); ?>
 
@@ -445,7 +448,7 @@ function seopress_social_facebook_app_id_callback()
     $check   = isset($options['seopress_social_facebook_app_id']) ? $options['seopress_social_facebook_app_id'] : null;
 
     printf(
-        '<input type="text" name="seopress_social_option_name[seopress_social_facebook_app_id]" value="%s"/>',
+        '<input type="text" placeholder="' . __('1234567890','wp-seopress') . '" name="seopress_social_option_name[seopress_social_facebook_app_id]" value="%s"/>',
         esc_html($check)
     ); ?>
 

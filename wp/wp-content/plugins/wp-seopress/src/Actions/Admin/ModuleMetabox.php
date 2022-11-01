@@ -38,6 +38,16 @@ class ModuleMetabox implements ExecuteHooks
             return;
         }
 
+        //AMP compatibility
+        if ( function_exists( 'amp_is_request' ) && amp_is_request() ) {
+            return;
+        }
+
+        //Bricks builder compatibility
+        if (function_exists('bricks_is_builder_main') && bricks_is_builder_main() === false) {
+            return;
+        }
+
         $isGutenberg = false;
         if(function_exists('get_current_screen')){
             $currentScreen = get_current_screen();
@@ -52,7 +62,7 @@ class ModuleMetabox implements ExecuteHooks
         }
 
         wp_enqueue_media();
-        wp_enqueue_script('seopress-metabox', SEOPRESS_URL_DIST . '/metaboxe.js', $dependencies, SEOPRESS_VERSION, true);
+        wp_enqueue_script('seopress-metabox', SEOPRESS_URL_PUBLIC . '/metaboxe.js', $dependencies, SEOPRESS_VERSION, true);
         $value = wp_create_nonce('seopress_rest');
 
         $tags = seopress_get_service('TagsToString')->getTagsAvailable([
@@ -79,7 +89,7 @@ class ModuleMetabox implements ExecuteHooks
         $roles = ( array ) $user->roles;
 
         $args = array_merge([
-            'SEOPRESS_URL_DIST'       => SEOPRESS_URL_DIST,
+            'SEOPRESS_URL_PUBLIC'       => SEOPRESS_URL_PUBLIC,
             'SEOPRESS_URL_ASSETS'     => SEOPRESS_URL_ASSETS,
             'SITENAME'                => get_bloginfo('name'),
             'SITEURL'                 => site_url(),
@@ -107,6 +117,7 @@ class ModuleMetabox implements ExecuteHooks
             'SUB_TABS' => [
                 'GOOGLE_NEWS' => apply_filters('seopress_active_google_news', false),
                 'VIDEO_SITEMAP' => apply_filters('seopress_active_video_sitemap', false),
+                'INSPECT_URL' => apply_filters('seopress_active_inspect_url', false),
                 'INTERNAL_LINKING' => apply_filters('seopress_active_internal_linking', false),
                 'SCHEMA_MANUAL' =>  apply_filters('seopress_active_schemas', false)
             ],

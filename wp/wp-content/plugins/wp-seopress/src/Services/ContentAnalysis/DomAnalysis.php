@@ -32,6 +32,11 @@ class DomAnalysis
             $content = get_post_field('post_content', $id);
         }
 
+         //Zion Builder compatibility
+         if (is_plugin_active('zionbuilder/zionbuilder.php')) {
+            $content = $content . get_post_meta($id, '_zionbuilder_page_elements', true);
+        }
+
         //BeTheme is activated
         $theme = wp_get_theme();
         if ('betheme' == $theme->template || 'Betheme' == $theme->parent_theme) {
@@ -39,7 +44,7 @@ class DomAnalysis
         }
 
         //Themify compatibility
-        if (defined('THEMIFY_DIR')) {
+        if (defined('THEMIFY_DIR') && method_exists('ThemifyBuilder_Data_Manager', '_get_all_builder_text_content')) {
             global $ThemifyBuilder;
             $builder_data = $ThemifyBuilder->get_builder_data($id);
             $plain_text   = ThemifyBuilder_Data_Manager::_get_all_builder_text_content($builder_data);
@@ -59,13 +64,11 @@ class DomAnalysis
 
         $content = apply_filters('seopress_content_analysis_content', $content, $id);
 
-        //Bricks compatibility
         if (defined('BRICKS_DB_EDITOR_MODE') && ('bricks' == $theme->template || 'Bricks' == $theme->parent_theme)) {
-            $page_sections = get_post_meta($id, '_bricks_page_content', true);
+            $page_sections = get_post_meta($id, BRICKS_DB_PAGE_CONTENT, true);
             $editor_mode   = get_post_meta($id, BRICKS_DB_EDITOR_MODE, true);
-
             if (is_array($page_sections) && 'wordpress' !== $editor_mode) {
-                $content = Bricks\Frontend::render_sections($page_sections, $id, 'content', true);
+                $content = \Bricks\Frontend::render_data($page_sections);
             }
         }
 
@@ -84,6 +87,8 @@ class DomAnalysis
         $targetKeywords = isset($options['target_keywords']) && !empty($options['target_keywords']) ? $options['target_keywords'] : get_post_meta($options['id'], '_seopress_analysis_target_kw', true);
 
         $targetKeywords = array_filter(explode(',', strtolower($targetKeywords)));
+
+        $targetKeywords = apply_filters( 'seopress_content_analysis_target_keywords', $targetKeywords, $options['id'] );
 
         //Manage keywords with special characters
         foreach ($targetKeywords as $key => $kw) {
@@ -140,6 +145,10 @@ class DomAnalysis
 
         $postContent = apply_filters('seopress_dom_analysis_get_post_content', $this->getPostContentAnalyze($options['id']));
 
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            $data['analyzed_content'] = $postContent;
+        }
+
         //Keywords density
         $data['kws_density'] = [
             "matches" => []
@@ -159,9 +168,10 @@ class DomAnalysis
         }
 
 
+        //Words Counter
         if (! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
             if (!empty($postContent)) {
-                $data['words_counter'] = preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", strip_tags(wp_filter_nohtml_kses($postContent)), $matches);
+                $data['words_counter'] = preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", normalize_whitespace(wp_strip_all_tags($postContent)), $matches);
 
                 if (! empty($matches[0])) {
                     $wordsCounterUnique = count(array_unique($matches[0]));

@@ -48,7 +48,7 @@ class CustomCapabilities implements ExecuteHooksBackend
 
         if (isset($roles->role_objects['administrator'])) {
             $role  = $roles->role_objects['administrator'];
-            foreach ($pages as $key => $value) {
+            foreach ($pages as $value) {
                 $role->add_cap(\sprintf('seopress_manage_%s', $value), true);
             }
         }
@@ -68,6 +68,10 @@ class CustomCapabilities implements ExecuteHooksBackend
                 // Remove all cap for a specific role if option not set
                 foreach ($roles->role_objects as $keyRole => $role) {
                     if ('administrator' === $keyRole) {
+                        continue;
+                    }
+
+                    if($capability === null){
                         continue;
                     }
 
@@ -100,6 +104,7 @@ class CustomCapabilities implements ExecuteHooksBackend
             case 'social_networks':
             case 'analytics':
             case 'tools':
+            case 'instant_indexing':
             case 'titles_metas':
             case 'advanced':
             case 'pro':
@@ -111,6 +116,7 @@ class CustomCapabilities implements ExecuteHooksBackend
                     'social_networks',
                     'analytics',
                     'tools',
+                    'instant_indexing',
                     'titles_metas',
                     'advanced',
                     'pro',
@@ -163,6 +169,11 @@ class CustomCapabilities implements ExecuteHooksBackend
     public function capabilitySaveTools($cap)
     {
         return PagesAdmin::getCustomCapability('tools');
+    }
+
+    public function capabilitySaveInstantIndexing($cap)
+    {
+        return PagesAdmin::getCustomCapability('instant_indexing');
     }
 
     public function capabilitySaveImportExport($cap)

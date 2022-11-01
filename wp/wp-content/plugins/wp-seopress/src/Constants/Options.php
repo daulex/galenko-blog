@@ -36,9 +36,23 @@ abstract class Options {
     const KEY_OPTION_ADVANCED = 'seopress_advanced_option_name';
 
     /**
+     * @since 6.0.0
+     *
+     * @var string
+     */
+    const KEY_OPTION_NOTICE = 'seopress_notices';
+
+    /**
      * @since 4.5.0
      *
      * @var string
      */
     const KEY_TOGGLE_OPTION = 'seopress_toggle';
+
+    /**
+     * @since 5.8.0
+     *
+     * @var string
+     */
+    const KEY_OPTION_GOOGLE_ANALYTICS = 'seopress_google_analytics_option_name';
 }

@@ -8,6 +8,8 @@ jQuery(document).ready(function ($) {
         "notice-usm",
         "notice-wizard",
         "notice-insights-wizard",
+        "notice-seo-consultant",
+        "notice-amp-analytics",
         "notice-tagdiv",
         "notice-divide-comments",
         "notice-review",
@@ -56,6 +58,7 @@ jQuery(document).ready(function ($) {
         "xml-sitemap",
         "social",
         "google-analytics",
+        "instant-indexing",
         "advanced",
         "local-business",
         "woocommerce",
@@ -63,6 +66,7 @@ jQuery(document).ready(function ($) {
         "dublin-core",
         "rich-snippets",
         "breadcrumbs",
+        "inspect-url",
         "robots",
         "news",
         "404",
@@ -73,6 +77,10 @@ jQuery(document).ready(function ($) {
     features.forEach(function (item) {
         $('#toggle-' + item).on('click', function () {
             $('#toggle-' + item).attr('data-toggle', $('#toggle-' + item).attr('data-toggle') == '1' ? '0' : '1');
+
+            $(this).siblings('#titles-state-default').toggleClass('feature-state-off');
+            $(this).siblings('#titles-state').toggleClass('feature-state-off');
+
             $.ajax({
                 method: 'POST',
                 url: seopressAjaxToggleFeatures.seopress_toggle_features,
@@ -82,7 +90,7 @@ jQuery(document).ready(function ($) {
                     feature_value: $('#toggle-' + item).attr('data-toggle'),
                     _ajax_nonce: seopressAjaxToggleFeatures.seopress_nonce,
                 },
-                success: function (data) {
+                success: function () {
                     window.history.pushState("", "", window.location.href + "&settings-updated=true");
                     $('#seopress-notice-save').show();
                     $('#seopress-notice-save').delay(3500).fadeOut();
@@ -183,8 +191,8 @@ jQuery(document).ready(function ($) {
             $('#' + seopress_admin_tab_session_storage.split('#tab=')).addClass("active");
         } else {
             //Default TAB
-            $('#tab_seopress_analytics-tab').addClass("nav-tab-active");
-            $('#tab_seopress_analytics').addClass("active");
+            $('#seopress-admin-tabs a.nav-tab').first().addClass("nav-tab-active");
+            $('#seopress-admin-tabs .wrap-seopress-tab-content > div').first().addClass("active");
         }
     };
     $("#seopress-admin-tabs").find("a.nav-tab").click(function (e) {

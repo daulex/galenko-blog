@@ -68,6 +68,8 @@ function seopress_get_post_types() {
  *
  * @author Benjamin Denis
  *
+ * @deprecated 5.8.0
+ *
  * @param bool $with_terms
  *
  * @return array $taxonomies
@@ -99,6 +101,7 @@ function seopress_get_taxonomies($with_terms = false) {
 
     return $taxonomies;
 }
+
 
 /**
  * Get all custom fields (limit: 250).
@@ -211,10 +214,16 @@ function seopress_clean_content_analysis() {
             //Disable wptexturize
             add_filter('run_wptexturize', '__return_false');
 
+            //Remove Edit nofollow links from TablePress
+            add_filter( 'tablepress_edit_link_below_table', '__return_false');
+
             //Oxygen compatibility
-            if (function_exists('ct_template_output')) { //disable for Oxygen
+            if (function_exists('ct_template_output')) {
                 add_action('template_redirect', 'seopress_get_oxygen_content');
             }
+
+            //Allow user to run custom action to clean content
+            do_action('seopress_content_analysis_cleaning');
         }
     }
 }
@@ -285,7 +294,7 @@ function seopress_get_empty_templates($type, $metadata, $notice = true) {
         $notice_i18n = __('Custom Post Types', 'wp-seopress');
     }
     if ('tax' === $type) {
-        $templates   = seopress_get_taxonomies();
+        $templates   = seopress_get_service('WordPressData')->getTaxonomies();
         $notice_i18n = __('Custom Taxonomies', 'wp-seopress');
     }
     foreach ($templates as $key => $value) {
@@ -293,17 +302,21 @@ function seopress_get_empty_templates($type, $metadata, $notice = true) {
 
         if (!empty($options)) {
             if ('cpt' === $type) {
-                if (!array_key_exists($key, $options['seopress_titles_single_titles'])) {
-                    $cpt_titles_empty[] = $key;
-                } else {
-                    $data = $options['seopress_titles_single_titles'][$key][$metadata];
+                if (!empty($options['seopress_titles_single_titles'])) {
+                    if (!array_key_exists($key, $options['seopress_titles_single_titles'])) {
+                        $cpt_titles_empty[] = $key;
+                    } else {
+                        $data = isset($options['seopress_titles_single_titles'][$key][$metadata]) ? $options['seopress_titles_single_titles'][$key][$metadata] : '';
+                    }
                 }
             }
             if ('tax' === $type) {
-                if (!array_key_exists($key, $options['seopress_titles_tax_titles'])) {
-                    $cpt_titles_empty[] = $key;
-                } else {
-                    $data = $options['seopress_titles_tax_titles'][$key][$metadata];
+                if (!empty($options['seopress_titles_tax_titles'])) {
+                    if (!array_key_exists($key, $options['seopress_titles_tax_titles'])) {
+                        $cpt_titles_empty[] = $key;
+                    } else {
+                        $data = isset($options['seopress_titles_tax_titles'][$key][$metadata]) ? $options['seopress_titles_tax_titles'][$key][$metadata] : '';
+                    }
                 }
             }
         }
@@ -561,7 +574,6 @@ function is_seopress_page() {
  */
 function seopress_remove_other_notices() {
     if (is_seopress_page()) {
-        add_filter('admin_footer_text', '__return_false');
         remove_all_actions('network_admin_notices');
         remove_all_actions('admin_notices');
         remove_all_actions('user_admin_notices');
@@ -572,7 +584,7 @@ function seopress_remove_other_notices() {
         }
     }
 }
-add_action('in_admin_header', 'seopress_remove_other_notices');
+add_action('in_admin_header', 'seopress_remove_other_notices', 1000);//keep this value high to remove other notices
 
 /**
  * We replace the WP action by ours.
@@ -645,6 +657,34 @@ function seopress_if_key_exists(array $arr, $key) {
 }
 
 /**
+ * Get Oxygen Content for version 4.0
+ *
+ * @since 5.9.0
+ *
+ * @author Thomas Deneulin
+ *
+ * @return null
+ */
+function seopress_get_oygen_content_v4($data, $content = ""){
+    if(!is_array($data)){
+        return $content;
+    }
+
+    if(isset($data['children'])){
+        foreach($data['children'] as $child){
+            $content = seopress_get_oygen_content_v4($child, $content);
+        }
+    }
+
+    if(isset($data['options']['ct_content'])){
+        $content .= $data['options']['ct_content'];
+    }
+
+    return $content . " ";
+
+}
+
+/**
  * Get Oxygen Content.
  *
  * @since 3.8.5
@@ -655,7 +695,13 @@ function seopress_if_key_exists(array $arr, $key) {
  */
 function seopress_get_oxygen_content() {
     if (is_plugin_active('oxygen/functions.php') && function_exists('ct_template_output')) {
-        $seopress_get_the_content = ct_template_output();
+
+        if (!empty(get_post_meta(get_the_ID(), 'ct_builder_json', true))) {
+            $oxygen_content = get_post_meta(get_the_ID(), 'ct_builder_json', true);
+            $seopress_get_the_content = seopress_get_oygen_content_v4(json_decode($oxygen_content, true));
+        } else {
+            $seopress_get_the_content = ct_template_output(true); //shortcodes?
+        }
 
         if ( ! $seopress_get_the_content) {
             //Get post content
@@ -668,6 +714,8 @@ function seopress_get_oxygen_content() {
             //Get Target Keywords
             if (get_post_meta(get_the_ID(), '_seopress_analysis_target_kw', true)) {
                 $seopress_analysis_target_kw = array_filter(explode(',', strtolower(esc_attr(get_post_meta(get_the_ID(), '_seopress_analysis_target_kw', true)))));
+
+                $seopress_analysis_target_kw = apply_filters( 'seopress_content_analysis_target_keywords', $seopress_analysis_target_kw, get_the_ID() );
 
                 //Keywords density
                 foreach ($seopress_analysis_target_kw as $kw) {
@@ -727,7 +775,7 @@ function seopress_btn_secondary_classes() {
     global $pagenow;
     if (function_exists('get_current_screen') && method_exists(get_current_screen(), 'is_block_editor') && true === get_current_screen()->is_block_editor()) {
         $btn_classes_secondary = 'components-button is-secondary';
-    } elseif (isset($pagenow) && ($pagenow === 'term.php' || $pagenow === 'post.php') ) {
+    } elseif (isset($pagenow) && ($pagenow === 'term.php' || $pagenow === 'post.php' || $pagenow === 'post-new.php') ) {
         $btn_classes_secondary = 'button button-secondary';
     } else {
         $btn_classes_secondary = 'btn btnSecondary';
@@ -756,6 +804,27 @@ if ( ! function_exists('seopress_global_noindex_option')) {
         }
     }
 }
+/*
+ * Global trailingslash option from SEO, Advanced, Advanced tab (useful for backwards compatibility with SEOPress < 5.9)
+ * @since 5.9
+ * @return string 1 if true
+ * @author Benjamin
+ */
+if ( ! function_exists('seopress_advanced_advanced_trailingslash_option')) {
+    function seopress_advanced_advanced_trailingslash_option()
+    {
+        $seopress_advanced_advanced_trailingslash_option = get_option('seopress_advanced_option_name');
+        if (! empty($seopress_advanced_advanced_trailingslash_option)) {
+            foreach ($seopress_advanced_advanced_trailingslash_option as $key => $seopress_advanced_advanced_trailingslash_value) {
+                $options[$key] = $seopress_advanced_advanced_trailingslash_value;
+            }
+            if (isset($seopress_advanced_advanced_trailingslash_option['seopress_advanced_advanced_trailingslash'])) {
+                return $seopress_advanced_advanced_trailingslash_option['seopress_advanced_advanced_trailingslash'];
+            }
+        }
+    }
+}
+
 
 /*
  * Disable Add to cart GA tracking code on archive page / related products for Elementor PRO to avoid a JS conflict

@@ -12,21 +12,24 @@ $docs = seopress_get_docs_links();
 <div class="seopress-option">
     <?php
             echo $this->seopress_feature_title(null);
-    $current_tab = ''; ?>
+    $current_tab = '';
+
+    ?>
     <div id="seopress-tabs" class="wrap">
         <?php
                 $plugin_settings_tabs = [
-                    'tab_seopress_tool_compatibility'  => __('Compatibility Center', 'wp-seopress'),
                     'tab_seopress_tool_data'           => __('Data', 'wp-seopress'),
                     'tab_seopress_tool_settings'       => __('Settings', 'wp-seopress'),
                     'tab_seopress_tool_plugins'        => __('Plugins', 'wp-seopress'),
                     'tab_seopress_tool_redirects'      => __('Redirections', 'wp-seopress'),
+                    'tab_seopress_tool_video'          => __('Video sitemap', 'wp-seopress'),
                     'tab_seopress_tool_reset'          => __('Reset', 'wp-seopress'),
                 ];
 
     if (! is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
         unset($plugin_settings_tabs['tab_seopress_tool_data']);
         unset($plugin_settings_tabs['tab_seopress_tool_redirects']);
+        unset($plugin_settings_tabs['tab_seopress_tool_video']);
     }
 
     echo '<div class="nav-tab-wrapper">';
@@ -34,18 +37,6 @@ $docs = seopress_get_docs_links();
         echo '<a id="' . $tab_key . '-tab" class="nav-tab" href="?page=seopress-import-export#tab=' . $tab_key . '">' . $tab_caption . '</a>';
     }
     echo '</div>'; ?>
-        <div class="seopress-tab <?php if ('tab_seopress_tool_compatibility' == $current_tab) {
-        echo 'active';
-    } ?>" id="tab_seopress_tool_compatibility">
-            <form method="post"
-                action="<?php echo admin_url('options.php'); ?>">
-                <?php
-                settings_fields('seopress_tools_option_group');
-    do_settings_sections('seopress-settings-admin-tools-compatibility');
-    sp_submit_button(__('Save changes', 'wp-seopress-pro'));
-    ?>
-            </form>
-        </div>
         <?php if (is_plugin_active('wp-seopress-pro/seopress-pro.php')) { ?>
         <div class="seopress-tab <?php if ('tab_seopress_tool_data' == $current_tab) {
         echo 'active';
@@ -81,7 +72,7 @@ $docs = seopress_get_docs_links();
                             <?php _e('Twitter cards tags (title, description, image)', 'wp-seopress'); ?>
                         </li>
                         <li>
-                            <?php _e('Redirection (enable, type, URL)', 'wp-seopress'); ?>
+                            <?php _e('Redirection (enable, login status, type, URL)', 'wp-seopress'); ?>
                         </li>
                         <li>
                             <?php _e('Primary category', 'wp-seopress'); ?>
@@ -127,7 +118,7 @@ $docs = seopress_get_docs_links();
                             <?php _e('Twitter cards tags (title, description, image)', 'wp-seopress'); ?>
                         </li>
                         <li>
-                            <?php _e('Redirection (enable, type, URL)', 'wp-seopress'); ?>
+                            <?php _e('Redirection (enable, login status, type, URL)', 'wp-seopress'); ?>
                         </li>
                         <li>
                             <?php _e('Primary category', 'wp-seopress'); ?>
@@ -272,6 +263,42 @@ $docs = seopress_get_docs_links();
             <?php } ?>
             <?php } ?>
         </div>
+        <div class="seopress-tab <?php if ('tab_seopress_tool_video' == $current_tab) {
+        echo 'active';
+    } ?>" id="tab_seopress_tool_video">
+            <?php if (is_plugin_active('wp-seopress-pro/seopress-pro.php')) { ?>
+            <?php if ('1' === seopress_get_toggle_option('xml-sitemap') && '1' === seopress_get_service('SitemapOption')->isEnabled() && '1' === seopress_get_service('SitemapOption')->videoIsEnabled()) { ?>
+                <div class="postbox section-tool">
+                    <div class="sp-section-header">
+                        <h2>
+                            <?php _e('Video XML sitemap', 'wp-seopress'); ?>
+                        </h2>
+                    </div>
+                    <div class="inside">
+                        <h3>
+                            <?php _e('Add YouTube videos to the XML Video sitemap', 'wp-seopress'); ?>
+                        </h3>
+                        <p><?php _e('Click the button below to automatically scan all your content for YouTube URL and add them to the video XML sitemap. We automatically add YouTube videos each time you save a post.','wp-seopress'); ?></p>
+
+                        <button id="seopress-video-regenerate" type="button" class="btn btnSecondary"><?php _e('Regenerate','wp-seopress'); ?></button>
+                        <span class="spinner"></span>
+                        <div class="log"></div>
+                    </div>
+                </div>
+    <?php } else { ?>
+            <div class="seopress-notice is-warning">
+                <p><?php _e('XML Video sitemap feature is disabled. Please activate it from the <strong>XML sitemaps settings page</strong>.', 'wp-seopress'); ?>
+                </p>
+                <p>
+                    <a href="<?php echo admin_url('admin.php?page=seopress-xml-sitemap'); ?>"
+                        class="btn btnSecondary">
+                        <?php _e('Activate XML Video sitemap', 'wp-seopress'); ?>
+                    </a>
+                </p>
+            </div>
+            <?php } ?>
+            <?php } ?>
+        </div>
         <div class="seopress-tab <?php if ('tab_seopress_tool_reset' == $current_tab) {
         echo 'active';
     } ?>" id="tab_seopress_tool_reset">
@@ -309,7 +336,7 @@ $docs = seopress_get_docs_links();
                     <form method="post" enctype="multipart/form-data">
                         <input type="hidden" name="seopress_action" value="reset_settings" />
                         <?php wp_nonce_field('seopress_reset_nonce', 'seopress_reset_nonce'); ?>
-                        <?php sp_submit_button(__('Reset settings', 'wp-seopress'), 'btn btnSecondary'); ?>
+                        <?php sp_submit_button(__('Reset settings', 'wp-seopress'), 'btn btnSecondary is-deletable'); ?>
                     </form>
                 </div><!-- .inside -->
             </div><!-- .postbox -->

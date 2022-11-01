@@ -11,7 +11,6 @@
             <div class="post-meta__time">
                 <?php echo $custom_functions->kg_icons('calendar'); ?>
                 <?php the_time("Y-m-d"); ?>
-        
             </div>
         </div>
         <a href="javascript:history.back()" class="back">&larr; back</a>

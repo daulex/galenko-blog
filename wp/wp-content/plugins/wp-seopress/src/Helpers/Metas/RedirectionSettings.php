@@ -32,6 +32,20 @@ abstract class RedirectionSettings {
                 'visible'     => true,
             ],
             [
+                'key'         => '_seopress_redirections_logged_status',
+                'type'        => 'select',
+                'placeholder' => '',
+                'use_default' => '',
+                'default'     => '',
+                'label'       => __('Select a login status:', 'wp-seopress'),
+                'options'     => [
+                    ['value' => 'both', 'label' =>  __('All', 'wp-seopress')],
+                    ['value' => 'only_logged_in', 'label' =>  __('Only Logged In', 'wp-seopress')],
+                    ['value' => 'only_not_logged_in', 'label' =>  __('Only Not Logged In', 'wp-seopress')],
+                ],
+                'visible'     => true,
+            ],
+            [
                 'key'         => '_seopress_redirections_type',
                 'type'        => 'select',
                 'placeholder' => '',
@@ -41,9 +55,7 @@ abstract class RedirectionSettings {
                 'options'     => [
                     ['value' => 301, 'label' =>  __('301 Moved Permanently', 'wp-seopress')],
                     ['value' => 302, 'label' =>  __('302 Found / Moved Temporarily', 'wp-seopress')],
-                    ['value' => 307, 'label' =>  __('307 Moved Temporarily', 'wp-seopress')],
-                    ['value' => 410, 'label' =>  __('410 Gone', 'wp-seopress')],
-                    ['value' => 451, 'label' =>  __('451 Unavailable For Legal Reasons', 'wp-seopress')],
+                    ['value' => 307, 'label' =>  __('307 Moved Temporarily', 'wp-seopress')]
                 ],
                 'visible'     => true,
             ],

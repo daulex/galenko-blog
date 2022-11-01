@@ -1,7 +1,19 @@
-<?php get_header(); ?>
+<?php 
+get_header();
+$custom_functions = new Galenko_Custom_Functions;
+?>
 <?php if( have_posts() ) : ?>
 <section class="blog block">
 	<div class="block__container">
+		<?php if(is_category()): ?>
+		<div class="category-heading">
+			<?php echo $custom_functions->kg_icons('tag'); ?>
+			<?php
+				$category = get_the_category();
+				echo $category[0]->cat_name;
+			?>
+		</div>
+		<?php endif; ?>
 		<div class="block__row">
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part('templates/post'); ?>

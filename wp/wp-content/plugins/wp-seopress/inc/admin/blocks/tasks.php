@@ -42,75 +42,105 @@
             </div>
         </div>
         <div class="seopress-card-content">
-            <ul class="seopress-list-items" role="menu">
-                <?php $done = '';
-                if ('valid' === get_option('seopress_pro_license_status') && is_plugin_active('wp-seopress-pro/seopress-pro.php') && ! is_multisite()) {
-                    $done = 'done'; ?>
-                <li class="seopress-item has-action seopress-item-inner">
-                    <a href="<?php echo admin_url('admin.php?page=seopress-license'); ?>"
-                        class="seopress-item-inner check <?php echo $done; ?>">
-                        <?php _e('Activate your license key', 'wp-seopress'); ?>
-                    </a>
-                </li>
-                <?php
+            <?php
+                /**
+                 * Check if XML sitemaps feature is correctly enabled by the user
+                 *
+                 * @since 6.0
+                 * @author Benjamin
+                 *
+                 */
+                function seopress_tasks_sitemaps() {
+                    $options = get_option('seopress_xml_sitemap_option_name');
+                    if (isset($options['seopress_xml_sitemap_general_enable']) && ('1' === seopress_get_toggle_option('xml-sitemap'))) {
+                        return 'done';
+                    }
+
+                    return;
                 }
-                $done    = '';
-                $options       = get_option('seopress_xml_sitemap_option_name');
-                    $check     = isset($options['seopress_xml_sitemap_general_enable']);
-                    if ('1' == $check) {
-                        $done = 'done';
+
+                /**
+                 * Check if Social Networds feature is correctly enabled by the user
+                 *
+                 * @since 6.0
+                 * @author Benjamin
+                 *
+                 */
+                function seopress_tasks_social_networks() {
+                    $options = get_option('seopress_social_option_name');
+                    if (isset($options['seopress_social_facebook_og']) && ('1' === seopress_get_toggle_option('social'))) {
+                        return 'done';
                     }
-                ?>
-                <li class="seopress-item has-action seopress-item-inner">
-                    <a href="<?php echo admin_url('admin.php?page=seopress-xml-sitemap'); ?>"
-                        class="seopress-item-inner check <?php echo $done; ?>">
-                        <?php _e('Generate XML sitemaps', 'wp-seopress'); ?>
-                    </a>
-                </li>
-                <?php $done    = '';
-                $options       = get_option('seopress_social_option_name');
-                    $check     = isset($options['seopress_social_facebook_og']);
-                    if ('1' == $check) {
-                        $done = 'done';
-                    }
-                ?>
-                <li class="seopress-item has-action seopress-item-inner">
-                    <a href="<?php echo admin_url('admin.php?page=seopress-social'); ?>"
-                        class="seopress-item-inner check <?php echo $done; ?>">
-                        <?php _e('Be social', 'wp-seopress'); ?>
-                    </a>
-                </li>
-                <?php
-                $done = '';
-                if (is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
-                    if ('1' === seopress_get_toggle_option('local-business')) {
-                        $done = 'done';
-                    } ?>
-                <li class="seopress-item has-action seopress-item-inner">
-                    <a href="<?php echo admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_local_business'); ?>"
-                        class="seopress-item-inner check <?php echo $done; ?>">
-                        <?php _e('Improve Local SEO', 'wp-seopress'); ?>
-                    </a>
-                </li>
-                <?php
-                } ?>
-                <?php
-                $done    = '';
-                if (is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
+
+                    return;
+                }
+
+                /**
+                 * Check if Schemas feature is correctly enabled by the user
+                 *
+                 * @since 6.0
+                 * @author Benjamin
+                 *
+                 */
+                function seopress_tasks_schemas() {
                     $options = get_option('seopress_pro_option_name');
-                    $check   = isset($options['seopress_rich_snippets_enable']);
-                    if ('1' === seopress_get_toggle_option('rich-snippets') && '1' == $check) {
-                        $done = 'done';
-                    } ?>
-                <li class="seopress-item has-action seopress-item-inner">
-                    <a href="<?php echo admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_rich_snippets'); ?>"
-                        class="seopress-item-inner check <?php echo $done; ?>">
-                        <?php _e('Add Structured Data Types to increase visibility in SERPs', 'wp-seopress'); ?>
-                    </a>
-                </li>
-                <?php
-                } ?>
+                    if (is_plugin_active('wp-seopress-pro/seopress-pro.php') && isset($options['seopress_rich_snippets_enable']) && '1' === seopress_get_toggle_option('rich-snippets')) {
+                        return 'done';
+                    }
+
+                    return;
+                }
+                $tasks = [
+                    [
+                        'done' => ('valid' === get_option('seopress_pro_license_status') && is_plugin_active('wp-seopress-pro/seopress-pro.php') && ! is_multisite()) ? 'done' : '',
+                        'link' => admin_url('admin.php?page=seopress-license'),
+                        'label' => __('Activate your license key', 'wp-seopress'),
+                    ],
+                    [
+                        'done' => seopress_tasks_sitemaps(),
+                        'link' => admin_url('admin.php?page=seopress-xml-sitemap'),
+                        'label' => __('Generate XML sitemaps', 'wp-seopress'),
+                    ],
+                    [
+                        'done' => seopress_tasks_social_networks(),
+                        'link' => admin_url('admin.php?page=seopress-social'),
+                        'label' => __('Be social', 'wp-seopress'),
+                    ],
+                    [
+                        'done' => (is_plugin_active('wp-seopress-pro/seopress-pro.php') && seopress_get_toggle_option('local-business') === '1') ? 'done' : '',
+                        'link' => admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_local_business'),
+                        'label' => __('Improve Local SEO', 'wp-seopress'),
+                    ],
+                    [
+                        'done' => seopress_tasks_schemas(),
+                        'link' => admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_rich_snippets'),
+                        'label' => __('Add Structured Data Types to increase visibility in SERPs', 'wp-seopress'),
+                    ]
+                ];
+
+                if (!is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
+                    unset($tasks[0]);
+                    unset($tasks[3]);
+                    unset($tasks[4]);
+                    $tasks = array_values($tasks);
+                }
+            ?>
+
+            <ul class="seopress-list-items" role="menu">
+                <?php foreach($tasks as $key => $task) { ?>
+                    <li class="seopress-item has-action seopress-item-inner <?php if (empty($task['done'])) { echo 'is-active'; }; ?>">
+                        <a href="<?php echo $task['link']; ?>" class="seopress-item-inner check <?php echo $task['done']; ?>" data-index="<?php echo $key + 1; ?>">
+                            <?php echo $task['label']; ?>
+                        </a>
+                    </li>
+                <?php } ?>
             </ul>
+        </div>
+        <div class="seopress-card-footer">
+            <a href="https://wordpress.org/support/view/plugin-reviews/wp-seopress?rate=5#postform" target="_blank">
+                <?php _e('You like SEOPress? Please help us by rating us 5 stars!', 'wp-seopress'); ?>
+            </a>
+            <span class="dashicons dashicons-external"></span>
         </div>
     </div>
 

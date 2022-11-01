@@ -141,6 +141,34 @@ class TitleOption {
         return $option[$currentCpt]['nofollow'];
     }
 
+        /**
+     * @since 5.7
+     *
+     * @param int|null $id
+     */
+    public function getSingleCptDate($id = null) {
+        $arg = $id;
+
+        if (null === $id) {
+            global $post;
+            if ( ! isset($post)) {
+                return;
+            }
+
+            $arg = $post;
+        }
+
+        $currentCpt = get_post_type($arg);
+
+        $option =  $this->searchOptionByKey('seopress_titles_single_titles');
+
+        if ( ! isset($option[$currentCpt]['date'])) {
+            return;
+        }
+
+        return $option[$currentCpt]['date'];
+    }
+
     /**
      * @since 5.0.0
      */
@@ -181,5 +209,103 @@ class TitleOption {
      */
     public function getTitleNoImageIndex() {
         return $this->searchOptionByKey('seopress_titles_noimageindex');
+    }
+
+    /**
+     * @since 5.4.1
+     */
+    public function getArchivesAuthorTitle(){
+        return $this->searchOptionByKey('seopress_titles_archives_author_title');
+    }
+
+    /**
+     * @since 5.4.1
+     */
+    public function getArchivesAuthorDescription(){
+        return $this->searchOptionByKey('seopress_titles_archives_author_desc');
+    }
+
+    /**
+     * @since 5.4.0
+     */
+    public function getTitleArchivesDate(){
+        return $this->searchOptionByKey('seopress_titles_archives_date_title');
+    }
+
+    /**
+     * @since 5.4.0
+     */
+    public function getTitleArchivesSearch(){
+        return $this->searchOptionByKey('seopress_titles_archives_search_title');
+    }
+
+    /**
+     * @since 5.4.0
+     */
+    public function getTitleArchives404(){
+        return $this->searchOptionByKey('seopress_titles_archives_404_title');
+    }
+
+    /**
+     * @since 5.4.0
+     */
+    public function getPagedRel(){
+        return $this->searchOptionByKey('seopress_titles_paged_rel');
+    }
+
+    /**
+     * @since 5.4.0
+     */
+    public function getTitleBpGroups(){
+        return $this->searchOptionByKey('seopress_titles_bp_groups_title');
+    }
+
+    /**
+     * @since 5.9.0
+     */
+    public function getBpGroupsDesc(){
+        return $this->searchOptionByKey('seopress_titles_bp_groups_desc');
+    }
+
+    /**
+     * @since 5.9.0
+     */
+    public function getArchivesDateDesc(){
+        return $this->searchOptionByKey('seopress_titles_archives_date_desc');
+    }
+
+    /**
+     * @since 5.9.0
+     */
+    public function getArchivesSearchDesc(){
+        return $this->searchOptionByKey('seopress_titles_archives_search_desc');
+    }
+
+    /**
+     * @since 5.9.0
+     */
+    public function getArchives404Desc(){
+        return $this->searchOptionByKey('seopress_titles_archives_404_desc');
+    }
+
+    /**
+     * @since 5.9.0
+     */
+    public function geNoSiteLinksSearchBox(){
+        return $this->searchOptionByKey('seopress_titles_nositelinkssearchbox');
+    }
+
+    /**
+     * @since 6.0.0
+     */
+    public function getArchiveAuthorDisable(){
+        return $this->searchOptionByKey('seopress_titles_archives_author_disable');
+    }
+
+    /**
+     * @since 6.0.0
+     */
+    public function getArchiveDateDisable(){
+        return $this->searchOptionByKey('seopress_titles_archives_date_disable');
     }
 }

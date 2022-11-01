@@ -32,6 +32,7 @@ function seopress_export_settings() {
     $settings['seopress_google_analytics_lock_option_name']     = get_option('seopress_google_analytics_lock_option_name');
     $settings['seopress_tools_option_name']                     = get_option('seopress_tools_option_name');
     $settings['seopress_dashboard_option_name']                 = get_option('seopress_dashboard_option_name');
+    $settings['seopress_instant_indexing_option_name']          = get_option('seopress_instant_indexing_option_name');
 
     ignore_user_abort(true);
     nocache_headers();
@@ -109,6 +110,9 @@ function seopress_import_settings() {
     }
     if (false !== $settings['seopress_tools_option_name']) {
         update_option('seopress_tools_option_name', $settings['seopress_tools_option_name'], false);
+    }
+    if (false !== $settings['seopress_instant_indexing_option_name']) {
+        update_option('seopress_instant_indexing_option_name', $settings['seopress_instant_indexing_option_name'], false);
     }
 
     wp_safe_redirect(admin_url('admin.php?page=seopress-import-export&success=true'));
@@ -838,6 +842,7 @@ function seopress_download_batch_export() {
             $csv_fields[] = 'canonical_url';
             $csv_fields[] = 'primary_cat';
             $csv_fields[] = 'redirect_active';
+            $csv_fields[] = 'redirect_status';
             $csv_fields[] = 'redirect_type';
             $csv_fields[] = 'redirect_url';
             $csv_fields[] = 'target_kw';

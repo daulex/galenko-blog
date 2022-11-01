@@ -35,7 +35,12 @@ class Single {
 
         add_filter('seopress_sitemaps_single_url', function($url, $post) {
             //Exclude custom canonical from sitemaps
-            if (get_post_meta($post->ID, '_seopress_robots_canonical', true)) {
+            if (get_post_meta($post->ID, '_seopress_robots_canonical', true) && get_permalink( $post->ID) !== get_post_meta($post->ID, '_seopress_robots_canonical', true)) {
+                return null;
+            }
+
+            //If noindex, continue to next post
+            if (get_post_meta($post->ID, '_seopress_robots_index', true) ==='yes') {
                 return null;
             }
 

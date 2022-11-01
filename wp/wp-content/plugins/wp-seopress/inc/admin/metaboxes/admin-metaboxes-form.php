@@ -188,7 +188,7 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                 echo seopress_tooltip(__('Snippet Preview', 'wp-seopress'), __('The Google preview is a simulation. <br>There is no reliable preview because it depends on the screen resolution, the device used, the expression sought, and Google. <br>There is not one snippet for one URL but several. <br>All the data in this overview comes directly from your source code. <br>This is what the crawlers will see.', 'wp-seopress'), null);
                             ?>
                                 </h3>
-                                <p><?php _e('This is what your page will look like in Google search results. You have to publish your post to get the Google Snippet Preview.', 'wp-seopress'); ?>
+                                <p><?php _e('This is what your page will look like in Google search results. You have to publish your post to get the Google Snippet Preview. Note that Google may optionally display an image of your article.', 'wp-seopress'); ?>
                                 </p>
                                 <div class="wrap-toggle-preview">
                                     <p>
@@ -225,16 +225,24 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                     <div class="snippet-title"></div>
                                     <div class="snippet-title-custom" style="display:none"></div>
 
-                                    <?php
-                echo $gp_title;
-                echo $gp_permalink;
+                                    <div class="wrap-snippet-mobile">
+                                        <div class="wrap-meta-desc">
+                                            <?php
+                        echo $gp_title;
+                        echo $gp_permalink;
 
-                if ('post-new.php' == $pagenow || 'post.php' == $pagenow) {
-                    echo seopress_display_date_snippet();
-                } ?>
-                                    <div class="snippet-description">...</div>
-                                    <div class="snippet-description-custom" style="display:none"></div>
-                                    <div class="snippet-description-default" style="display:none"></div>
+                        if ('post-new.php' == $pagenow || 'post.php' == $pagenow) {
+                            echo seopress_display_date_snippet();
+                        } ?>
+
+                                            <div class="snippet-description">...</div>
+                                            <div class="snippet-description-custom" style="display:none"></div>
+                                            <div class="snippet-description-default" style="display:none"></div>
+                                        </div>
+                                        <div class="wrap-post-thumb">
+                                            <?php the_post_thumbnail('full', ['class' => 'snippet-post-thumb']); ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -442,7 +450,7 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                         </p>
                                     </div>
                                     <div class="snippet-fb-img-alert alert2" style="display:none">
-                                        <p class="notice notice-error"><?php _e('Minimun size for Facebook is <strong>200x200px</strong>. Please choose another image.', 'wp-seopress'); ?>
+                                        <p class="notice notice-error"><?php _e('Minimum size for Facebook is <strong>200x200px</strong>. Please choose another image.', 'wp-seopress'); ?>
                                         </p>
                                     </div>
                                     <div class="snippet-fb-img-alert alert3" style="display:none">
@@ -559,7 +567,7 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                         </p>
                                     </div>
                                     <div class="snippet-twitter-img-alert alert2" style="display:none">
-                                        <p class="notice notice-error"><?php _e('Minimun size for Twitter is <strong>144x144px</strong>. Please choose another image.', 'wp-seopress'); ?>
+                                        <p class="notice notice-error"><?php _e('Minimum size for Twitter is <strong>144x144px</strong>. Please choose another image.', 'wp-seopress'); ?>
                                         </p>
                                     </div>
                                     <div class="snippet-twitter-img-alert alert3" style="display:none">
@@ -623,14 +631,16 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                 <?php _e('Enable redirection?', 'wp-seopress'); ?>
                             </label>
                         </p>
-                        <p>
-                            <label for="seopress_redirections_enabled_regex_meta" id="seopress_redirections_enabled_regex">
-                                <input type="checkbox" name="seopress_redirections_enabled_regex"
-                                    id="seopress_redirections_enabled_regex_meta" value="yes" <?php echo checked($seopress_redirections_enabled_regex, 'yes', false); ?>
-                                />
-                                <?php _e('Regex?', 'wp-seopress'); ?>
-                            </label>
-                        </p>
+                        <?php if ('seopress_404' == $typenow) { ?>
+                            <p>
+                                <label for="seopress_redirections_enabled_regex_meta" id="seopress_redirections_enabled_regex">
+                                    <input type="checkbox" name="seopress_redirections_enabled_regex"
+                                        id="seopress_redirections_enabled_regex_meta" value="yes" <?php echo checked($seopress_redirections_enabled_regex, 'yes', false); ?>
+                                    />
+                                    <?php _e('Regex?', 'wp-seopress'); ?>
+                                </label>
+                            </p>
+                        <?php } ?>
                         <p>
                             <label for="seopress_redirections_logged_status"><?php _e('Select a login status: ', 'wp-seopress'); ?></label>
 
@@ -660,12 +670,14 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                 <option <?php echo selected('307', $seopress_redirections_type, false); ?>
                                     value="307"><?php _e('307 Moved Temporarily', 'wp-seopress'); ?>
                                 </option>
-                                <option <?php echo selected('410', $seopress_redirections_type, false); ?>
-                                    value="410"><?php _e('410 Gone', 'wp-seopress'); ?>
-                                </option>
-                                <option <?php echo selected('451', $seopress_redirections_type, false); ?>
-                                    value="451"><?php _e('451 Unavailable For Legal Reasons', 'wp-seopress'); ?>
-                                </option>
+                                <?php if ('seopress_404' == $typenow) { ?>
+                                    <option <?php echo selected('410', $seopress_redirections_type, false); ?>
+                                        value="410"><?php _e('410 Gone', 'wp-seopress'); ?>
+                                    </option>
+                                    <option <?php echo selected('451', $seopress_redirections_type, false); ?>
+                                        value="451"><?php _e('451 Unavailable For Legal Reasons', 'wp-seopress'); ?>
+                                    </option>
+                                <?php } ?>
                             </select>
                         </p>
                         <p>
@@ -730,7 +742,15 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                         if ('' != $seopress_redirections_value || in_array($seopress_redirections_type, $status_code)) {
                             if ('post-new.php' == $pagenow || 'post.php' == $pagenow) {
                                 if ('seopress_404' == $typenow) {
-                                    $href = get_home_url() . '/' . get_the_title();
+
+                                    $parse_url = wp_parse_url(get_home_url());
+
+                                    $home_url = get_home_url();
+                                    if ( ! empty($parse_url['scheme']) && ! empty($parse_url['host'])) {
+                                        $home_url = $parse_url['scheme'] . '://' . $parse_url['host'];
+                                    }
+
+                                    $href = $home_url . '/' . get_the_title();
                                 } else {
                                     $href = get_the_permalink();
                                 }
@@ -799,6 +819,9 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                         if (array_key_exists('video-tab', $seo_tabs)) { ?>
                     <div id="tabs-6">
                         <p>
+                            <?php _e('YouTube videos are automatically added when you create / save a post, page or post type.','wp-seopress'); ?>
+                        </p>
+                        <p>
                             <label for="seopress_video_disabled_meta" id="seopress_video_disabled">
                                 <input type="checkbox" name="seopress_video_disabled" id="seopress_video_disabled_meta"
                                     value="yes" <?php echo checked($seopress_video_disabled, 'yes', false); ?>
@@ -820,7 +843,6 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                             $check_view_count      = isset($seopress_video[0][$key]['view_count']) ? esc_attr($seopress_video[0][$key]['view_count']) : null;
                             $check_view_count      = isset($seopress_video[0][$key]['view_count']) ? esc_attr($seopress_video[0][$key]['view_count']) : null;
                             $check_tag             = isset($seopress_video[0][$key]['tag']) ? esc_attr($seopress_video[0][$key]['tag']) : null;
-                            $check_cat             = isset($seopress_video[0][$key]['cat']) ? esc_attr($seopress_video[0][$key]['cat']) : null;
                             $check_family_friendly = isset($seopress_video[0][$key]['family_friendly']) ? esc_attr($seopress_video[0][$key]['family_friendly']) : null; ?>
 
                             <div class="video">
@@ -941,18 +963,6 @@ if ('term.php' == $pagenow || 'edit-tags.php' == $pagenow) { ?>
                                             aria-label="<?php _e('Video tags', 'wp-seopress'); ?>"
                                             value="<?php echo $check_tag; ?>" />
                                         <span class="description"><?php _e('32 tags max., separate tags with commas. Default: target keywords + post tags if available.', 'wp-seopress'); ?></span>
-                                    </p>
-                                    <p>
-                                        <label
-                                            for="seopress_video[<?php echo $key; ?>][cat_meta]"><?php _e('Video categories', 'wp-seopress'); ?></label>
-                                        <input
-                                            id="seopress_video[<?php echo $key; ?>][cat_meta]"
-                                            type="text" class="components-text-control__input"
-                                            name="seopress_video[<?php echo $key; ?>][cat]"
-                                            placeholder="<?php esc_html_e('Enter your video categories', 'wp-seopress'); ?>"
-                                            aria-label="<?php _e('Video categories', 'wp-seopress'); ?>"
-                                            value="<?php echo $check_cat; ?>" />
-                                        <span class="description"><?php _e('256 characters max., usually a video will belong to a single category, separate categories with commas. Default: first post category if available.', 'wp-seopress'); ?></span>
                                     </p>
                                     <p class="family-friendly">
                                         <label

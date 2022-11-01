@@ -18,9 +18,9 @@ function seopress_xml_sitemap_general_enable_callback()
     <?php } ?>
     value="1"/>
     <?php _e('Enable XML Sitemap', 'wp-seopress'); ?>
+    <?php echo seopress_tooltip_link($docs['sitemaps']['xml'], __('Guide to enable XML Sitemaps - new window', 'wp-seopress')); ?>
 </label>
 
-<?php echo seopress_tooltip_link($docs['sitemaps']['xml'], __('Guide to enable XML Sitemaps - new window', 'wp-seopress')); ?>
 
 <?php if (isset($options['seopress_xml_sitemap_general_enable'])) {
         esc_attr($options['seopress_xml_sitemap_general_enable']);
@@ -43,9 +43,9 @@ function seopress_xml_sitemap_img_enable_callback()
     <?php } ?>
     value="1"/>
     <?php _e('Enable Image Sitemaps (standard images, image galleries, featured image, WooCommerce product images)', 'wp-seopress'); ?>
+    <?php echo seopress_tooltip_link($docs['sitemaps']['image'], __('Guide to enable XML image sitemaps - new window', 'wp-seopress')); ?>
 </label>
 
-<?php echo seopress_tooltip_link($docs['sitemaps']['image'], __('Guide to enable XML image sitemaps - new window', 'wp-seopress')); ?>
 
 <p class="description">
     <?php _e('Images in XML sitemaps are visible only from the source code.', 'wp-seopress'); ?>
@@ -73,11 +73,15 @@ function seopress_xml_sitemap_video_enable_callback()
     <?php } ?>
     value="1"/>
     <?php _e('Enable Video Sitemaps', 'wp-seopress'); ?>
+    <?php echo seopress_tooltip_link($docs['sitemaps']['video'], __('Guide to enable XML video sitemaps - new window', 'wp-seopress')); ?>
 </label>
 
-<?php echo seopress_tooltip_link($docs['sitemaps']['video'], __('Guide to enable XML video sitemaps - new window', 'wp-seopress')); ?>
 
-<?php printf('<p class="description">' . __('Your video sitemap is empty? Read our guide to learn more about <a href="%s" target="_blank">adding videos to your sitemap.</a>', 'wp-seopress') . '</p>', $docs['sitemaps']['video']); ?>
+<p class="description">
+    <?php printf(__('Your video sitemap is empty? Read our guide to learn more about <a href="%s" target="_blank">adding videos to your sitemap.</a>', 'wp-seopress'), $docs['sitemaps']['video']); ?><br>
+    <?php _e('YouTube videos are automatically added when you create / save a post, page or post type.', 'wp-seopress'); ?><br>
+    <?php printf(__('<a href="%s">Regenerate automatic XML Video sitemap for YouTube?</a>', 'wp-seopress'), admin_url('admin.php?page=seopress-import-export#tab=tab_seopress_tool_video')); ?>
+</p>
 
 <?php if (isset($options['seopress_xml_sitemap_video_enable'])) {
             esc_attr($options['seopress_xml_sitemap_video_enable']);
@@ -126,9 +130,9 @@ function seopress_xml_sitemap_html_enable_callback()
     <?php } ?>
     value="1"/>
     <?php _e('Enable HTML Sitemap', 'wp-seopress'); ?>
+    <?php echo seopress_tooltip_link($docs['sitemaps']['html'], __('Guide to enable a HTML Sitemap - new window', 'wp-seopress')); ?>
 </label>
 
-<?php echo seopress_tooltip_link($docs['sitemaps']['html'], __('Guide to enable a HTML Sitemap - new window', 'wp-seopress')); ?>
 
 <?php if (isset($options['seopress_xml_sitemap_html_enable'])) {
         esc_attr($options['seopress_xml_sitemap_html_enable']);
@@ -151,7 +155,7 @@ function seopress_xml_sitemap_post_types_list_callback()
     $output       = 'objects'; // names or objects, note names is the default
     $operator     = 'and'; // 'and' or 'or'
 
-    $post_types = get_post_types($args, $output, $operator);
+    $post_types = apply_filters( 'seopress_sitemaps_cpt', get_post_types($args, $output, $operator) );
 
     foreach ($post_types as $seopress_cpt_key => $seopress_cpt_value) { ?>
 <h3>
@@ -180,8 +184,8 @@ function seopress_xml_sitemap_post_types_list_callback()
     </label>
 
     <?php if ('attachment' == $seopress_cpt_value->name) { ?>
-    <div class="seopress-notice is-warning">
-        <p class="description">
+    <div class="seopress-notice is-warning is-inline">
+        <p>
             <?php _e('You should never include <strong>attachment</strong> post type in your sitemap. Be careful if you checked this.', 'wp-seopress'); ?>
         </p>
     </div>
@@ -210,7 +214,7 @@ function seopress_xml_sitemap_taxonomies_list_callback()
 
     $output         = 'objects'; // or objects
     $operator       = 'and'; // 'and' or 'or'
-    $taxonomies     = get_taxonomies($args, $output, $operator);
+    $taxonomies     = apply_filters( 'seopress_sitemaps_tax', get_taxonomies($args, $output, $operator) );
 
     foreach ($taxonomies as $seopress_tax_key => $seopress_tax_value) { ?>
 <h3>
@@ -254,20 +258,7 @@ function seopress_xml_sitemap_html_mapping_callback()
     printf(
         '<input type="text" name="seopress_xml_sitemap_option_name[seopress_xml_sitemap_html_mapping]" placeholder="' . esc_html__('eg: 2, 28, 68', 'wp-seopress') . '" aria-label="' . __('Enter a post, page or custom post type ID(s) to display the sitemap', 'wp-seopress') . '" value="%s"/>',
         esc_html($check)
-    ); ?>
-
-<p>
-    <?php _e('You can also use this shortcode:', 'wp-seopress'); ?>
-</p>
-
-<pre>[seopress_html_sitemap]</pre>
-
-<p><?php _e('To include specific custom post types, use the CPT attribute:', 'wp-seopress'); ?>
-</p>
-
-<pre>[seopress_html_sitemap cpt="post,product"]</pre>
-
-<?php
+    );
 }
 
 function seopress_xml_sitemap_html_exclude_callback()

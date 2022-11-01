@@ -11,15 +11,7 @@
         //Notifications Center
         function seopress_advanced_appearance_notifications_option()
         {
-            $seopress_advanced_appearance_notifications_option = get_option('seopress_advanced_option_name');
-            if (! empty($seopress_advanced_appearance_notifications_option)) {
-                foreach ($seopress_advanced_appearance_notifications_option as $key => $seopress_advanced_appearance_notifications_value) {
-                    $options[$key] = $seopress_advanced_appearance_notifications_value;
-                }
-                if (isset($seopress_advanced_appearance_notifications_option['seopress_advanced_appearance_notifications'])) {
-                    return $seopress_advanced_appearance_notifications_option['seopress_advanced_appearance_notifications'];
-                }
-            }
+            return seopress_get_service('AdvancedOption')->getAppearanceNotification();
         }
     ?>
 
@@ -34,27 +26,33 @@
         <?php
             function seopress_advanced_appearance_universal_metabox_option()
             {
-                $seopress_advanced_appearance_universal_metabox_option = get_option('seopress_advanced_option_name');
-                if (! empty($seopress_advanced_appearance_universal_metabox_option)) {
-                    foreach ($seopress_advanced_appearance_universal_metabox_option as $key => $seopress_advanced_appearance_universal_metabox_value) {
-                        $options[$key] = $seopress_advanced_appearance_universal_metabox_value;
-                    }
-                    if (isset($seopress_advanced_appearance_universal_metabox_option['seopress_advanced_appearance_universal_metabox'])) {
-                        return $seopress_advanced_appearance_universal_metabox_option['seopress_advanced_appearance_universal_metabox'];
-                    }
-                }
+                return seopress_get_service('AdvancedOption')->getAccessUniversalMetaboxGutenberg();
+            }
+            function seopress_get_hidden_notices_review_option()
+            {
+                return seopress_get_service('NoticeOption')->getNoticeReview();
+            }
+            if ('1' != seopress_get_hidden_notices_review_option()) {
+                $args = [
+                    'id'     => 'notice-review',
+                    'title'  => __('You like SEOPress? Please help us by rating us 5 stars!', 'wp-seopress'),
+                    'desc'   => __('Support the development and improvement of the plugin by taking 15 seconds of your time to leave us a user review on the official WordPress plugins repository. Thank you!', 'wp-seopress'),
+                    'impact' => [
+                        'info' => __('Information', 'wp-seopress'),
+                    ],
+                    'link' => [
+                        'en'       => 'https://wordpress.org/support/view/plugin-reviews/wp-seopress?rate=5#postform',
+                        'title'    => __('Rate us!', 'wp-seopress'),
+                        'external' => true,
+                    ],
+                    'icon'       => 'dashicons-thumbs-up',
+                    'deleteable' => true,
+                ];
+                seopress_notification($args);
             }
             function seopress_get_hidden_notices_usm_option()
             {
-                $seopress_get_hidden_notices_usm_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_usm_option)) {
-                    foreach ($seopress_get_hidden_notices_usm_option as $key => $seopress_get_hidden_notices_usm_value) {
-                        $options[$key] = $seopress_get_hidden_notices_usm_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_usm_option['notice-usm'])) {
-                        return $seopress_get_hidden_notices_usm_option['notice-usm'];
-                    }
-                }
+                return seopress_get_service('NoticeOption')->getNoticeUSM();
             }
             if ('1' != seopress_get_hidden_notices_usm_option() && seopress_advanced_appearance_universal_metabox_option() !== '1') {
                 $args = [
@@ -76,15 +74,7 @@
             }
             function seopress_get_hidden_notices_wizard_option()
             {
-                $seopress_get_hidden_notices_wizard_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_wizard_option)) {
-                    foreach ($seopress_get_hidden_notices_wizard_option as $key => $seopress_get_hidden_notices_wizard_value) {
-                        $options[$key] = $seopress_get_hidden_notices_wizard_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_wizard_option['notice-wizard'])) {
-                        return $seopress_get_hidden_notices_wizard_option['notice-wizard'];
-                    }
-                }
+                return seopress_get_service('NoticeOption')->getNoticeWizard();
             }
             if ('1' != seopress_get_hidden_notices_wizard_option()) {
                 $args = [
@@ -107,15 +97,7 @@
             if (is_plugin_active('wp-seopress-insights/seopress-insights.php')) {
                 function seopress_get_hidden_notices_insights_wizard_option()
                 {
-                    $seopress_get_hidden_notices_insights_wizard_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_insights_wizard_option)) {
-                        foreach ($seopress_get_hidden_notices_insights_wizard_option as $key => $seopress_get_hidden_notices_insights_wizard_value) {
-                            $options[$key] = $seopress_get_hidden_notices_insights_wizard_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_insights_wizard_option['notice-insights-wizard'])) {
-                            return $seopress_get_hidden_notices_insights_wizard_option['notice-insights-wizard'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeInsightsWizard();
                 }
                 if ('1' != seopress_get_hidden_notices_insights_wizard_option()) {
                     $args = [
@@ -136,6 +118,57 @@
                     seopress_notification($args);
                 }
             }
+            function seopress_get_hidden_notices_seo_consultant_option()
+            {
+                return seopress_get_service('NoticeOption')->getNoticeSEOConsultant();
+            }
+            if ('1' != seopress_get_hidden_notices_seo_consultant_option()) {
+                $args = [
+                    'id'     => 'notice-seo-consultant',
+                    'title'  => __('Talk to a SEO consultant', 'wp-seopress'),
+                    'desc'   => __('Your site is growing and you want support for your SEO strategy, increase your sales and conversions? We are there for that. Contact us!', 'wp-seopress'),
+                    'impact' => [
+                        'info' => __('Wizard', 'wp-seopress'),
+                    ],
+                    'link' => [
+                        'en'       => 'https://www.seopress.org/wordpress-seo-plugins/seo-audit-config/',
+                        'fr'       => 'https://www.seopress.org/fr/extensions-seo-wordpress/audit-seo-et-configuration-de-seopress/',
+                        'title'    => __('Yes, please', 'wp-seopress'),
+                        'external' => true,
+                    ],
+                    'icon'       => 'dashicons-sos',
+                    'deleteable' => true,
+                ];
+                seopress_notification($args);
+            }
+
+
+            //AMP
+            if (is_plugin_active('amp/amp.php')) {
+                function seopress_get_hidden_notices_amp_analytics_option()
+                {
+                    return seopress_get_service('NoticeOption')->getNoticeAMPAnalytics();
+                }
+                if ('1' != seopress_get_hidden_notices_amp_analytics_option()) {
+                    $args = [
+                        'id'     => 'notice-amp-analytics',
+                        'title'  => __('Use Google Analytics with AMP plugin', 'wp-seopress'),
+                        'desc'   => __('Your site is using the AMP official plugin. To track users with Google Analytics on AMP pages, please go to this settings page.', 'wp-seopress'),
+                        'impact' => [
+                            'info' => __('Medium impact', 'wp-seopress'),
+                        ],
+                        'link' => [
+                            'en'       => admin_url('admin.php?page=amp-options#analytics-options'),
+                            'title'    => __('Fix this!', 'wp-seopress'),
+                            'external' => false,
+                        ],
+                        'icon'       => 'dashicons-chart-area',
+                        'deleteable' => true,
+                    ];
+                    seopress_notification($args);
+                }
+            }
+
             //DIVI SEO options conflict
             $theme = wp_get_theme();
             if ('Divi' == $theme->template || 'Divi' == $theme->parent_theme) {
@@ -172,54 +205,10 @@
                     }
                 }
             }
-            if ('/' != substr(get_option('permalink_structure'), -1) && '' == seopress_advanced_advanced_trailingslash_option()) {
-                $args = [
-                    'id'     => 'notice-permalinks',
-                    'title'  => __('Your permalinks don\'t have a trailingslash', 'wp-seopress'),
-                    'desc'   => __('To avoid any SEO issues, we recommend you to activate the "<strong>Disable trailing slash for metas</strong>" option from our <strong>Advanced settings page</strong>. Do not forget to clear your cache if necessary.', 'wp-seopress'),
-                    'impact' => [
-                        'high' => __('High impact', 'wp-seopress'),
-                    ],
-                    'link' => [
-                        'en'       => admin_url('admin.php?page=seopress-advanced#tab=seopress_advanced_advanced'),
-                        'title'    => __('Fix this!', 'wp-seopress'),
-                        'external' => false,
-                    ],
-                    'icon'       => 'dashicons-admin-links',
-                    'deleteable' => false,
-                ];
-                seopress_notification($args);
-            }
-            if ('/' == substr(get_option('permalink_structure'), -1) && '1' == seopress_advanced_advanced_trailingslash_option()) {
-                $args = [
-                    'id'     => 'notice-permalinks',
-                    'title'  => __('Your permalinks have a trailingslash', 'wp-seopress'),
-                    'desc'   => __('To avoid any SEO issues, we recommend you to de-activate the "<strong>Disable trailing slash for metas</strong>" option from our <strong>Advanced settings page</strong>. Do not forget to clear your cache if necessary.', 'wp-seopress'),
-                    'impact' => [
-                        'high' => __('High impact', 'wp-seopress'),
-                    ],
-                    'link' => [
-                        'en'       => admin_url('admin.php?page=seopress-advanced#tab=seopress_advanced_advanced'),
-                        'title'    => __('Fix this!', 'wp-seopress'),
-                        'external' => false,
-                    ],
-                    'icon'       => 'dashicons-admin-links',
-                    'deleteable' => false,
-                ];
-                seopress_notification($args);
-            }
             if (is_plugin_active('td-composer/td-composer.php')) {
                 function seopress_get_hidden_notices_tagdiv_option()
                 {
-                    $seopress_get_hidden_notices_tagdiv_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_tagdiv_option)) {
-                        foreach ($seopress_get_hidden_notices_tagdiv_option as $key => $seopress_get_hidden_notices_tagdiv_value) {
-                            $options[$key] = $seopress_get_hidden_notices_tagdiv_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_tagdiv_option['notice-tagdiv'])) {
-                            return $seopress_get_hidden_notices_tagdiv_option['notice-tagdiv'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeTagDiv();
                 }
                 if ('1' != seopress_get_hidden_notices_tagdiv_option()) {
                     $args = [
@@ -230,7 +219,7 @@
                             'high' => __('High impact', 'wp-seopress'),
                         ],
                         'link' => [
-                            'fr'       => 'https://www.seopress.org/fr/support/guides/corriger-erreur-compatibilite-extension-tagdiv-composer-newspaper/?utm_source=plugin&utm_medium=wp-admin&utm_campaign=seopress',
+                            'fr'       => 'https://www.seopress.org/fr/support/guides/corriger-lerreur-de-compatibilite-avec-lextension-tagdiv-composer-inclus-dans-le-theme-newspaper/?utm_source=plugin&utm_medium=wp-admin&utm_campaign=seopress',
                             'en'       => 'https://www.seopress.org/support/guides/fix-compatibility-issue-tagdiv-composer-plugin-newspaper-theme/?utm_source=plugin&utm_medium=wp-admin&utm_campaign=seopress',
                             'title'    => __('Fix this!', 'wp-seopress'),
                             'external' => true,
@@ -241,18 +230,10 @@
                     seopress_notification($args);
                 }
             }
-            if ('1' != get_theme_support('title-tag')) {
+            if ('1' != get_theme_support('title-tag') && true !== wp_is_block_theme()) {
                 function seopress_get_hidden_notices_title_tag_option()
                 {
-                    $seopress_get_hidden_notices_title_tag_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_title_tag_option)) {
-                        foreach ($seopress_get_hidden_notices_title_tag_option as $key => $seopress_get_hidden_notices_title_tag_value) {
-                            $options[$key] = $seopress_get_hidden_notices_title_tag_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_title_tag_option['notice-title-tag'])) {
-                            return $seopress_get_hidden_notices_title_tag_option['notice-title-tag'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeTitleTag();
                 }
                 if ('1' != seopress_get_hidden_notices_title_tag_option()) {
                     $args = [
@@ -277,28 +258,12 @@
             if (is_plugin_active('swift-performance-lite/performance.php')) {
                 function seopress_get_swift_performance_sitemap_option()
                 {
-                    $seopress_get_swift_performance_sitemap_option = get_option('swift_performance_options');
-                    if (! empty($seopress_get_swift_performance_sitemap_option)) {
-                        foreach ($seopress_get_swift_performance_sitemap_option as $key => $seopress_get_swift_performance_sitemap_value) {
-                            $options[$key] = $seopress_get_swift_performance_sitemap_value;
-                        }
-                        if (isset($seopress_get_swift_performance_sitemap_option['cache-sitemap'])) {
-                            return $seopress_get_swift_performance_sitemap_option['cache-sitemap'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeCacheSitemap();
                 }
                 if (seopress_get_swift_performance_sitemap_option() === "1") {
                     function seopress_get_hidden_notices_swift_option()
                     {
-                        $seopress_get_hidden_notices_swift_option = get_option('seopress_notices');
-                        if (! empty($seopress_get_hidden_notices_swift_option)) {
-                            foreach ($seopress_get_hidden_notices_swift_option as $key => $seopress_get_hidden_notices_swift_value) {
-                                $options[$key] = $seopress_get_hidden_notices_swift_value;
-                            }
-                            if (isset($seopress_get_hidden_notices_swift_option['notice-swift'])) {
-                                return $seopress_get_hidden_notices_swift_option['notice-swift'];
-                            }
-                        }
+                        return seopress_get_service('NoticeOption')->getNoticeSwift();
                     }
                     $args = [
                             'id'     => 'notice-swift',
@@ -355,6 +320,33 @@
                     seopress_notification($args);
                 }
             }
+            $indexing_plugins = [
+                'indexnow/indexnow-url-submission.php'                       => 'IndexNow',
+                'bing-webmaster-tools/bing-url-submission.php'               => 'Bing Webmaster Url Submission',
+                'fast-indexing-api/instant-indexing.php'                     => 'Instant Indexing',
+            ];
+
+            foreach ($indexing_plugins as $key => $value) {
+                if (is_plugin_active($key)) {
+                    $args = [
+                        'id' => 'notice-indexing-plugins',
+                        /* translators: %s name of a WP plugin (eg: IndexNow) */
+                        'title'  => sprintf(__('We noticed that you use <strong>%s</strong> plugin.', 'wp-seopress'), $value),
+                        'desc'   => __('To prevent any conflicts with our Indexing feature, please disable it.', 'wp-seopress'),
+                        'impact' => [
+                            'high' => __('High impact', 'wp-seopress'),
+                        ],
+                        'link' => [
+                            'en'       => admin_url('plugins.php'),
+                            'title'    => __('Fix this!', 'wp-seopress'),
+                            'external' => false,
+                        ],
+                        'icon'       => 'dashicons-admin-plugins',
+                        'deleteable' => false,
+                    ];
+                    seopress_notification($args);
+                }
+            }
             if (is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
                 if (1 == seopress_404_cleaning_option() && ! wp_next_scheduled('seopress_404_cron_cleaning')) {
                     $args = [
@@ -375,15 +367,7 @@
                 if ('plugin' != $avia_options_enfold['avia']['seo_robots'] || 'plugin' != $avia_options_enfold_child['avia']['seo_robots']) {
                     function seopress_get_hidden_notices_enfold_option()
                     {
-                        $seopress_get_hidden_notices_enfold_option = get_option('seopress_notices');
-                        if (! empty($seopress_get_hidden_notices_enfold_option)) {
-                            foreach ($seopress_get_hidden_notices_enfold_option as $key => $seopress_get_hidden_notices_enfold_value) {
-                                $options[$key] = $seopress_get_hidden_notices_enfold_value;
-                            }
-                            if (isset($seopress_get_hidden_notices_enfold_option['notice-enfold'])) {
-                                return $seopress_get_hidden_notices_enfold_option['notice-enfold'];
-                            }
-                        }
+                        return seopress_get_service('NoticeOption')->getNoticeEnfold();
                     }
                     if ('1' != seopress_get_hidden_notices_enfold_option()) {
                         $args = [
@@ -485,15 +469,7 @@
             if (! is_ssl()) {
                 function seopress_get_hidden_notices_ssl_option()
                 {
-                    $seopress_get_hidden_notices_ssl_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_ssl_option)) {
-                        foreach ($seopress_get_hidden_notices_ssl_option as $key => $seopress_get_hidden_notices_ssl_value) {
-                            $options[$key] = $seopress_get_hidden_notices_ssl_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_ssl_option['notice-ssl'])) {
-                            return $seopress_get_hidden_notices_ssl_option['notice-ssl'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeSSL();
                 }
                 if ('1' != seopress_get_hidden_notices_ssl_option()) {
                     $args = [
@@ -516,7 +492,7 @@
             }
             if (function_exists('extension_loaded') && ! extension_loaded('dom')) {
                 $args = [
-                    'id'     => 'notice-ssl-alert',
+                    'id'     => 'notice-dom',
                     'title'  => __('PHP module "DOM" is missing on your server.', 'wp-seopress'),
                     'desc'   => __('This PHP module, installed by default with PHP, is required by many plugins including SEOPress. Please contact your host as soon as possible to solve this.', 'wp-seopress'),
                     'impact' => [
@@ -528,35 +504,37 @@
                         'title'    => __('Learn more', 'wp-seopress'),
                         'external' => true,
                     ],
-                    'deleteable' => true,
+                    'deleteable' => false,
+                ];
+                seopress_notification($args);
+            }
+            if (function_exists('extension_loaded') && ! extension_loaded('mbstring')) {
+                $args = [
+                    'id'     => 'notice-mbstring',
+                    'title'  => __('PHP module "mbstring" is missing on your server.', 'wp-seopress'),
+                    'desc'   => __('This PHP module, installed by default with PHP, is required by many plugins including SEOPress. Please contact your host as soon as possible to solve this.', 'wp-seopress'),
+                    'impact' => [
+                        'high' => __('High impact', 'wp-seopress'),
+                    ],
+                    'link' => [
+                        'fr'       => 'https://www.seopress.org/fr/support/guides/debutez-seopress/',
+                        'en'       => 'https://www.seopress.org/support/guides/get-started-seopress/',
+                        'title'    => __('Learn more', 'wp-seopress'),
+                        'external' => true,
+                    ],
+                    'deleteable' => false,
                 ];
                 seopress_notification($args);
             }
             if (! function_exists('seopress_titles_noindex_option')) {
                 function seopress_titles_noindex_option()
                 {
-                    $seopress_titles_noindex_option = get_option('seopress_titles_option_name');
-                    if (! empty($seopress_titles_noindex_option)) {
-                        foreach ($seopress_titles_noindex_option as $key => $seopress_titles_noindex_value) {
-                            $options[$key] = $seopress_titles_noindex_value;
-                        }
-                        if (isset($seopress_titles_noindex_option['seopress_titles_noindex'])) {
-                            return $seopress_titles_noindex_option['seopress_titles_noindex'];
-                        }
-                    }
+                    return seopress_get_service('TitleOption')->getTitleNoIndex();
                 }
             }
             function seopress_get_hidden_notices_noindex_option()
             {
-                $seopress_get_hidden_notices_noindex_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_noindex_option)) {
-                    foreach ($seopress_get_hidden_notices_noindex_option as $key => $seopress_get_hidden_notices_noindex_value) {
-                        $options[$key] = $seopress_get_hidden_notices_noindex_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_noindex_option['notice-noindex'])) {
-                        return $seopress_get_hidden_notices_noindex_option['notice-noindex'];
-                    }
-                }
+                return seopress_get_service('NoticeOption')->getNoticeNoIndex();
             }
             if ('1' != seopress_get_hidden_notices_noindex_option()) {
                 if ('1' == seopress_titles_noindex_option() || '1' != get_option('blog_public')) {
@@ -616,15 +594,7 @@
             if ('0' == get_option('rss_use_excerpt')) {
                 function seopress_get_hidden_notices_rss_use_excerpt_option()
                 {
-                    $seopress_get_hidden_notices_rss_use_excerpt_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_rss_use_excerpt_option)) {
-                        foreach ($seopress_get_hidden_notices_rss_use_excerpt_option as $key => $seopress_get_hidden_notices_rss_use_excerpt_value) {
-                            $options[$key] = $seopress_get_hidden_notices_rss_use_excerpt_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_rss_use_excerpt_option['notice-rss-use-excerpt'])) {
-                            return $seopress_get_hidden_notices_rss_use_excerpt_option['notice-rss-use-excerpt'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeRSSUseExcerpt();
                 }
                 if ('1' != seopress_get_hidden_notices_rss_use_excerpt_option()) {
                     $args = [
@@ -648,52 +618,20 @@
 
             function seopress_ga_enable_option()
             {
-                $seopress_ga_enable_option = get_option('seopress_google_analytics_option_name');
-                if (! empty($seopress_ga_enable_option)) {
-                    foreach ($seopress_ga_enable_option as $key => $seopress_ga_enable_value) {
-                        $options[$key] = $seopress_ga_enable_value;
-                    }
-                    if (isset($seopress_ga_enable_option['seopress_google_analytics_enable'])) {
-                        return $seopress_ga_enable_option['seopress_google_analytics_enable'];
-                    }
-                }
+                return seopress_get_service('GoogleAnalyticsOption')->getEnableOption();
             }
             function seopress_ga_ua_option()
             {
-                $seopress_ga_ua_option = get_option('seopress_google_analytics_option_name');
-                if (! empty($seopress_ga_ua_option)) {
-                    foreach ($seopress_ga_ua_option as $key => $seopress_ga_ua_value) {
-                        $options[$key] = $seopress_ga_ua_value;
-                    }
-                    if (isset($seopress_ga_ua_option['seopress_google_analytics_ua'])) {
-                        return $seopress_ga_ua_option['seopress_google_analytics_ua'];
-                    }
-                }
+                return seopress_get_service('GoogleAnalyticsOption')->getUA();
             }
             function seopress_ga4_option()
             {
-                $seopress_ga4_option = get_option('seopress_google_analytics_option_name');
-                if (! empty($seopress_ga4_option)) {
-                    foreach ($seopress_ga4_option as $key => $seopress_ga4_value) {
-                        $options[$key] = $seopress_ga4_value;
-                    }
-                    if (isset($seopress_ga4_option['seopress_google_analytics_ga4'])) {
-                        return $seopress_ga4_option['seopress_google_analytics_ga4'];
-                    }
-                }
+                return seopress_get_service('GoogleAnalyticsOption')->getGA4();
             }
             if ('' === seopress_ga_ua_option() && '' === seopress_ga4_option() && '1' === seopress_ga_enable_option()) {
                 function seopress_get_hidden_notices_analytics_option()
                 {
-                    $seopress_get_hidden_notices_analytics_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_analytics_option)) {
-                        foreach ($seopress_get_hidden_notices_analytics_option as $key => $seopress_get_hidden_notices_analytics_value) {
-                            $options[$key] = $seopress_get_hidden_notices_analytics_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_analytics_option['notice-ga-ids'])) {
-                            return $seopress_get_hidden_notices_analytics_option['notice-ga-ids'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeGAIds();
                 }
                 if ('1' != seopress_get_hidden_notices_analytics_option()) {
                     $args = [
@@ -714,49 +652,10 @@
                     seopress_notification($args);
                 }
             }
-
-            function seopress_get_hidden_notices_review_option()
-            {
-                $seopress_get_hidden_notices_review_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_review_option)) {
-                    foreach ($seopress_get_hidden_notices_review_option as $key => $seopress_get_hidden_notices_review_value) {
-                        $options[$key] = $seopress_get_hidden_notices_review_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_review_option['notice-review'])) {
-                        return $seopress_get_hidden_notices_review_option['notice-review'];
-                    }
-                }
-            }
-            if ('1' != seopress_get_hidden_notices_review_option()) {
-                $args = [
-                    'id'     => 'notice-review',
-                    'title'  => __('You like SEOPress? Please help us by rating us 5 stars!', 'wp-seopress'),
-                    'desc'   => __('Support the development and improvement of the plugin by taking 15 seconds of your time to leave us a user review on the official WordPress plugins repository. Thank you!', 'wp-seopress'),
-                    'impact' => [
-                        'info' => __('Information', 'wp-seopress'),
-                    ],
-                    'link' => [
-                        'en'       => 'https://wordpress.org/support/view/plugin-reviews/wp-seopress?rate=5#postform',
-                        'title'    => __('Rate us!', 'wp-seopress'),
-                        'external' => true,
-                    ],
-                    'icon'       => 'dashicons-thumbs-up',
-                    'deleteable' => true,
-                ];
-                seopress_notification($args);
-            }
             if ('1' == get_option('page_comments')) {
                 function seopress_get_hidden_notices_divide_comments_option()
                 {
-                    $seopress_get_hidden_notices_divide_comments_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_divide_comments_option)) {
-                        foreach ($seopress_get_hidden_notices_divide_comments_option as $key => $seopress_get_hidden_notices_divide_comments_value) {
-                            $options[$key] = $seopress_get_hidden_notices_divide_comments_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_divide_comments_option['notice-divide-comments'])) {
-                            return $seopress_get_hidden_notices_divide_comments_option['notice-divide-comments'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeDivideComments();
                 }
                 if ('1' != seopress_get_hidden_notices_divide_comments_option()) {
                     $args = [
@@ -780,15 +679,7 @@
             if (get_option('posts_per_page') < '16') {
                 function seopress_get_hidden_notices_posts_number_option()
                 {
-                    $seopress_get_hidden_notices_posts_number_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_posts_number_option)) {
-                        foreach ($seopress_get_hidden_notices_posts_number_option as $key => $seopress_get_hidden_notices_posts_number_value) {
-                            $options[$key] = $seopress_get_hidden_notices_posts_number_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_posts_number_option['notice-posts-number'])) {
-                            return $seopress_get_hidden_notices_posts_number_option['notice-posts-number'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticePostsNumber();
                 }
                 if ('1' != seopress_get_hidden_notices_posts_number_option()) {
                     $args = [
@@ -828,15 +719,7 @@
             }
             function seopress_get_hidden_notices_google_business_option()
             {
-                $seopress_get_hidden_notices_google_business_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_google_business_option)) {
-                    foreach ($seopress_get_hidden_notices_google_business_option as $key => $seopress_get_hidden_notices_google_business_value) {
-                        $options[$key] = $seopress_get_hidden_notices_google_business_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_google_business_option['notice-google-business'])) {
-                        return $seopress_get_hidden_notices_google_business_option['notice-google-business'];
-                    }
-                }
+                return seopress_get_service('NoticeOption')->getNoticeGoogleBusiness();
             }
             if ('1' != seopress_get_hidden_notices_google_business_option()) {
                 $args = [
@@ -857,27 +740,11 @@
             }
             function seopress_get_hidden_notices_search_console_option()
             {
-                $seopress_get_hidden_notices_search_console_option = get_option('seopress_notices');
-                if (! empty($seopress_get_hidden_notices_search_console_option)) {
-                    foreach ($seopress_get_hidden_notices_search_console_option as $key => $seopress_get_hidden_notices_search_console_value) {
-                        $options[$key] = $seopress_get_hidden_notices_search_console_value;
-                    }
-                    if (isset($seopress_get_hidden_notices_search_console_option['notice-search-console'])) {
-                        return $seopress_get_hidden_notices_search_console_option['notice-search-console'];
-                    }
-                }
+                return seopress_get_service('NoticeOption')->getNoticeSearchConsole();
             }
             function seopress_get_google_site_verification_option()
             {
-                $seopress_get_google_site_verification_option = get_option('seopress_advanced_option_name');
-                if (! empty($seopress_get_google_site_verification_option)) {
-                    foreach ($seopress_get_google_site_verification_option as $key => $seopress_get_google_site_verification_value) {
-                        $options[$key] = $seopress_get_google_site_verification_value;
-                    }
-                    if (isset($seopress_get_google_site_verification_option['seopress_advanced_advanced_google'])) {
-                        return $seopress_get_google_site_verification_option['seopress_advanced_advanced_google'];
-                    }
-                }
+                return seopress_get_service('AdvancedOption')->getAdvancedGoogleVerification();
             }
             if ('1' != seopress_get_hidden_notices_search_console_option() && '' == seopress_get_google_site_verification_option()) {
                 $args = [
@@ -937,15 +804,7 @@
             if (! is_plugin_active('wp-seopress-pro/seopress-pro.php')) {
                 function seopress_get_hidden_notices_go_pro_option()
                 {
-                    $seopress_get_hidden_notices_go_pro_option = get_option('seopress_notices');
-                    if (! empty($seopress_get_hidden_notices_go_pro_option)) {
-                        foreach ($seopress_get_hidden_notices_go_pro_option as $key => $seopress_get_hidden_notices_go_pro_value) {
-                            $options[$key] = $seopress_get_hidden_notices_go_pro_value;
-                        }
-                        if (isset($seopress_get_hidden_notices_go_pro_option['notice-go-pro'])) {
-                            return $seopress_get_hidden_notices_go_pro_option['notice-go-pro'];
-                        }
-                    }
+                    return seopress_get_service('NoticeOption')->getNoticeGoPro();
                 }
                 if ('1' != seopress_get_hidden_notices_go_pro_option() && '' == seopress_get_hidden_notices_go_pro_option()) {
                     $args = [
@@ -1007,45 +866,45 @@
                     seopress_notification($args);
                 }
 
-                try {
-                    $contentRobotsTxt = @file_get_contents(site_url('robots.txt'));
-                    if(!empty($contentRobotsTxt)){
-                        $contentRobotsTxt = explode("\n", $contentRobotsTxt);
+                if ('1' !== seopress_get_hidden_notices_robots_txt_valid()) {
+                    try {
+                        $contentRobotsTxt = wp_remote_retrieve_body( wp_remote_get( site_url( 'robots.txt' ), $args ) );
+                        if(!empty($contentRobotsTxt)){
+                            $contentRobotsTxt = explode("\n", $contentRobotsTxt);
 
-                        $checkDisallowAfter = false;
-                        $validRobotsTxt = true;
-                        foreach($contentRobotsTxt as $line){
-                            if(strpos($line, 'User-agent:') !== false && strpos($line, '*') !== false){
-                                $checkDisallowAfter = true;
+                            $checkDisallowAfter = false;
+                            $validRobotsTxt = true;
+                            foreach($contentRobotsTxt as $line){
+                                if(strpos($line, 'User-agent:') !== false && strpos($line, '*') !== false){
+                                    $checkDisallowAfter = true;
+                                }
+
+                                if(trim($line) === 'Disallow: /' && $checkDisallowAfter){
+                                    $validRobotsTxt = false;
+                                }
                             }
 
-                            if(trim($line) === 'Disallow: /' && $checkDisallowAfter){
-                                $validRobotsTxt = false;
+                            if(!$validRobotsTxt  && '1' !== seopress_get_hidden_notices_robots_txt_valid() && empty(seopress_get_hidden_notices_robots_txt_valid())){
+                                $args = [
+                                    'id'     => 'notice-robots-txt-valid',
+                                    'title'  => __('Your site is not indexable!', 'wp-seopress'),
+                                    'desc'   => __('Your robots.txt file contains a rule that prevents search engines to index your all site: <code>Disallow: /</code>', 'wp-seopress'),
+                                    'impact' => [
+                                        'high' => __('High impact', 'wp-seopress'),
+                                    ],
+                                    'link' => [
+                                        'en'       => is_multisite() ? network_admin_url('admin.php?page=seopress-network-option#tab=tab_seopress_robots') : admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_robots'),
+                                        'title'    => __('Fix this!', 'wp-seopress'),
+                                        'external' => false,
+                                    ],
+                                    'deleteable' => true,
+                                ];
+                                seopress_notification($args);
                             }
                         }
+                    } catch (\Exception $e) {
 
-                        if(!$validRobotsTxt  && '1' !== seopress_get_hidden_notices_robots_txt_valid() && empty(seopress_get_hidden_notices_robots_txt_valid())){
-                            $args = [
-                                'id'     => 'notice-robots-txt-valid',
-                                'title'  => __('Your site is not indexable!', 'wp-seopress'),
-                                'desc'   => __('Your robots.txt file contains a rule that prevents search engines to index your all site: <code>Disallow: /</code>', 'wp-seopress'),
-                                'impact' => [
-                                    'high' => __('High impact', 'wp-seopress'),
-                                ],
-                                'link' => [
-                                    'en'       => admin_url('admin.php?page=seopress-pro-page#tab=tab_seopress_robots'),
-                                    'title'    => __('Fix this!', 'wp-seopress'),
-                                    'external' => false,
-                                ],
-                                'deleteable' => true,
-                            ];
-                            seopress_notification($args);
-                        }
                     }
-
-
-                } catch (\Exception $e) {
-
                 }
             }
             ?>

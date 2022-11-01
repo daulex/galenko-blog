@@ -60,9 +60,10 @@ function seopress_do_real_preview()
             }
 
             //Init
-            $title     = '';
-            $meta_desc = '';
-            $data      = [];
+            $title      = '';
+            $meta_desc  = '';
+            $link       = '';
+            $data       = [];
 
             //Save Target KWs
             if (! isset($_GET['is_elementor'])) {
@@ -99,13 +100,13 @@ function seopress_do_real_preview()
             if ('post' == $seopress_origin) { //Default: post type
                 //Oxygen compatibility
                 if (is_plugin_active('oxygen/functions.php') && function_exists('ct_template_output')) {
-                    $post_url = get_permalink((int) $seopress_get_the_id);
-                    $post_url = add_query_arg('no_admin_bar', 1, $post_url);
+                    $link = get_permalink((int) $seopress_get_the_id);
+                    $link = add_query_arg('no_admin_bar', 1, $link);
 
-                    $response = wp_remote_get($post_url, $args);
+                    $response = wp_remote_get($link, $args);
                     if (200 !== wp_remote_retrieve_response_code($response)) {
-                        $post_url = get_permalink((int) $seopress_get_the_id);
-                        $response = wp_remote_get($post_url, $args);
+                        $link = get_permalink((int) $seopress_get_the_id);
+                        $response = wp_remote_get($link, $args);
                     }
                 } else {
                     $custom_args = ['no_admin_bar' => 1];
@@ -120,7 +121,8 @@ function seopress_do_real_preview()
                     $response = wp_remote_get($link, $args);
                 }
             } else { //Term taxonomy
-                $response = wp_remote_get(get_term_link((int) $seopress_get_the_id, $seopress_tax_name), $args);
+                $link = get_term_link((int) $seopress_get_the_id, $seopress_tax_name);
+                $response = wp_remote_get($link, $args);
             }
 
             //Check for error
@@ -140,6 +142,8 @@ function seopress_do_real_preview()
                         }
                     }
 
+                    $data['link_preview'] = $link;
+
                     //Disable wptexturize
                     add_filter('run_wptexturize', '__return_false');
 
@@ -152,6 +156,11 @@ function seopress_do_real_preview()
                         $seopress_get_the_content = get_post_field('post_content', $seopress_get_the_id);
                     }
 
+                    //Zion Builder compatibility
+                    if (is_plugin_active('zionbuilder/zionbuilder.php')) {
+                        $seopress_get_the_content = $seopress_get_the_content . get_post_meta($seopress_get_the_id, '_zionbuilder_page_elements', true);
+                    }
+
                     //BeTheme is activated
                     $theme = wp_get_theme();
                     if ('betheme' == $theme->template || 'Betheme' == $theme->parent_theme) {
@@ -159,10 +168,10 @@ function seopress_do_real_preview()
                     }
 
                     //Themify compatibility
-                    if (defined('THEMIFY_DIR')) {
+                    if (defined('THEMIFY_DIR') && method_exists('ThemifyBuilder_Data_Manager', '_get_all_builder_text_content')) {
                         global $ThemifyBuilder;
                         $builder_data = $ThemifyBuilder->get_builder_data($seopress_get_the_id);
-                        $plain_text   = ThemifyBuilder_Data_Manager::_get_all_builder_text_content($builder_data);
+                        $plain_text   = \ThemifyBuilder_Data_Manager::_get_all_builder_text_content($builder_data);
                         $plain_text   = do_shortcode($plain_text);
 
                         if ('' != $plain_text) {
@@ -177,13 +186,17 @@ function seopress_do_real_preview()
 
                     $seopress_get_the_content = apply_filters('seopress_content_analysis_content', $seopress_get_the_content, $seopress_get_the_id);
 
+                    if (defined('WP_DEBUG') && WP_DEBUG === true) {
+                        $data['analyzed_content'] = $seopress_get_the_content;
+                    }
+
                     //Bricks compatibility
                     if (defined('BRICKS_DB_EDITOR_MODE') && ('bricks' == $theme->template || 'Bricks' == $theme->parent_theme)) {
-                        $page_sections = get_post_meta($seopress_get_the_id, '_bricks_page_content', true);
+                        $page_sections = get_post_meta($seopress_get_the_id, BRICKS_DB_PAGE_CONTENT, true);
                         $editor_mode   = get_post_meta($seopress_get_the_id, BRICKS_DB_EDITOR_MODE, true);
 
                         if (is_array($page_sections) && 'wordpress' !== $editor_mode) {
-                            $seopress_get_the_content = Bricks\Frontend::render_sections($page_sections, $seopress_get_the_id, 'content', true);
+                            $seopress_get_the_content = Bricks\Frontend::render_data($page_sections);
                         }
                     }
 
@@ -191,6 +204,8 @@ function seopress_do_real_preview()
                     if (isset($_GET['seopress_analysis_target_kw']) && ! empty($_GET['seopress_analysis_target_kw'])) {
                         $data['target_kws']          = esc_html(strtolower(stripslashes_deep($_GET['seopress_analysis_target_kw'])));
                         $seopress_analysis_target_kw = array_filter(explode(',', strtolower(get_post_meta($seopress_get_the_id, '_seopress_analysis_target_kw', true))));
+
+                        $seopress_analysis_target_kw = apply_filters( 'seopress_content_analysis_target_keywords', $seopress_analysis_target_kw, $seopress_get_the_id );
 
                         //Manage keywords with special characters
                         foreach ($seopress_analysis_target_kw as $key => $kw) {
@@ -391,7 +406,7 @@ function seopress_do_real_preview()
                         //Keywords density
                         if (! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
                             foreach ($seopress_analysis_target_kw as $kw) {
-                                if (preg_match_all('#\b(' . $kw . ')\b#iu', stripslashes_deep(strip_tags(wp_filter_nohtml_kses($seopress_get_the_content))), $m)) {
+                                if (preg_match_all('#\b(' . $kw . ')\b#iu', stripslashes_deep(wp_strip_all_tags($seopress_get_the_content)), $m)) {
                                     $data['kws_density']['matches'][$kw][] = $m[0];
                                 }
                             }
@@ -410,7 +425,7 @@ function seopress_do_real_preview()
 
                         if (isset($kw_slug)) {
                             foreach ($seopress_analysis_target_kw as $kw) {
-                                if (preg_match_all('#\b(' . remove_accents($kw) . ')\b#iu', strip_tags(wp_filter_nohtml_kses($kw_slug)), $m)) {
+                                if (preg_match_all('#\b(' . remove_accents($kw) . ')\b#iu', strip_tags($kw_slug), $m)) {
                                     $data['kws_permalink']['matches'][$kw][] = $m[0];
                                 }
                             }
@@ -423,29 +438,34 @@ function seopress_do_real_preview()
 
                     if (! empty($imgs) && null != $imgs) {
                         //init
-                        $data_img = [];
+                        $img_without_alt = [];
+                        $img_with_alt = [];
                         foreach ($imgs as $img) {
                             if ($img->hasAttribute('src')) {
-                                //Exclude avatars from analysis
-                                if (! preg_match_all('#\b(avatar)\b#iu', $img->getAttribute('class'), $m)) {
+                                if (! preg_match_all('#\b(avatar)\b#iu', $img->getAttribute('class'), $m)) {//Exclude avatars from analysis
                                     if ($img->hasAttribute('width') || $img->hasAttribute('height')) {
-                                        if ($img->getAttribute('width') > 1 || $img->getAttribute('height') > 1) {
+                                        if ($img->getAttribute('width') > 1 || $img->getAttribute('height') > 1) {//Ignore files with width and heigh <= 1
                                             if ('' === $img->getAttribute('alt') || ! $img->hasAttribute('alt')) {//if alt is empty or doesn't exist
-                                                $data_img[] .= $img->getAttribute('src');
+                                                $img_without_alt[] .= $img->getAttribute('src');
+                                            } else {
+                                                $img_with_alt[] .= $img->getAttribute('src');
                                             }
                                         }
                                     } elseif ('' === $img->getAttribute('alt') || ! $img->hasAttribute('alt')) {//if alt is empty or doesn't exist
                                         $img_src = download_url($img->getAttribute('src'));
                                         if (false === is_wp_error($img_src)) {
                                             if (filesize($img_src) > 100) {//Ignore files under 100 bytes
-                                                $data_img[] .= $img->getAttribute('src');
+                                                $img_without_alt[] .= $img->getAttribute('src');
+                                            } else {
+                                                $img_with_alt[] .= $img->getAttribute('src');
                                             }
                                             @unlink($img_src);
                                         }
                                     }
                                 }
                             }
-                            $data['img']['images'] = $data_img;
+                            $data['img']['images']['without_alt'] = $img_without_alt;
+                            $data['img']['images']['with_alt'] = $img_with_alt;
                         }
                     }
 
@@ -505,10 +525,37 @@ function seopress_do_real_preview()
                 }
                 wp_reset_postdata();
 
+                //Internal links for Oxygen Builder
+                if (is_plugin_active('oxygen/functions.php') && function_exists('ct_template_output')) {
+                    $args      = [
+                        'posts_per_page' => -1,
+                        'meta_query' => [
+                            [
+                                'key' => 'ct_builder_shortcodes',
+                                'value' => $permalink,
+                                'compare' => 'LIKE'
+                            ]
+                        ],
+                        'post_type' => 'any',
+                    ];
+
+                    $internal_links = new WP_Query($args);
+
+                    if ($internal_links->have_posts()) {
+                        $data['internal_links']['count'] = $internal_links->found_posts;
+
+                        while ($internal_links->have_posts()) {
+                            $internal_links->the_post();
+                            $data['internal_links']['links'][get_the_ID()] = [get_the_permalink() => get_the_title()];
+                        }
+                    }
+                    wp_reset_postdata();
+                }
+
                 //Words Counter
                 if (! is_plugin_active('oxygen/functions.php') && ! function_exists('ct_template_output')) { //disable for Oxygen
                     if ('' != $seopress_get_the_content) {
-                        $data['words_counter'] = preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", strip_tags(wp_filter_nohtml_kses($seopress_get_the_content)), $matches);
+                        $data['words_counter'] = preg_match_all("/\p{L}[\p{L}\p{Mn}\p{Pd}'\x{2019}]*/u", normalize_whitespace(wp_strip_all_tags($seopress_get_the_content)), $matches);
 
                         if (! empty($matches[0])) {
                             $words_counter_unique = count(array_unique($matches[0]));
@@ -687,6 +734,84 @@ function seopress_hide_notices()
 }
 add_action('wp_ajax_seopress_hide_notices', 'seopress_hide_notices');
 
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//Regenerate Video XML Sitemap
+///////////////////////////////////////////////////////////////////////////////////////////////////
+function seopress_video_xml_sitemap_regenerate()
+{
+    check_ajax_referer('seopress_video_regenerate_nonce', $_POST['_ajax_nonce'], true);
+
+    if (current_user_can(seopress_capability('manage_options', 'migration')) && is_admin()) {
+        if (isset($_POST['offset']) && isset($_POST['offset'])) {
+            $offset = absint($_POST['offset']);
+        }
+
+        $cpt = ['any'];
+        if (seopress_xml_sitemap_post_types_list_option()) {
+            unset($cpt[0]);
+            foreach (seopress_xml_sitemap_post_types_list_option() as $cpt_key => $cpt_value) {
+                foreach ($cpt_value as $_cpt_key => $_cpt_value) {
+                    if ('1' == $_cpt_value) {
+                        $cpt[] = $cpt_key;
+                    }
+                }
+            }
+
+            $cpt = array_map(function($item) {
+                return "'" . esc_sql($item) . "'";
+            }, $cpt);
+
+            $cpt = implode(",", $cpt);
+        }
+
+        global $wpdb;
+        $total_count_posts = (int) $wpdb->get_var("SELECT count(*) FROM {$wpdb->posts} WHERE post_status IN ('pending', 'draft', 'publish', 'future') AND post_type IN ( $cpt ) ");
+
+        $increment = 1;
+        global $post;
+
+        if ($offset > $total_count_posts) {
+            wp_reset_query();
+            $count_items = $total_count_posts;
+            $offset = 'done';
+        } else {
+            $args = [
+                'posts_per_page' => $increment,
+                'post_type'      => $cpt,
+                'post_status'    => ['pending', 'draft', 'publish', 'future'],
+                'offset'         => $offset,
+            ];
+
+            $video_query = get_posts($args);
+
+            if ($video_query) {
+                foreach ($video_query as $post) {
+                    seopress_pro_video_xml_sitemap($post->ID, $post);
+                }
+            }
+            $offset += $increment;
+        }
+        $data           = [];
+
+        $data['total'] = $total_count_posts;
+
+        if ($offset >= $total_count_posts) {
+            $data['count'] = $total_count_posts;
+        } else {
+            $data['count'] = $offset;
+        }
+
+        $data['offset'] = $offset;
+
+        //Clear cache
+        delete_transient( '_seopress_sitemap_ids_video' );
+
+        wp_send_json_success($data);
+        exit();
+    }
+}
+add_action('wp_ajax_seopress_video_xml_sitemap_regenerate', 'seopress_video_xml_sitemap_regenerate');
+
 require_once __DIR__ . '/ajax-migrate/smart-crawl.php';
 require_once __DIR__ . '/ajax-migrate/seopressor.php';
 require_once __DIR__ . '/ajax-migrate/platinum.php';
@@ -696,5 +821,5 @@ require_once __DIR__ . '/ajax-migrate/wp-meta-seo.php';
 require_once __DIR__ . '/ajax-migrate/seo-ultimate.php';
 require_once __DIR__ . '/ajax-migrate/squirrly.php';
 require_once __DIR__ . '/ajax-migrate/seo-framework.php';
-require_once __DIR__ . '/ajax-migrate/aio.php';
 require_once __DIR__ . '/ajax-migrate/yoast.php';
+require_once __DIR__ . '/export/csv.php';
