@@ -1,0 +1,32 @@
+section.block.time-since{
+  
+  .time-since-item{
+    max-width: 90%;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 2px solid #eee;
+    padding-left: 15px;
+    padding-bottom: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    .time-since-date{
+      position: absolute;
+      bottom:0;
+      font-size: 11px;
+      background: #ccc;
+      color: #fff;
+      padding: 0 10px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+    .time-since-title{
+      font-style: italic;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-right: 10px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 <?php
-
+global $custom_functions;
 /**
  * Time since Block Template.
  *
@@ -32,9 +32,17 @@ endif;
 $className = apply_filters( 'awave_block_class', $className, $block, $post_id );
 
 // Load values and assing defaults.
-$header = get_field('header');
+$time_since = get_field('time_since_items');
 
+if($time_since):
 ?>
 <section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-<h1>Time since</h1>
+<?php foreach($time_since as $r): if(!$r['title']) continue; ?>
+  <div class="time-since-item">
+    <div class="time-since-date"><?php echo $custom_functions->get_time_ago(strtotime($r['date'])); ?></div>
+    <div class="time-since-title"><?php echo $r['title']; ?></div>
+    <div class="time-since-relative"><?php echo date("d/m/y", strtotime($r['date'])); ?></div>
+  </div>
+<?php endforeach; ?>
 </section>
+<?php endif; ?>

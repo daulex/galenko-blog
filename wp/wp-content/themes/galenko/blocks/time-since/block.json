@@ -15,8 +15,6 @@
 			}
 		}
 	},
-	"awaveScripts": true,
-	"awaveVendorScripts": [
-		"dayjs.min.js"
-	]
+	"awaveScripts": [],
+	"awaveVendorScripts": []
 }
