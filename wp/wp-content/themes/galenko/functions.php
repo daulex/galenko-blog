@@ -14,6 +14,7 @@ require_once(get_template_directory() . '/inc/class-galenko-custom-functions.php
 require_once(get_template_directory() . '/inc/class-galenko-custom-hooks.php');
 
 $theme_setup = new Awave_Theme_Setup;
+$custom_functions = new galenko_Custom_Functions;
 
 $theme_setup->addNavMenus( array( 
 	'primary' => __( 'Primary Menu', 'awave' )

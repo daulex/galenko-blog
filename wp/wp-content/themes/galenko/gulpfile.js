@@ -1,5 +1,5 @@
 const
-	siteURL = 'base-installation.awave.site',
+	siteURL = 'galenko.awave.site',
 	gulp = require('gulp'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),

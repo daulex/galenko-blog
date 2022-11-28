@@ -33,6 +33,7 @@ class Awave_Gutenberg
       'core/paragraph',
       'core/heading',
       'core/list',
+      'core/list-item',
       'core/pullquote	',
       'core/separator',
       'core/post-featured-image',
@@ -40,7 +41,6 @@ class Awave_Gutenberg
     ];
 	
 		foreach( glob( get_template_directory() . '/blocks/**/*.php' ) as $block ){
-	
 			$block = explode('/', $block);
 			$block = end( $block );
 			$block = str_replace('.php', '', $block);

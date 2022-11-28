@@ -1,0 +1,22 @@
+{
+	"name": "acf/time-since",
+	"title": "Time since",
+	"category": "common",
+	"icon": "redo",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "time-since.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview_image_help": "screenshot.png"
+			}
+		}
+	},
+	"awaveScripts": true,
+	"awaveVendorScripts": [
+		"dayjs.min.js"
+	]
+}
