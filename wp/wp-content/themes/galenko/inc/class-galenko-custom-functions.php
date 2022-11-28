@@ -3,7 +3,7 @@
 /**
  * Theme specific functions.
  */
-class CUSTOMER_Custom_Functions {
+class galenko_Custom_Functions {
 
 	/**
 	 * Retrieves a list of share links for a post.

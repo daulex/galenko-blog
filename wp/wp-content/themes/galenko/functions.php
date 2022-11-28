@@ -10,8 +10,8 @@ require_once(get_template_directory() . '/inc/class-awave-admin.php');
 require_once(get_template_directory() . '/inc/class-awave-gutenberg.php');
 
 // Theme specific functions
-require_once(get_template_directory() . '/inc/class-CUSTOMER-custom-functions.php');
-require_once(get_template_directory() . '/inc/class-CUSTOMER-custom-hooks.php');
+require_once(get_template_directory() . '/inc/class-galenko-custom-functions.php');
+require_once(get_template_directory() . '/inc/class-galenko-custom-hooks.php');
 
 $theme_setup = new Awave_Theme_Setup;
 

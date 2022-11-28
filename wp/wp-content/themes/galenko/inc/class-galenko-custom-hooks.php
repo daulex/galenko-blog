@@ -4,7 +4,7 @@
  * Class responsible for most hooks.
  * For example, can be used for registrering custom post types
  */
-class CUSTOMER_Custom_Hooks {
+class galenko_Custom_Hooks {
 	public function __construct() {
 		add_filter( 'body_class', [$this, 'body_classes'] );
 		add_action( 'init', [$this, 'generate_custom_cpt'] );
@@ -73,4 +73,4 @@ class CUSTOMER_Custom_Hooks {
 	}
 }
 
-new CUSTOMER_Custom_Hooks();
+new galenko_Custom_Hooks();
