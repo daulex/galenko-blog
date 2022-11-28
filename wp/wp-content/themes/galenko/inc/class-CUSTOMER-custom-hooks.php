@@ -4,10 +4,10 @@
  * Class responsible for most hooks.
  * For example, can be used for registrering custom post types
  */
-class Galenko_Custom_Hooks {
+class CUSTOMER_Custom_Hooks {
 	public function __construct() {
 		add_filter( 'body_class', [$this, 'body_classes'] );
-		// add_action( 'init', [$this, 'generate_custom_cpt'] );
+		add_action( 'init', [$this, 'generate_custom_cpt'] );
 	}
 
 	public function body_classes( $classes )
@@ -16,6 +16,10 @@ class Galenko_Custom_Hooks {
 		return $classes;
 	}
 
+	/**
+	 * Example of generating a Custom Post Type.
+	 * Remove and create your own if needed.
+	 */
 	public function generate_custom_cpt()
 	{
 		$labels = array(
@@ -65,8 +69,8 @@ class Galenko_Custom_Hooks {
 			'publicly_queryable'    => true,
 			'capability_type'       => 'page',
 		);
-		register_post_type( 'post_type', $args );
+		register_post_type( 'my_post_type', $args );
 	}
 }
 
-new Galenko_Custom_Hooks();
+new CUSTOMER_Custom_Hooks();

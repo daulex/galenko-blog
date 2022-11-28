@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Removes all base Gutenberg blocks so we can start adding our own.
+ * Blocks are created with a block.json file for each block and
+ * managed using Advanced Custom Fields PRO.
+ */
 class Awave_Gutenberg
 {
 	
@@ -7,12 +12,19 @@ class Awave_Gutenberg
 	{
 		add_action( 'admin_enqueue_scripts', [$this, 'gutenberg_styles'] );
 		add_action( 'allowed_block_types_all', [$this, 'allowed_block_types'] );
-		add_action('acf/init', [$this, 'register_blocks']);
+		add_action( 'init', [$this, 'register_blocks'] );
+		add_action( 'wp', [$this, 'register_block_scripts'] );
 	}
 
 	public function gutenberg_styles()
 	{
-		wp_enqueue_style('awave_gutenberg_styles', get_template_directory_uri() . '/inc/admin-styles.css', '', false, 'all');
+		wp_enqueue_style( 
+			'awave_gutenberg_styles',
+			get_template_directory_uri() . '/inc/css/gutenberg-styles.css',
+			'',
+			false,
+			'all'
+		);
 	}
 
 	public function allowed_block_types( $allowed_blocks )
@@ -32,91 +44,118 @@ class Awave_Gutenberg
 		return $blocks;
 	}
 
-	public function register_blocks() 
+	public function register_blocks()
 	{
-		if( function_exists('acf_register_block_type') ) {
+		if ( ! function_exists( 'register_block_type' ) ) return;
+		foreach( glob( get_template_directory() . '/blocks/**/block.json' ) as $block ) :
+			register_block_type( $block );
+		endforeach;
+	}
 
-			$supports = array(
-				'align' => false,
-				'templateLock' => 'all'
-			);
-	
-			foreach( glob( get_template_directory() . '/blocks/**/manifest.json' ) as $block ) :
-				$data = file_get_contents( $block );
-				$data = json_decode( $data );
-	
-				$my_block = array(
-					'name'            => $data->name,
-					'title'           => __( $data->title, 'awave' ),
-					'render_template' => 'blocks/' . $data->name . '/' . $data->name . '.php',
-					'category'        => $data->category,
-					'icon'            => $data->icon,
-					'mode'            => $data->mode,
-					'align'           => false,
-					'supports'        => $supports,
-				);
-	
-				if( $data->js === 'Yes' ) :
-					$my_block['enqueue_assets'] = function() use ($data) {
-						if ( file_exists( get_template_directory() . '/dist/css/' . $data->name . '.min.css' ) ) :
-							$csstime = filemtime( get_template_directory() . '/dist/css/' . $data->name . '.min.css');
-							wp_enqueue_style(
-								$data->name,
-								get_template_directory_uri() . '/dist/css/' . $data->name . '.min.css',
-								array(),
-								$csstime,
-								'all'
-							);
-						endif;
-						if ( file_exists( get_template_directory() . '/dist/js/' . $data->name . '.min.js' ) ) :
-							$jstime = filemtime( get_template_directory() . '/dist/js/' . $data->name . '.min.js');
-							wp_enqueue_script( 
-								$data->name,
-								get_template_directory_uri() . '/dist/js/' . $data->name . '.min.js',
+	public function register_block_scripts()
+	{
+
+		foreach( glob( get_template_directory() . '/blocks/**/block.json' ) as $block ) :
+			$data = file_get_contents( $block );
+			$data = json_decode( $data );
+
+			$deps = array();
+			$vendorScripts = array();
+			$vendorStyles = array();
+
+			if ( isset( $data->awaveVendorScripts ) ) :
+				if ( is_array( $data->awaveVendorScripts ) ) :
+					foreach ( $data->awaveVendorScripts as $script ) :
+						$vendorScripts[] = $script;
+					endforeach;
+				else:
+					$vendorScripts[] = $data->awaveVendorScripts;
+				endif;
+			endif;
+
+			if ( isset( $data->awaveVendorStyles ) ) :
+				if ( is_array( $data->awaveVendorStyles ) ) :
+					foreach ( $data->awaveVendorStyles as $style ) :
+						$vendorStyles[] = $style;
+					endforeach;
+				else:
+					$vendorStyles[] = $data->awaveVendorStyles;
+				endif;
+			endif;
+
+			if ( has_block( $data->name ) ) :
+
+				if ( !empty( $vendorScripts ) ) :
+					foreach ( $vendorScripts as $script ) :
+						if ( file_exists( get_template_directory() . '/dist/vendor/' . $script ) ) :
+							$script_name = explode('/', $script);
+							$script_name = end( $script_name );
+							$script_name = str_replace( '.js', '', $script_name );
+							$script_name = str_replace( '.min', '', $script_name );
+							$deps[] = $script_name;
+							$jstime = filemtime( get_template_directory() . '/dist/vendor/' . $script);
+							wp_enqueue_script(
+								$script_name,
+								get_template_directory_uri() . '/dist/vendor/' . $script,
 								array(),
 								$jstime,
 								true
 							);
 						endif;
-					};
+					endforeach;
 				endif;
 
-				// Example for how to add custom vendor file to specific block
-				// if( $data->name == 'guidelines' ) :
-				// 	$my_block['enqueue_assets'] = function() use ($data) {
-				// 		$csstime = filemtime( get_template_directory() . '/dist/css/' . $data->name . '.min.css');
-				// 		wp_enqueue_style(
-				// 			$data->name,
-				// 			get_template_directory_uri() . '/dist/css/' . $data->name . '.min.css',
-				// 			array(),
-				// 			$csstime,
-				// 			'all'
-				// 		);
-				// 		if ( file_exists( get_template_directory() . '/dist/js/' . $data->name . '.min.js' ) ) :
-				// 			$jstime = filemtime( get_template_directory() . '/dist/js/' . $data->name . '.min.js');
-				// 			wp_enqueue_script( 
-				// 				$data->name,
-				// 				get_template_directory_uri() . '/dist/js/' . $data->name . '.min.js',
-				// 				array(),
-				// 				$jstime,
-				// 				true
-				// 			);
-				// 		endif;
-				// 		wp_enqueue_script( 
-				// 			'fancybox',
-				// 			'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js',
-				// 			array(),
-				// 			'1.0.0',
-				// 			true
-				// 		);
-				// 	};
-				// endif;
-	
-				acf_register_block_type( $my_block );
-	
-			endforeach;
-	
-		}
+				if ( isset( $data->awaveScripts ) && $data->awaveScripts === true ) :
+					$script_name = str_replace( 'acf/', '', $data->name );
+					if ( file_exists( get_template_directory() . '/dist/js/' . $script_name . '.min.js' ) ) :
+						$jstime = filemtime( get_template_directory() . '/dist/js/' . $script_name . '.min.js' );
+						wp_enqueue_script(
+							$script_name,
+							get_template_directory_uri() . '/dist/js/' . $script_name . '.min.js',
+							$deps,
+							$jstime,
+							true
+						);
+					endif;
+				endif;
+
+				if ( !empty( $vendorStyles ) ) :
+					foreach ( $vendorStyles as $style ) :
+						if ( file_exists( get_template_directory() . '/dist/vendor/' . $style ) ) :
+							$csstime = filemtime( get_template_directory() . '/dist/vendor/' . $style );
+							$style_name = explode('/', $style);
+							$style_name = end( $style_name );
+							$style_name = str_replace( '.css', '', $style_name );
+							$style_name = str_replace( '.min', '', $style_name );
+
+							wp_enqueue_style(
+								$style_name,
+								get_template_directory_uri() . '/dist/vendor/' . $style,
+								array(),
+								$csstime
+							);
+						endif;
+					endforeach;
+				endif;
+
+			endif;
+
+		endforeach;
+	}
+
+	public static function get_preview_image( $block_image, $block_name )
+	{
+		$output = '';
+		if ( !$block_image ) return $output;
+		$image = get_template_directory() . '/blocks/' . str_replace( 'acf/', '', $block_name ) . '/' . $block_image;
+		if ( file_exists( $image ) ) :
+			$imagetime = filemtime( $image );
+			$image_src = get_template_directory_uri() . '/blocks/' . str_replace( 'acf/', '', $block_name ) . '/' . $block_image;
+			$output = '<img src="' . $image_src .  '?v=' . $imagetime . '" />';
+		else:
+			$output = '<div class="block-editor-inserter__preview-content-missing">' . __( 'No preview available', 'awave' ) . '</div>';
+		endif;
+		return apply_filters('awave_block_preview_image', $output, $block_image, $block_name );
 	}
 }
 

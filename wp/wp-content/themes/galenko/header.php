@@ -10,5 +10,4 @@
 <body <?php body_class(); ?>>
 
 	<?php wp_body_open(); ?>
-    <?php require_once('inc/icons.php'); ?>
 	<?php get_template_part( 'templates/nav' );  ?>

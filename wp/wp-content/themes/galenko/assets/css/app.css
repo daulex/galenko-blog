@@ -107,14 +107,14 @@ a img.aligncenter {
 .bypostauthor {
   display: block; }
 
-.editor_content p {
+.editor-content p {
   margin: 0 0 1.44em 0; }
 
-.editor_content ul, .editor_content ol {
+.editor-content ul, .editor-content ol {
   margin-top: 0;
   margin-bottom: 1.44em; }
 
-.editor_content > *:last-child {
+.editor-content > *:last-child {
   margin-bottom: 0; }
 
 body {

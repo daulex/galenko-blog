@@ -1,0 +1,7 @@
+body.login div#login h1 a {
+	background-image: url(../img/awave-logo.png);
+	height: 80px;
+	width: 150px;
+	background-size: 150px;
+
+}

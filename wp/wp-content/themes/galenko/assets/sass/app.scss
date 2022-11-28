@@ -1,15 +1,19 @@
 @import 'variables';
 @import 'mixins';
-// @import 'reset';
-// @import 'grid';
-// @import 'buttons';
+@import 'reset';
+@import 'grid';
+@import 'buttons';
 @import 'main';
 @import 'header';
 @import 'wp-core';
 @import 'form';
 @import 'editor-content';
 @import 'footer';
-@import 'blog';
+
+// Components
+@import 'components/cmplz';
+
+// Pages
+@import 'pages/404';
 
 @import '../../blocks/**/*.scss';
-

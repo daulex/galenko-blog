@@ -1,5 +1,5 @@
 const
-	siteURL = 'galenko.awave.site',
+	siteURL = 'base-installation.awave.site',
 	gulp = require('gulp'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),
@@ -42,12 +42,15 @@ const
 			dist 	: './dist/img'
 		},
 		fonts : {
-			src 	: './assets/webfonts/*',
+			src 	: [
+				'./assets/webfonts/*',
+				'!assets/webfonts/index.php'],
 			dist 	: './dist/webfonts'
 		},
 		vendor : {
 			src 	: [
-				'./assets/vendor/*',
+				'./assets/vendor/**',
+				'!assets/vendor/index.php',
 			],
 			dist 	: './dist/vendor'
 		},

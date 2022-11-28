@@ -1,0 +1,19 @@
+{
+	"name": "acf/guidelines",
+	"title": "Guidelines",
+	"category": "common",
+	"icon": "admin-tools",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "guidelines.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview_image_help": "screenshot.png"
+			}
+		}
+	},
+	"awaveScripts": true
+}

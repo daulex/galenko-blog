@@ -29,8 +29,8 @@ inquirer
 			message: "What category should the block be in?",
 			choices: [
 				'common',
-				'formatting',
-				'layout',
+				'media',
+				'design',
 				'widgets',
 				'embed'
 			]
@@ -48,6 +48,16 @@ inquirer
 				'Yes',
 				'No'
 			]
+		},
+		{
+			type: 'input',
+			name: 'block_vendor_scripts',
+			message: 'Should this block have vendor scripts? ' + chalk.blue('(File path from the "vendor" folder and separate the files by comma.)\n')
+		},
+		{
+			type: 'input',
+			name: 'block_vendor_styles',
+			message: 'Should this block have vendor styles? ' + chalk.blue('(File path from the "vendor" folder and separate the files by comma.)\n')
 		}
 	])
 	.then(a => {
@@ -63,7 +73,7 @@ inquirer
 				if (err) return console.log( err );
 			});
 
-			var blockContent = "<?php\n\n/**\n * "+a.block_title+" Block Template.\n *\n * @param	 array $block The block settings and attributes.\n * @param	 string $content The block inner HTML (empty).\n * @param	 bool $is_preview True during AJAX preview.\n * @param	 (int|string) $post_id The post ID this block is saved to.\n */\n\n// Create id attribute allowing for custom 'anchor' value.\n$id = '"+block_name+"-' . $block['id'];\nif (!empty($block['anchor'])) {\n	$id = $block['anchor'];\n}\n\n// Create class attribute allowing for custom 'className' and 'align' values.\n$className = 'block "+block_name+"';\nif (!empty($block['className'])) {\n	$className .= ' ' . $block['className'];\n}\nif (!empty($block['align'])) {\n	$className .= ' align' . $block['align'];\n}\n\n// Load values and assing defaults.\n$header = get_field('header');\n\n?>\n<section id=\"<?php echo esc_attr($id); ?>\" class=\"<?php echo esc_attr($className); ?>\">\n</section>";
+			var blockContent = "<?php\n\n/**\n * "+a.block_title+" Block Template.\n *\n * @param	 array $block The block settings and attributes.\n * @param	 string $content The block inner HTML (empty).\n * @param	 bool $is_preview True during AJAX preview.\n * @param	 (int|string) $post_id The post ID this block is saved to.\n */\n\nif( isset( $block['data']['preview_image_help'] )  ) :\n	echo Awave_Gutenberg::get_preview_image( $block['data']['preview_image_help'], $block['name'] );\n	return;\nendif;\n\n// Create id attribute allowing for custom 'anchor' value.\n$id = '"+block_name+"-' . $block['id'];\nif (!empty($block['anchor'])) :\n	$id = $block['anchor'];\nendif;\n\n// Create class attribute allowing for custom 'className' and 'align' values.\n$className = 'block "+block_name+"';\nif (!empty($block['className'])) :\n	$className .= ' ' . $block['className'];\nendif;\nif (!empty($block['align'])) :\n	$className .= ' align' . $block['align'];\nendif;\n\n$className = apply_filters( 'awave_block_class', $className, $block, $post_id );\n\n// Load values and assing defaults.\n$header = get_field('header');\n\n?>\n<section id=\"<?php echo esc_attr($id); ?>\" class=\"<?php echo esc_attr($className); ?>\">\n</section>";
 
 			fs.writeFile( path.join( __dirname + '/blocks/' + block_name + '/' + block_name + '.php' ), blockContent, function (err) {
 				if (err) return console.log( err );
@@ -77,16 +87,42 @@ inquirer
 				});
 			}
 
-			var manifest = '{'+
-				'"name": "'+ block_name +'",' + 
-				'"title": "'+ a.block_title +'",' +
-				'"category": "'+ a.block_category +'",' +
-				'"mode": "'+ a.block_mode +'",' +
-				'"icon": "'+ a.block_icon +'",' +
-				'"js": "'+ a.block_javascript +'"' +
-			'}';
+			var block_obj = {
+				name: 'acf/' + block_name,
+				title: a.block_title,
+				category: a.block_category,
+				icon: a.block_icon,
+				acf: {
+					mode: a.block_mode,
+					renderTemplate: block_name + '.php'
+				},
+				example: {
+					attributes: {
+						mode: 'preview',
+						data: {
+							preview_image_help: 'screenshot.png'
+						}
+					}
+				}
+			}
 
-			fs.writeFile( path.join( __dirname + '/blocks/' + block_name + '/manifest.json' ), manifest, function(err) {
+			if( a.block_javascript === 'Yes' ) {
+				block_obj.awaveScripts = true;
+			} else {
+				block_obj.awaveScripts = false;
+			}
+
+			if( a.block_vendor_scripts ) {
+				var scripts = a.block_vendor_scripts.trim().split(',');
+				block_obj.awaveVendorScripts = scripts;
+			}
+
+			if( a.block_vendor_styles ) {
+				var styles = a.block_vendor_styles.trim().split(',');
+				block_obj.awaveVendorStyles = styles;
+			}
+
+			fs.writeFile( path.join( __dirname + '/blocks/' + block_name + '/block.json' ), JSON.stringify(block_obj, null, '\t'), function(err) {
 				if (err) return console.log( err );
 				console.log( chalk.green( 'Your block is now created!\n' ));
 			});
