@@ -49,9 +49,6 @@ class Awave_Theme_Setup
 		// jQuery footer
 		add_action( 'wp_enqueue_scripts', [$this, 'move_jquery_footer'] );
 
-		// Remove Posts from admin
-		add_action('admin_menu', [$this, 'post_remove_admin'] );
-
 		// Theme Options
 		$this->options_page();
 
@@ -225,14 +222,6 @@ class Awave_Theme_Setup
 		wp_scripts()->add_data( 'jquery', 'group', 1 );
 		wp_scripts()->add_data( 'jquery-core', 'group', 1 );
 		wp_scripts()->add_data( 'jquery-migrate', 'group', 1 );
-	}
-
-	/**
-	 * Remove regular posts from admin
-	 */
-	public function post_remove_admin()
-	{
-		remove_menu_page('edit.php');
 	}
 
 	/**

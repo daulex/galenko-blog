@@ -7,7 +7,8 @@
 class galenko_Custom_Hooks {
 	public function __construct() {
 		add_filter( 'body_class', [$this, 'body_classes'] );
-		add_action( 'init', [$this, 'generate_custom_cpt'] );
+		// add_action( 'init', [$this, 'generate_custom_cpt'] );
+		add_action( 'excerpt_more', [$this, 'excerpt_more'] );
 	}
 
 	public function body_classes( $classes )
@@ -15,6 +16,14 @@ class galenko_Custom_Hooks {
 		$classes[] = 'frontend';
 		return $classes;
 	}
+
+  /**
+   * Change excerpt more symbol from [...] to ...
+   */
+  public function excerpt_more( $more ) {
+    return '...';
+  }
+
 
 	/**
 	 * Example of generating a Custom Post Type.
