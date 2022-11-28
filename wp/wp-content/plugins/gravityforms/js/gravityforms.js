@@ -567,6 +567,76 @@ gform.tools = {
 					return n1;
 			}
 		});
+	},
+
+	/**
+	 * @function gform.tools.getCookie
+	 * @description Gets a specific cookie.
+	 *
+	 * @since 2.5.8
+	 *
+	 * @param name The cookie to get
+	 * @returns {boolean|string}
+	 */
+
+	getCookie: function( name ) {
+		var cookieArr = document.cookie.split( ";" );
+
+		for(var i = 0; i < cookieArr.length; i++) {
+			var cookiePair = cookieArr[i].split( "=" );
+
+			if( name == cookiePair[0].trim() ) {
+				return decodeURIComponent( cookiePair[1] );
+			}
+		}
+
+		return null;
+	},
+
+	/**
+	 * @function gform.tools.setCookie
+	 * @description Creates and sets a cookie.
+	 *
+	 * @since 2.5.8
+	 *
+	 * @param name The cookie name
+	 * @param value The cookie value
+	 * @param daysToExpire The number of days until cookie should expire. If not set,
+	 * will expire at the end of the user sessions.
+	 * @param updateExistingValue Whether or not to update the existing cookie value to include the new value.
+	 * Can be helpful for keeping cookie count lower for the browser.
+	 */
+
+	setCookie: function( name, value, daysToExpire, updateExistingValue ) {
+		var expirationDate = '';
+		var cookieValue = value;
+
+		if ( daysToExpire ) {
+			var date = new Date();
+			date.setTime( date.getTime() + ( daysToExpire * 24 * 60 * 60 * 1000 ) );
+			expirationDate = ' expires=' + date.toUTCString();
+		}
+
+		if ( updateExistingValue ) {
+			var currentValue = gform.tools.getCookie( name );
+			cookieValue = currentValue !== '' && currentValue !== null ? currentValue + ',' + value : value;
+		}
+
+		// Set cookie
+		document.cookie = encodeURIComponent( name ) + '=' + encodeURIComponent( cookieValue ) + ';' + expirationDate;
+	},
+
+	/**
+	 * @function gform.tools.removeCookie
+	 * @description Removes a cookie.
+	 *
+	 * @since 2.5.8
+	 *
+	 * @param name The cookie name to check
+	 */
+
+	removeCookie: function( name ) {
+		gform.tools.setCookie( name, '', -1 );
 	}
 };
 
@@ -585,7 +655,7 @@ gform.a11y = {};
 //------------------------------------------------
 
 /**
- * Options namespace to house common plugin and custom options objects for reuse across out JavaScript.
+ * Options namespace to house common plugin and custom options objects for reuse across our JavaScript.
  */
 
 gform.options = {
@@ -596,6 +666,7 @@ gform.options = {
      */
 
     jqEditorAccordions: {
+    	header: 'button.panel-block-tabs__toggle',
         heightStyle: 'content',
         collapsible: true,
         animate: false,
@@ -605,7 +676,19 @@ gform.options = {
         activate: function( event ) {
             gform.tools.setAttr( '.ui-accordion-header', 'tabindex', '0', event.target, 100 );
         },
-    }
+    },
+
+	jqAddFieldAccordions: {
+		heightStyle: 'content',
+		collapsible: true,
+		animate: false,
+		create: function( event ) {
+			gform.tools.setAttr( '.ui-accordion-header', 'tabindex', '0', event.target, 100 );
+		},
+		activate: function( event ) {
+			gform.tools.setAttr( '.ui-accordion-header', 'tabindex', '0', event.target, 100 );
+		},
+	},
 };
 
 //------------------------------------------------
@@ -754,6 +837,17 @@ function Currency(currency){
         }
         return d;
     };
+
+	/**
+	 * Returns the currency code if it exists.
+	 *
+	 * @since 2.5.13
+	 *
+	 * @return {string|false}
+	 */
+	this.getCode = function() {
+    	return 'code' in this.currency && this.currency.code !== '' ? this.currency.code : false;
+	}
 }
 
 /**
@@ -1103,7 +1197,6 @@ function gformCalculateProductPrice(form_id, productFieldId){
 
 
 function gformGetProductQuantity(formId, productFieldId) {
-
     //If product is not selected
     if (!gformIsProductSelected(formId, productFieldId)) {
         return 0;
@@ -1539,6 +1632,7 @@ function gformDeleteListItem( deleteButton, max ) {
 
     gformToggleIcons( $container, max );
     gformAdjustClasses( $container );
+    gformAdjustRowAttributes( $container );
 
     gform.doAction( 'gform_list_post_item_delete', $container );
 
@@ -1570,7 +1664,10 @@ function gformAdjustRowAttributes( $container ) {
     $container.find( '.gfield_list_group' ).each( function( i ) {
 
         var $input = jQuery( this ).find( 'input, select, textarea' );
-        $input.attr( 'aria-label', $input.data( 'aria-label-template' ).format( i + 1 ) );
+        $input.each( function( index, input ) {
+            var $this = jQuery( input );
+            $this.attr( 'aria-label', $this.data( 'aria-label-template' ).format( i + 1 ) );
+        } );
 
         var $remove = jQuery( this ).find( '.delete_list_item' );
         $remove.attr( 'aria-label', $remove.data( 'aria-label-template' ).format( i + 1 ) );
@@ -1934,6 +2031,15 @@ var GFMergeTag = function() {
 		modifier = modifier.replace(":", "");
 
 		var fieldId = parseInt(inputId,10);
+
+		// Check address field's copy value checkbox and reset fieldID to source field if checked
+		var isCopyPreviousAddressChecked = jQuery( '#input_' + formId + '_' + fieldId + '_copy_values_activated:checked' ).length > 0;
+		if ( isCopyPreviousAddressChecked ) {
+			var sourceFieldId = jQuery( '#input_' + formId + '_' + fieldId + '_copy_values_activated' ).data('source_field_id');
+			inputId = inputId == fieldId ? sourceFieldId : inputId.toString().replace( fieldId + '.', sourceFieldId + '.' );
+			fieldId = sourceFieldId;
+		}
+
 		var field = jQuery('#field_' + formId + '_' + fieldId);
 
 		var inputSelector = fieldId == inputId ? 'input[name^="input_' + fieldId + '"]' : 'input[name="input_' + inputId + '"]';
@@ -1973,6 +2079,8 @@ var GFMergeTag = function() {
 				break;
 
 		}
+
+
 
 		// Filter out unselected checkboxes and radio buttons
 		if ( input.prop('type') === 'checkbox' || input.prop('type') === 'radio' ) {
@@ -2092,6 +2200,10 @@ var GFMergeTag = function() {
 				val = gformToNumber( val );
 				return val === false ? 0 : val;
 				break;
+
+			default:
+				val = val.trim();
+				break;
 		}
 
 		return val;
@@ -2141,9 +2253,13 @@ var GFCalc = function(formId, formulaFields){
     this.init = function(formId, formulaFields) {
 
         var calc = this;
-        jQuery(document).bind("gform_post_conditional_logic", function(){
-            calc.runCalcs( formId, formulaFields );
-        } );
+
+        // @since 2.5.10 - namespace event to avoid multiple bindings.
+	    jQuery(document)
+		    .off("gform_post_conditional_logic.gfCalc_{0}".format(formId))
+		    .on("gform_post_conditional_logic.gfCalc_{0}".format(formId), function(){
+			    calc.runCalcs( formId, formulaFields );
+	    } );
 
         for(var i=0; i<formulaFields.length; i++) {
             var formulaField = jQuery.extend({}, formulaFields[i]);
@@ -2154,7 +2270,6 @@ var GFCalc = function(formId, formulaFields){
     }
 
     this.runCalc = function(formulaField, formId) {
-
         var calcObj      = this,
             field        = jQuery('#field_' + formId + '_' + formulaField.field_id),
             formulaInput = field.hasClass( 'gfield_price' ) ? jQuery( '#ginput_base_price_' + formId + '_' + formulaField.field_id ) : jQuery( '#input_' + formId + '_' + formulaField.field_id ),
@@ -2170,6 +2285,8 @@ var GFCalc = function(formId, formulaFields){
                 result = eval(expr);
 
             } catch( e ) { }
+        } else {
+        	return;
         }
 
         // if result is positive infinity, negative infinity or a NaN, defaults to 0
@@ -2310,6 +2427,10 @@ var GFCalc = function(formId, formulaFields){
 
             var inputId = matches[i][1];
             var fieldId = parseInt(inputId,10);
+
+            if ( fieldId == formulaField.field_id && fieldId == inputId ) {
+            	continue;
+            }
 
             var modifier = 'value';
 			if( matches[i][3] ){
@@ -2831,72 +2952,74 @@ function gformValidateFileSize( field, max_file_size ) {
 				up.removeFile(file);
 				addMessage(up.settings.gf_vars.message_id, file.name + " - " + response.error.message);
 				$('#' + file.id ).html('');
+			} else {
+				up.settings.multipart_params[file.target_name] = response.data;
 			}
 		});
 
-        uploader.bind('FileUploaded', function(up, file, result) {
-			if( ! up.getFile(file.id) ) {
+		uploader.bind('FileUploaded', function(up, file, result) {
+			if (!up.getFile(file.id)) {
 				// The file has been removed from the queue.
 				return;
 			}
-            var response = $.secureEvalJSON(result.response);
-            if(response.status == "error"){
-                addMessage(up.settings.gf_vars.message_id, file.name + " - " + response.error.message);
-                $('#' + file.id ).html('');
-                toggleLimitReached(up.settings);
-                return;
-            }
 
-            var html = '<strong>' + htmlEncode(file.name) + '</strong>';
-            var formId = up.settings.multipart_params.form_id;
-            var fieldId = up.settings.multipart_params.field_id;
+			var response = $.secureEvalJSON(result.response);
+			if (response.status == "error") {
+				addMessage(up.settings.gf_vars.message_id, file.name + " - " + response.error.message);
+				$('#' + file.id).html('');
+				toggleLimitReached(up.settings);
+				return;
+			}
 
-            if ( typeof gf_legacy !== 'undefined' && gf_legacy.is_legacy ) {
-                html = "<img "
-                    + "class='gform_delete' "
-                    + "src='" + imagesUrl + "/delete.png' "
-                    + "onclick='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);' "
-                    + "onkeypress='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);' "
-                    + "alt='" + strings.delete_file + "' "
-                    + "title='" + strings.delete_file
-                    + "' /> "
-                    + html;
-            } else {
-                html = "<button class='gform_delete_file' onclick='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);'><span class='dashicons dashicons-trash' aria-hidden='true'></span><span class='screen-reader-text'>" + strings.delete_file + ': ' + file.name + "</span></button> " + html;
-            }
+			var uploadedName = rgars(response, 'data/uploaded_filename');
+			var html = '<strong>' + htmlEncode(uploadedName) + '</strong>';
+			var formId = up.settings.multipart_params.form_id;
+			var fieldId = up.settings.multipart_params.field_id;
 
-	        /**
-	         * Allows the markup for the file to be overridden.
-	         *
-	         * @since 1.9
-	         * @since 2.4.23 Added the response param.
-	         *
-	         * @param {string} html      The HTML for the file name and delete button.
-	         * @param {object} file      The file upload properties. See: https://www.plupload.com/docs/v2/File.
-	         * @param {object} up        The uploader properties. See: https://www.plupload.com/docs/v2/Uploader.
-	         * @param {object} strings   Localized strings relating to file uploads.
-	         * @param {string} imagesURL The base URL to the Gravity Forms images directory.
-	         * @param {object} response  The response from GFAsyncUpload.
-	         */
-	        html = gform.applyFilters( 'gform_file_upload_markup', html, file, up, strings, imagesUrl, response );
+			if (typeof gf_legacy !== 'undefined' && gf_legacy.is_legacy) {
+				html = "<img "
+					+ "class='gform_delete' "
+					+ "src='" + imagesUrl + "/delete.png' "
+					+ "onclick='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);' "
+					+ "onkeypress='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);' "
+					+ "alt='" + strings.delete_file + "' "
+					+ "title='" + strings.delete_file
+					+ "' /> "
+					+ html;
+			} else {
+				html = "<button class='gform_delete_file' onclick='gformDeleteUploadedFile(" + formId + "," + fieldId + ", this);'><span class='dashicons dashicons-trash' aria-hidden='true'></span><span class='screen-reader-text'>" + strings.delete_file + ': ' + htmlEncode(uploadedName) + "</span></button> " + html;
+			}
 
-            $( '#' + file.id ).html( html );
+			/**
+			 * Allows the markup for the file to be overridden.
+			 *
+			 * @since 1.9
+			 * @since 2.4.23 Added the response param.
+			 *
+			 * @param {string} html      The HTML for the file name and delete button.
+			 * @param {object} file      The file upload properties. See: https://www.plupload.com/docs/v2/File.
+			 * @param {object} up        The uploader properties. See: https://www.plupload.com/docs/v2/Uploader.
+			 * @param {object} strings   Localized strings relating to file uploads.
+			 * @param {string} imagesURL The base URL to the Gravity Forms images directory.
+			 * @param {object} response  The response from GFAsyncUpload.
+			 */
+			html = gform.applyFilters('gform_file_upload_markup', html, file, up, strings, imagesUrl, response);
 
-            if(file.percent == 100){
-                if(response.status && response.status == 'ok'){
-                    addFile(fieldId, response.data);
-                }  else {
-                    addMessage(up.settings.gf_vars.message_id, strings.unknown_error + ': ' + file.name);
-                }
-            }
+			$('#' + file.id).html(html);
 
+			if (file.percent == 100) {
+				if (response.status && response.status == 'ok') {
+					addFile(fieldId, response.data);
+				} else {
+					addMessage(up.settings.gf_vars.message_id, strings.unknown_error + ': ' + file.name);
+				}
+			}
 
+		});
 
-        });
-
-	    uploader.bind('FilesRemoved', function (up, files) {
-		    toggleLimitReached(up.settings);
-	    });
+		uploader.bind('FilesRemoved', function (up, files) {
+			toggleLimitReached(up.settings);
+		});
 
 		function getAllFiles(){
 			var selector = '#gform_uploaded_files_' + formID,
@@ -3210,9 +3333,14 @@ jQuery( document ).on( 'submit.gravityforms', '.gform_wrapper form', function( e
             if ( ! token ) {
                 // Execute the invisible captcha.
                 grecaptcha.execute($reCaptcha.data('widget-id'));
-                // Once the reCaptcha is triggered, set gf_submitting to true, so the form could be submitted if the
+
+                // Once the reCaptcha is triggered, set gf_submitting to false, so the form could be submitted if the
                 // reCaptcha modal is closed (by clicking on the area out of the modal or the reCaptcha response expires)
-                window['gf_submitting_' + formID] = false;
+  				// do it after 4 seconds to reduce chance of multiple clicks when modal is not displayed
+                setTimeout( function() {
+                	window['gf_submitting_' + formID] = false;
+                }, 4000);
+
                 event.preventDefault();
             }
         }

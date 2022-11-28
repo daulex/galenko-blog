@@ -53,16 +53,15 @@ class GF_System_Report {
 		?>
 		<div class="alert info">
 			<p><?php _e( 'The following is a system report containing useful technical information for troubleshooting issues. If you need further help after viewing the report, click on the "Copy System Report" button below to copy the report and paste it in your message to support.', 'gravityforms' ); ?></p>
-			<button class="button" onclick="function (e) { e.preventDefault() }" id="gf_copy_report" data-clipboard-target="#gf_system_report"><?php _e( 'Copy System Report', 'gravityforms' ); ?> <i aria-hidden="true" class="dashicons dashicons-arrow-right-alt" ></i></button>
+			<button class="button" type="button" id="gf_copy_report" data-clipboard-target="#gf_system_report"><?php _e( 'Copy System Report', 'gravityforms' ); ?> <i aria-hidden="true" class="dashicons dashicons-arrow-right-alt" ></i></button>
 
-			<div class="gf_copy_message inline" id="gf_copy_error_message">
+			<div class="gf_copy_message" id="gf_copy_error_message">
 				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report generated!', 'gravityforms' ); echo ' <b>Press Ctrl+C to copy it.</b>'; ?></p>
 			</div>
 
-			<div class="gf_copy_message inline" id="gf_copy_success">
+			<div class="gf_copy_message" id="gf_copy_success">
 				<p><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Report Copied!', 'gravityforms' ) ?></p>
 			</div>
-
 
 			<textarea id="gf_system_report" readonly="readonly" ><?php echo esc_html( $system_report_text ) ?></textarea>
 		</div>
@@ -295,7 +294,7 @@ class GF_System_Report {
 
 					echo '<h2>' . esc_html__( 'Upgrading Gravity Forms', 'gravityforms' ) . '</h2>';
 
-					$warning = esc_html__( 'Do not close or navigate away from this page until the upgrade is 100% complete.', 'gravityfroms' );
+					$warning = esc_html__( 'Do not close or navigate away from this page until the upgrade is 100% complete.', 'gravityforms' );
 
 					printf( '<p>%s</p>', $warning );
 					printf( '<p>%s</p>', $message );
@@ -1033,9 +1032,14 @@ class GF_System_Report {
 				$value                     = false;
 				$validation_message        = __( 'Table does not exist', 'gravityforms' );
 				$validation_message_export = 'Table does not exist';
-
+				// If table does not have auto-increment set on id field, set validation message.
+			} elseif ( ! gf_upgrade()->is_auto_increment_enabled( $table_name ) ) {
+				$has_failed_tables         = true;
+				$value                     = false;
+				$validation_message        = __( 'Table has incorrect auto-increment settings.', 'gravityforms' );
+				$validation_message_export = 'Table has incorrect auto-increment settings.';
+				// If table schema is incorrect, set validation message.
 			} elseif ( ! gf_upgrade()->check_table_schema( $table_name ) ) {
-
 				$has_failed_tables         = true;
 				$value                     = false;
 				$validation_message        = __( 'Table has not been upgraded successfully.', 'gravityforms' );
@@ -1284,9 +1288,19 @@ class GF_System_Report {
 
 			// Prepare plugin value.
 			if ( rgar( $plugin, 'AuthorURI' ) ) {
-				$value = 'by <a href="' . esc_url( $plugin['AuthorURI'] ) . '">' . esc_html( $plugin['Author'] ) . '</a>' . ' - ' . $plugin['Version'];
+				$value = sprintf(
+					'%s <a href="%s">%s</a> - %s',
+					__( 'by', 'gravityforms' ),
+					esc_url( $plugin['AuthorURI'] ),
+					esc_html( $plugin['Author'] ),
+					$plugin['Version']
+				);
 			} else {
-				$value = 'by ' . $plugin['Author'] . ' - ' . $plugin['Version'];
+				$value = sprintf( '%s %s - %s',
+					__( 'by', 'gravityforms' ),
+					$plugin['Author'],
+					$plugin['Version']
+			    );
 			}
 
 			// Add plugin to active plugins.
@@ -1294,7 +1308,12 @@ class GF_System_Report {
 				'label'                     => $label,
 				'label_export'              => strip_tags( $plugin_name ),
 				'value'                     => $value,
-				'value_export'              => 'by ' . strip_tags( $plugin['Author'] ) . ' - ' . $plugin['Version'],
+				'value_export'              => sprintf(
+				'%s %s - %s',
+					__( 'by', 'gravityforms' ),
+					strip_tags( $plugin['Author'] ),
+					$plugin['Version']
+				),
 				'is_valid'                  => $is_valid,
 				'validation_message'        => $validation_message,
 				'validation_message_export' => $validation_message_export,
@@ -1352,9 +1371,20 @@ class GF_System_Report {
 
 			// Prepare plugin value.
 			if ( rgar( $plugin_data, 'AuthorURI' ) ) {
-				$value = 'by <a href="' . esc_url( $plugin_data['AuthorURI'] ) . '">' . $plugin_data['Author'] . '</a>' . ' - ' . $plugin_data['Version'];
+				$value = sprintf(
+					'%s <a href="%s">%s</a> - %s',
+					__( 'by', 'gravityforms' ),
+					esc_url( $plugin_data['AuthorURI'] ),
+					$plugin_data['Author'],
+					$plugin_data['Version']
+				);
 			} else {
-				$value = 'by ' . $plugin_data['Author'] . ' - ' . $plugin_data['Version'];
+				$value = sprintf(
+					'%s %s - %s',
+					__( 'by', 'gravityforms' ),
+					$plugin_data['Author'],
+					$plugin_data['Version']
+				);
 			}
 
 			// Replace plugin.
@@ -1420,7 +1450,8 @@ class GF_System_Report {
 	 * Determine if there are any active Add-Ons that extend a specific class.
 	 *
 	 * @since  2.2
-	 * @access private
+ 	 * @since  2.6 access changed to public
+	 * @access public
 	 *
 	 * @param string $class_name Class name to check if Add-Ons are a subclass of.
 	 *
@@ -1429,7 +1460,7 @@ class GF_System_Report {
 	 *
 	 * @return bool
 	 */
-	private static function has_addons_of( $class_name ) {
+	public static function has_addons_of( $class_name ) {
 
 		// Get active Add-Ons.
 		$gf_addons = GFAddOn::get_registered_addons();
@@ -1460,7 +1491,8 @@ class GF_System_Report {
 	 * Determine if there are any active Add-Ons with a payment callback.
 	 *
 	 * @since  2.2
-	 * @access private
+ 	 * @since  2.6 access changed to public
+	 * @access public
 	 *
 	 * @uses GFAddOn::get_instance()
 	 * @uses GFAddOn::get_registered_addons()
@@ -1468,7 +1500,7 @@ class GF_System_Report {
 	 *
 	 * @return bool
 	 */
-	private static function has_payment_callback_addons() {
+	public static function has_payment_callback_addons() {
 
 		// Get active Add-Ons.
 		$gf_addons = GFAddOn::get_registered_addons();
@@ -1523,8 +1555,8 @@ class GF_System_Report {
 		$theme_details = array(
 			array(
 				'label'        => $theme_name,
-				'value'        => sprintf( 'by <a href="%s">%s</a> - %s', $theme_author_uri, $theme_author, $theme_version ),
-				'value_export' => sprintf( 'by %s (%s) - %s', $theme_author, $theme_author_uri, $theme_version ),
+				'value'        => sprintf( '%s <a href="%s">%s</a> - %s', __( 'by', 'gravityforms' ), $theme_author_uri, $theme_author, $theme_version ),
+				'value_export' => sprintf( '%s %s (%s) - %s', __( 'by', 'gravityforms' ), $theme_author, $theme_author_uri, $theme_version ),
 				'is_valid'     => version_compare( $theme_version, rgar( $update_themes_versions, $active_theme->get_stylesheet() ), '>=' )
 			),
 		);
@@ -1539,8 +1571,8 @@ class GF_System_Report {
 			$theme_details[] = array(
 				'label'        => sprintf( '%s (%s)', $parent_name, esc_html__( 'Parent', 'gravityforms' ) ),
 				'label_export' => $parent_name . ' (Parent)',
-				'value'        => sprintf( 'by <a href="%s">%s</a> - %s', $parent_author_uri, $parent_author, $parent_version ),
-				'value_export' => sprintf( 'by %s (%s) - %s', $parent_author, $parent_author_uri, $parent_version ),
+				'value'        => sprintf( '%s <a href="%s">%s</a> - %s', __( 'by', 'gravityforms' ), $parent_author_uri, $parent_author, $parent_version ),
+				'value_export' => sprintf( '%s %s (%s) - %s', __( 'by', 'gravityforms' ), $parent_author, $parent_author_uri, $parent_version ),
 				'is_valid'     => version_compare( $parent_version, rgar( $update_themes_versions, $parent_theme->get_stylesheet() ), '>=' )
 			);
 		}

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - SEOPress, on-site SEO - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-08-18 10:59:56+0000\n"
+"PO-Revision-Date: 2022-11-10 13:53:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,12 +11,54 @@ msgstr ""
 "Language: sv_SE\n"
 "Project-Id-Version: Plugins - SEOPress, on-site SEO - Stable (latest release)\n"
 
+#: inc/admin/page-builders/classic/classic-editor.php:19
+msgid "Add <code>rel=\"UGC\"</code> attribute"
+msgstr "Lägg till <code>rel=\"UGC\"</code>-attribut"
+
+#: inc/admin/page-builders/classic/classic-editor.php:18
+msgid "Add <code>rel=\"nofollow\"</code> attribute"
+msgstr "Lägg till <code>rel=\"nofollow\"</code>-attribut"
+
+#: inc/admin/page-builders/classic/classic-editor.php:17
+msgid "Add <code>rel=\"sponsored\"</code> attribute"
+msgstr "Lägg till <code>rel=\"sponsored\"</code>-attribut"
+
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:122
+msgid "is already used %d time"
+msgid_plural "is already used %d times"
+msgstr[0] "är redan använt %d gång"
+msgstr[1] "är redan använt %d gånger"
+
+#: inc/admin/callbacks/Advanced.php:330
+msgid "<link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"https://www.example.com/xmlrpc.php?rsd\" />"
+msgstr "<link rel=\"EditURI\" type=\"application/rsd+xml\" title=\"RSD\" href=\"https://www.example.com/xmlrpc.php?rsd\" />"
+
+#: inc/admin/callbacks/Advanced.php:304
+msgid "<link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"https://www.example.com/wp-includes/wlwmanifest.xml\" />"
+msgstr "<link rel=\"wlwmanifest\" type=\"application/wlwmanifest+xml\" href=\"https://www.example.com/wp-includes/wlwmanifest.xml\" />"
+
+#: inc/admin/callbacks/Advanced.php:282
+msgid "<link rel=\"shortlink\" href=\"https://www.example.com/\"/>"
+msgstr "<link rel=\"shortlink\" href=\"https://www.example.com/\"/>"
+
+#: inc/admin/callbacks/Advanced.php:177
+msgid "<meta name=\"generator\" content=\"WordPress 6.0.3\" />"
+msgstr "<meta name=\"generator\" content=\"WordPress 6.0.3\" />"
+
+#: inc/admin/callbacks/Advanced.php:21
+msgid "e.g. \"https://www.example.com/my-blog-post/?replytocom=10#respond\" => \"#comment-10\""
+msgstr "t.ex. \"https://www.example.com/my-blog-post/?replytocom=10#respond\" => \"#comment-10\""
+
+#: seopress.php:686
+msgid "Update SEOPress PRO"
+msgstr "Uppdatera SEOPress PRO"
+
 #: inc/admin/page-builders/gutenberg/blocks/sitemap/block.json
 msgctxt "block title"
 msgid "Sitemap"
 msgstr "Webbplatskarta"
 
-#: inc/admin/wizard/admin-wizard.php:755
+#: inc/admin/wizard/admin-wizard.php:769
 msgid "Your email"
 msgstr "Din e-post"
 
@@ -36,15 +78,16 @@ msgstr "Blockredigerare"
 msgid "Advanced settings"
 msgstr "Avancerade inställningar"
 
-#: inc/admin/sections/Advanced.php:128 inc/admin/sections/Analytics.php:146
+#: inc/admin/sections/Advanced.php:34 inc/admin/sections/Advanced.php:149
+#: inc/admin/sections/Analytics.php:116 inc/admin/sections/Analytics.php:151
 msgid "Misc"
 msgstr "Övrigt"
 
-#: inc/admin/sections/Advanced.php:115
+#: inc/admin/sections/Advanced.php:31 inc/admin/sections/Advanced.php:136
 msgid "Admin bar"
 msgstr "Adminmeny"
 
-#: inc/admin/sections/Advanced.php:76
+#: inc/admin/sections/Advanced.php:33 inc/admin/sections/Advanced.php:97
 msgid "Columns"
 msgstr "Kolumner"
 
@@ -53,9 +96,17 @@ msgstr "Kolumner"
 msgid "1234567890"
 msgstr "1234567890"
 
+#: inc/admin/callbacks/Advanced.php:137
+msgid "e.g. \"https://example.com/product-category/my-product-category/\" => \"https://example.com/my-product-category/\""
+msgstr "t.ex. \"https://example.com/product-category/my-product-category/\" => \"https://example.com/my-product-category/\""
+
 #: inc/admin/admin-bar/admin-header.php:34
 msgid "Help"
 msgstr "Hjälp"
+
+#: inc/admin/callbacks/Advanced.php:92
+msgid "e.g. \"https://example.com/category/my-post-category/\" => \"https://example.com/my-post-category/\""
+msgstr "t.ex. \"https://example.com/category/my-post-category/\" => \"https://example.com/my-post-category/\""
 
 #: src/Services/ContentAnalysis/RenderGSCInspectUrl.php:207
 #: src/Services/ContentAnalysis/RenderGSCInspectUrl.php:225
@@ -263,7 +314,7 @@ msgstr "Slå på/av %s"
 msgid "<a href=\"%s\">Regenerate automatic XML Video sitemap for YouTube?</a>"
 msgstr "<a href=\"%s\">Vill du automatiskt återskapa XML-videowebbplatskartan för YouTube?</a>"
 
-#: inc/admin/admin-pages/Tools.php:295
+#: inc/admin/admin-pages/Tools.php:199
 msgid "Activate XML Video sitemap"
 msgstr "Aktivera XML-videowebbplatskarta"
 
@@ -271,11 +322,11 @@ msgstr "Aktivera XML-videowebbplatskarta"
 msgid "Degree of severity: %s"
 msgstr "Allvarlighetsnivå: %s"
 
-#: inc/admin/admin-pages/Tools.php:283
+#: inc/admin/admin-pages/Tools.php:187
 msgid "Regenerate"
 msgstr "Återskapa"
 
-#: seopress.php:370
+#: seopress.php:369
 msgid "Regeneration completed!"
 msgstr "Återskapningen är klar!"
 
@@ -324,7 +375,7 @@ msgstr "Ett konto på Matomo Cloud eller en egeninstallerad Matomo-server krävs
 msgid "For self-hosted installations, go to your Matomo administration, Settings, Websites, Manage. From the list of your websites, find the ID line."
 msgstr "För egeninstallerat går du till Matomo-administrationen, inställningar, webbplatser, hantera. Hämta raden ”ID” i webbplatslistan."
 
-#: inc/admin/admin-pages/Tools.php:290
+#: inc/admin/admin-pages/Tools.php:194
 msgid "XML Video sitemap feature is disabled. Please activate it from the <strong>XML sitemaps settings page</strong>."
 msgstr "Funktionen XML-videowebbplatskarta är inaktiverad. Aktivera den på <strong>sidan för inställningar avseende XML-webbplatskartor</strong>."
 
@@ -352,11 +403,11 @@ msgstr "Ja tack"
 msgid "Yes, self-hosted installation"
 msgstr "Ja, egeninstallerat"
 
-#: inc/admin/admin-pages/Tools.php:281
+#: inc/admin/admin-pages/Tools.php:185
 msgid "Click the button below to automatically scan all your content for YouTube URL and add them to the video XML sitemap. We automatically add YouTube videos each time you save a post."
 msgstr "Klicka på knappen nedan för att automatiskt söka i allt ditt innehåll efter YouTube-URL:er och lägga in dem i XML-videowebbplatskartan. Vi lägger automatiskt till YouTube-videor varje gång du sparar ett inlägg."
 
-#: inc/admin/admin-pages/Tools.php:279
+#: inc/admin/admin-pages/Tools.php:183
 msgid "Add YouTube videos to the XML Video sitemap"
 msgstr "Lägg till YouTube-videoklipp i XML-videowebbplatskartan"
 
@@ -376,7 +427,7 @@ msgstr "Prata med en SEO-konsult"
 msgid "This is what your page will look like in Google search results. You have to publish your post to get the Google Snippet Preview. Note that Google may optionally display an image of your article."
 msgstr "Så här kommer din sida att visas i Googles sökresultat. Du behöver publicera ditt inlägg för att kunna se en förhandsvisning av Google-utdraget. Observera att Google eventuellt kan visa en bild av din artikel."
 
-#: inc/admin/sections/Analytics.php:166
+#: inc/admin/sections/Analytics.php:171
 msgid "Use Matomo to track your users with privacy in mind. We support both On Premise and Cloud installations."
 msgstr "Spåra dina användare integritetsskyddat med Matomo. Vi stöder både egna installationer och molnlösningar."
 
@@ -392,11 +443,11 @@ msgstr "Växer webbplatsen så att du behöver hjälp med din SEO-strategi och �
 msgid "View Full Report"
 msgstr "Visa hela rapporten"
 
-#: inc/admin/admin-pages/Tools.php:25
+#: inc/admin/admin-pages/Tools.php:24
 msgid "Video sitemap"
 msgstr "Webbplatskarta för video"
 
-#: inc/admin/admin-pages/Tools.php:274
+#: inc/admin/admin-pages/Tools.php:178
 msgid "Video XML sitemap"
 msgstr "XML-webbplatskarta för videoklipp"
 
@@ -409,7 +460,7 @@ msgstr "YouTube-videor läggs till automatiskt när du skapar eller sparar ett i
 msgid "Select a login status:"
 msgstr "Välj en inloggningsstatus:"
 
-#: inc/admin/wizard/admin-wizard.php:393
+#: inc/admin/wizard/admin-wizard.php:397
 msgid "%s &rsaquo; Setup Wizard"
 msgstr "%s &rsaquo; Installationsguide"
 
@@ -421,7 +472,7 @@ msgstr "Aktivera Microsoft Clarity"
 msgid "Enter your Clarity project ID"
 msgstr "Ange ditt projekt-ID för Clarity"
 
-#: inc/admin/sections/Analytics.php:192
+#: inc/admin/sections/Analytics.php:197
 msgid "Use Microsoft Clarity to capture session recordings, get instant heatmaps and powerful Insights for Free. Know how people interact with your site to improve user experience and conversions."
 msgstr "Använd Microsoft Clarity för att spela in sessioner och gratis få omedelbar tillgång till klickkartor och användbara insikter. Ta reda på hur människor interagerar med din webbplats för att förbättra användarupplevelsen och förbättra konverteringsgraden."
 
@@ -433,19 +484,19 @@ msgstr "Fel av typen 401/403?"
 msgid "Add your own scripts like GTM or Facebook Pixel by copy and paste the provided code to the HEAD/BODY or FOOTER."
 msgstr "Lägg till dina egna skript, såsom GTM eller Facebook-pixel genom att kopiera och klistra in den erhållna koden i HEAD/BODY eller FOOTER."
 
-#: inc/admin/sections/Analytics.php:188
+#: inc/admin/sections/Analytics.php:193
 msgid "Microsoft Clarity"
 msgstr "Microsoft Clarity"
 
-#: inc/admin/sections/Analytics.php:197
+#: inc/admin/sections/Analytics.php:202
 msgid "Create your first Microsoft Clarity project <a href=\"%s\" target=\"_blank\">here</a>."
 msgstr "Skapa ditt första Microsoft Clarity-projekt <a href=\"%s\" target=\"_blank\">här</a>."
 
-#: inc/admin/callbacks/Analytics.php:1331
+#: inc/admin/callbacks/Analytics.php:1334
 msgid "Find your project ID"
 msgstr "Hitta ditt projekt-ID"
 
-#: inc/admin/callbacks/Analytics.php:1324
+#: inc/admin/callbacks/Analytics.php:1327
 msgid "Enter your Project ID"
 msgstr "Ange ditt projekt-ID"
 
@@ -457,49 +508,46 @@ msgstr "Anpassad spårning"
 msgid "Clarity"
 msgstr "Clarity"
 
-#: inc/admin/callbacks/Analytics.php:1310
+#: inc/admin/callbacks/Analytics.php:1313
 msgid "Add Microsoft Clarity code to your site"
 msgstr "Lägg till kod för Microsoft Clarity på webbplatsen"
 
-#: inc/admin/admin-pages/Tools.php:75 inc/admin/admin-pages/Tools.php:121
-msgid "Redirection (enable, login status, type, URL)"
-msgstr "Omdirigering (aktiverat, inloggningsstatus, typ, URL)"
-
-#: inc/admin/wizard/admin-wizard.php:1510
+#: inc/admin/wizard/admin-wizard.php:1525
 msgid "Get SEOPress PRO"
 msgstr "Skaffa SEOPress PRO"
 
-#: inc/admin/wizard/admin-wizard.php:1473
+#: inc/admin/wizard/admin-wizard.php:1488
 msgid "SEOPress PRO"
 msgstr "SEOPress PRO"
 
-#: inc/admin/wizard/admin-wizard.php:1257
+#: inc/admin/wizard/admin-wizard.php:1272
 msgid "Almost done!"
 msgstr "Nästan klart!"
 
-#: inc/admin/wizard/admin-wizard.php:773 inc/admin/wizard/admin-wizard.php:775
-#: inc/admin/wizard/admin-wizard.php:900 inc/admin/wizard/admin-wizard.php:902
-#: inc/admin/wizard/admin-wizard.php:991 inc/admin/wizard/admin-wizard.php:993
-#: inc/admin/wizard/admin-wizard.php:1096
-#: inc/admin/wizard/admin-wizard.php:1098
-#: inc/admin/wizard/admin-wizard.php:1200
-#: inc/admin/wizard/admin-wizard.php:1202
-#: inc/admin/wizard/admin-wizard.php:1337
-#: inc/admin/wizard/admin-wizard.php:1339
-#: inc/admin/wizard/admin-wizard.php:1426
-#: inc/admin/wizard/admin-wizard.php:1428
+#: inc/admin/wizard/admin-wizard.php:787 inc/admin/wizard/admin-wizard.php:789
+#: inc/admin/wizard/admin-wizard.php:915 inc/admin/wizard/admin-wizard.php:917
+#: inc/admin/wizard/admin-wizard.php:1006
+#: inc/admin/wizard/admin-wizard.php:1008
+#: inc/admin/wizard/admin-wizard.php:1111
+#: inc/admin/wizard/admin-wizard.php:1113
+#: inc/admin/wizard/admin-wizard.php:1215
+#: inc/admin/wizard/admin-wizard.php:1217
+#: inc/admin/wizard/admin-wizard.php:1352
+#: inc/admin/wizard/admin-wizard.php:1354
+#: inc/admin/wizard/admin-wizard.php:1441
+#: inc/admin/wizard/admin-wizard.php:1443
 msgid "Save & Continue"
 msgstr "Spara och fortsätt"
 
-#: inc/admin/wizard/admin-wizard.php:685
+#: inc/admin/wizard/admin-wizard.php:692
 msgid "Tell us more about your site"
 msgstr "Berätta mer om din webbplats"
 
-#: inc/admin/wizard/admin-wizard.php:554 inc/admin/wizard/admin-wizard.php:1597
+#: inc/admin/wizard/admin-wizard.php:558 inc/admin/wizard/admin-wizard.php:1612
 msgid "Welcome to %s!"
 msgstr "Välkommen till %s!"
 
-#: inc/admin/wizard/admin-wizard.php:275 inc/admin/wizard/admin-wizard.php:285
+#: inc/admin/wizard/admin-wizard.php:279 inc/admin/wizard/admin-wizard.php:289
 msgid "Extend %s"
 msgstr "Utöka %s"
 
@@ -507,55 +555,55 @@ msgstr "Utöka %s"
 msgid "Automatically notify search engines"
 msgstr "Avisera sökmotorer automatiskt"
 
-#: inc/admin/wizard/admin-wizard.php:1545
+#: inc/admin/wizard/admin-wizard.php:1560
 msgid "Receive your rankings in your inbox."
 msgstr "Få information om din rankning via e-post."
 
-#: inc/admin/wizard/admin-wizard.php:1497
+#: inc/admin/wizard/admin-wizard.php:1512
 msgid "Observe the evolution of your site via <strong>Google Analytics stats</strong> directly from your WordPress Dashboard."
 msgstr "Följ upp utvecklingen för din webbplats via <strong>Google Analytics-statistik</strong> direkt i WordPress kontrollpanel."
 
-#: inc/admin/wizard/admin-wizard.php:1398
+#: inc/admin/wizard/admin-wizard.php:1413
 msgid "Improve your workflow with the Universal SEO metabox"
 msgstr "Förbättra ditt arbetsflöde med metarutan Universal SEO"
 
-#: inc/admin/wizard/admin-wizard.php:1482
+#: inc/admin/wizard/admin-wizard.php:1497
 msgid "Improve your business's presence in <strong>local search results</strong>."
 msgstr "Förbättra företagets närvaro i <strong>lokala sökresultat</strong>."
 
-#: inc/admin/wizard/admin-wizard.php:1479
+#: inc/admin/wizard/admin-wizard.php:1494
 msgid "Premium SEO features to increase your rankings"
 msgstr "Funktioner i Premium SEO som kan förbättra din rankning"
 
-#: inc/admin/wizard/admin-wizard.php:853
+#: inc/admin/wizard/admin-wizard.php:868
 msgid "Fill in your social accounts for search engines."
 msgstr "Fyll i information om dina sociala konton för sökmotorer."
 
-#: inc/admin/wizard/admin-wizard.php:159 inc/admin/wizard/admin-wizard.php:169
+#: inc/admin/wizard/admin-wizard.php:163 inc/admin/wizard/admin-wizard.php:173
 msgid "Import metadata"
 msgstr "Importera metadata"
 
-#: inc/admin/wizard/admin-wizard.php:164
+#: inc/admin/wizard/admin-wizard.php:168
 msgid "Import SEO metadata"
 msgstr "Importera SEO-metadata"
 
-#: inc/admin/wizard/admin-wizard.php:561
+#: inc/admin/wizard/admin-wizard.php:565
 msgid "Configure %s with the best settings for your site"
 msgstr "Konfigurera %s med inställningarna som är bäst för din webbplats"
 
-#: inc/admin/wizard/admin-wizard.php:1494
+#: inc/admin/wizard/admin-wizard.php:1509
 msgid "Configure your <strong>robots.txt and .htaccess files</strong>."
 msgstr "Konfigurera <strong>filerna robots.txt och .htaccess</strong>."
 
-#: inc/admin/wizard/admin-wizard.php:1491
+#: inc/admin/wizard/admin-wizard.php:1506
 msgid "Add your custom <strong>breadcrumbs</strong>."
 msgstr "Lägg till anpassade <strong>synliga sökvägar</strong>."
 
-#: inc/admin/wizard/admin-wizard.php:1488
+#: inc/admin/wizard/admin-wizard.php:1503
 msgid "Add an infinity of <strong>Google structured data (schema)</strong> to your content to improve its visibility in search results."
 msgstr "Lägg till obegränsad mängd <strong>strukturerade data för Google (schema)</strong> i ditt innehåll för att förbättra dess synlighet i sökresultaten."
 
-#: inc/admin/wizard/admin-wizard.php:851
+#: inc/admin/wizard/admin-wizard.php:866
 msgid "Link your site to your social networks"
 msgstr "Länka webbplatsen till dina sociala nätverk"
 
@@ -563,35 +611,35 @@ msgstr "Länka webbplatsen till dina sociala nätverk"
 msgid "Notify search engines using IndexNow protocol (currently Bing and Yandex) whenever a post is created, updated or deleted."
 msgstr "Meddela sökmotorer via IndexNow-protokollet (för närvarande Bing och Yandex) varje gång ett inlägg skapas, uppdateras eller tas bort."
 
-#: inc/admin/wizard/admin-wizard.php:589
+#: inc/admin/wizard/admin-wizard.php:593
 msgid "Migrate your SEO metadata to %s!"
 msgstr "Migrera dina SEO-metadata till %s!"
 
-#: inc/admin/wizard/admin-wizard.php:1501
+#: inc/admin/wizard/admin-wizard.php:1516
 msgid "And so many other features to increase your rankings, sales and productivity."
 msgstr "Och många andra funktioner för bättre rankning, försäljning och produktivitet."
 
-#: inc/admin/wizard/admin-wizard.php:1485
+#: inc/admin/wizard/admin-wizard.php:1500
 msgid "Optimize your SEO from your favorite e-commerce plugin: <strong>WooCommerce or Easy Digital Downloads</strong>."
 msgstr "Optimera din SEO inifrån ditt favorittillägg för e-handel: <strong>WooCommerce eller Easy Digital Downloads</strong>."
 
-#: inc/admin/wizard/admin-wizard.php:1401
+#: inc/admin/wizard/admin-wizard.php:1416
 msgid "Edit your SEO metadata directly from your page or theme builder."
 msgstr "Redigera dina SEO-metadata direkt från sid- eller temabyggaren."
 
-#: inc/admin/wizard/admin-wizard.php:1527
+#: inc/admin/wizard/admin-wizard.php:1542
 msgid "SEOPress Insights"
 msgstr "SEOPress-insikter"
 
-#: inc/admin/wizard/admin-wizard.php:734
+#: inc/admin/wizard/admin-wizard.php:748
 msgid "Choose between <strong>\"Organization\"</strong> (for companies, associations, organizations), or <strong>\"Personal\"</strong> for a personal site, to help Google better understand your type of website and generate a Knowledge Graph panel."
 msgstr "Välj mellan <strong>”Organisation”</strong> (för företag, föreningar, organisationer) och <strong>”Personlig”</strong> för en personlig webbplats, så att Google bättre kan förstå din typ av webbplats och skapa en panel för Knowledge Graph."
 
-#: inc/admin/wizard/admin-wizard.php:708
+#: inc/admin/wizard/admin-wizard.php:715
 msgid "The site title will be used by the dynamic variable <strong>%%sitetitle%%</strong> in your title and meta description templates."
 msgstr "Webbplatsens rubrik kommer att användas av den dynamiska variabeln <strong>%%sitetitle%%</strong> i dina mallar för rubriker och metabeskrivningar."
 
-#: inc/admin/blocks/insights.php:193
+#: inc/admin/blocks/insights.php:149
 msgid "No data found"
 msgstr "Inga data hittades"
 
@@ -753,7 +801,7 @@ msgstr "Via indexerings-API:er kan du be Google och Bing att uppdatera eller ta 
 msgid "Which action to run for Google?"
 msgstr "Vilken åtgärd vill du utföra för Google?"
 
-#: inc/admin/blocks/notifications-center.php:335
+#: inc/admin/blocks/notifications-center.php:336
 #: inc/admin/sections/InstantIndexing.php:42
 msgid "To prevent any conflicts with our Indexing feature, please disable it."
 msgstr "För att undvika konflikter med vår indexeringsfunktion bör du inaktivera den."
@@ -762,7 +810,7 @@ msgstr "För att undvika konflikter med vår indexeringsfunktion bör du inaktiv
 msgid "Paste your tracking code here like Google Tag Manager (head). Do NOT paste GA4 or Universal Analytics codes here. They are automatically added to your source code."
 msgstr "Klistra in din spårningskod här, exempelvis Google Tag Manager (head). Klistra INTE in koder för GA4 eller Universal Analytics här. De läggs automatiskt in i din HTML-kod."
 
-#: inc/admin/callbacks/Advanced.php:448
+#: inc/admin/callbacks/Advanced.php:455
 msgid "Learn more about how we interface with all page builders to optimize your productivity"
 msgstr "Läs mer om hur vi samverkar med alla sidbyggare för att optimera din produktivitet"
 
@@ -772,7 +820,7 @@ msgstr "Läs mer om hur vi samverkar med alla sidbyggare för att optimera din p
 msgid "Instant Indexing"
 msgstr "Omedelbar indexering"
 
-#: inc/admin/blocks/notifications-center.php:514
+#: inc/admin/blocks/notifications-center.php:515
 msgid "PHP module \"mbstring\" is missing on your server."
 msgstr "PHP-modulen ”mbstring” saknas på din server."
 
@@ -809,15 +857,15 @@ msgstr "Lägg till rel-attributen ”nofollow noopener noreferrer” i länken t
 msgid "All"
 msgstr "Alla"
 
-#: inc/admin/blocks/insights.php:202
+#: inc/admin/blocks/insights.php:158
 msgid "No data available."
 msgstr "Ingen data tillgänglig."
 
-#: inc/admin/blocks/insights.php:195
+#: inc/admin/blocks/insights.php:151
 msgid "Failed"
 msgstr "Misslyckades"
 
-#: inc/admin/blocks/insights.php:175
+#: inc/admin/blocks/insights.php:131
 msgid "<span><span class=\"score red\"></span>0-49</span><span><span class=\"score yellow\"></span>50-89</span><span><span class=\"score green\"></span>90-100</span>"
 msgstr "<span><span class=\"score red\"></span>0–49</span><span><span class=\"score yellow\"></span>50–89</span><span><span class=\"score green\"></span>90–100</span>"
 
@@ -825,23 +873,23 @@ msgstr "<span><span class=\"score red\"></span>0–49</span><span><span class=\"
 msgid "Month name Archive title"
 msgstr "Arkivrubrik med månadsnamn"
 
-#: inc/admin/blocks/insights.php:188
+#: inc/admin/blocks/insights.php:144
 msgid "Core Web Vitals Assessment: "
 msgstr "Bedömning från Web Vitals: "
 
-#: inc/admin/blocks/insights.php:198
+#: inc/admin/blocks/insights.php:154
 msgid "Computed from the %s Core Web Vitals metrics over the latest 28-day collection period."
 msgstr "Beräknat utifrån Core Web Vitals mätvärden för %s under den senaste 28-dagars insamlingsperioden."
 
-#: inc/admin/blocks/notifications-center.php:891
+#: inc/admin/blocks/notifications-center.php:892
 msgid "Your robots.txt file contains a rule that prevents search engines to index your all site: <code>Disallow: /</code>"
 msgstr "Din fil robots.txt innehåller en regel som hindrar sökmotorer från att indexera hela din webbplats: <code>Disallow: /</code>"
 
-#: inc/admin/blocks/notifications-center.php:890
+#: inc/admin/blocks/notifications-center.php:891
 msgid "Your site is not indexable!"
 msgstr "Din webbplats kan inte indexeras!"
 
-#: inc/admin/callbacks/Advanced.php:585
+#: inc/admin/callbacks/Advanced.php:592
 msgid "Hide Site Overview in SEO Dashboard page"
 msgstr "Dölj webbplatsöversikten på sidan SEO adminpanel"
 
@@ -849,7 +897,7 @@ msgstr "Dölj webbplatsöversikten på sidan SEO adminpanel"
 msgid "Hide Site Overview?"
 msgstr "Dölj webbplatsöversikten?"
 
-#: inc/admin/blocks/notifications-center.php:859
+#: inc/admin/blocks/notifications-center.php:860
 msgid "A physical robots.txt file has been found"
 msgstr "En fysisk fil robots.txt upptäcktes"
 
@@ -863,15 +911,11 @@ msgstr "Endast ej inloggade"
 msgid "Only Logged In"
 msgstr "Endast inloggade"
 
-#: inc/admin/callbacks/Advanced.php:249
-msgid "Prevent search engines to follow / index the link to the comments form (<em>eg: https://www.example.com/my-blog-post/#respond</em>)"
-msgstr "Förhindra sökmotorer från att följa/indexera länken till kommentarsformuläret<em>(t.ex. https://www.example.com/my-blog-post/#respond)</em>"
-
-#: inc/admin/blocks/notifications-center.php:860
+#: inc/admin/blocks/notifications-center.php:861
 msgid "A robots.txt file already exists at the root of your site. We invite you to remove it so SEOPress can handle it virtually."
 msgstr "I webbplatsens rotkatalog finns det redan en fil robots.txt. Vi uppmanar dig att ta bort den så att SEOPress kan hantera adressen virtuellt."
 
-#: inc/admin/blocks/insights.php:168
+#: inc/admin/blocks/insights.php:124
 msgid "Learn how your site has performed, based on data from your actual users around the world."
 msgstr "Kolla hur det går för webbplatsen, baserat på data från dina faktiska användare runt om i världen."
 
@@ -879,7 +923,7 @@ msgstr "Kolla hur det går för webbplatsen, baserat på data från dina faktisk
 msgid "Learn how to track events with Google Analytics"
 msgstr "Lär dig att spåra händelser med Google Analytics"
 
-#: inc/admin/blocks/insights.php:167
+#: inc/admin/blocks/insights.php:123
 msgid "Google Page Speed Score"
 msgstr "Poäng från Google Page Speed"
 
@@ -891,11 +935,11 @@ msgstr "Regex?"
 msgid "Select a login status: "
 msgstr "Välj inloggningsstatus: "
 
-#: inc/admin/blocks/insights.php:57
+#: inc/admin/blocks/insights.php:42
 msgid "Site overview"
 msgstr "Webbplatsöversikt"
 
-#: inc/admin/blocks/insights.php:191
+#: inc/admin/blocks/insights.php:147
 msgid "Passed"
 msgstr "Klarat"
 
@@ -903,11 +947,11 @@ msgstr "Klarat"
 msgid "Internal Links"
 msgstr "Interna länkar"
 
-#: inc/admin/wizard/admin-wizard.php:1420
+#: inc/admin/wizard/admin-wizard.php:1435
 msgid "You can change this setting at anytime from SEO, Advanced settings page, Appearance tab."
 msgstr "Du kan ändra denna inställning när som helst från sidan SEO, Avancerade inställningar, fliken Utseende."
 
-#: inc/admin/wizard/admin-wizard.php:235 inc/admin/wizard/admin-wizard.php:245
+#: inc/admin/wizard/admin-wizard.php:239 inc/admin/wizard/admin-wizard.php:249
 msgid "Universal SEO metabox"
 msgstr "Universell SEO-metaruta"
 
@@ -1113,6 +1157,12 @@ msgstr "Slutdatum för produktens kampanjpris"
 msgid "Post Thumbnail URL"
 msgstr "URL till miniatyrbild för inlägget"
 
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:131
+msgid "The keyword:"
+msgid_plural "These keywords:"
+msgstr[0] "Nyckelordet:"
+msgstr[1] "Dessa nyckelord:"
+
 #: seopress-functions.php:298
 msgid "Custom Taxonomies"
 msgstr "Anpassade taxonomier"
@@ -1129,11 +1179,11 @@ msgstr "Använd märkdata på din webbplats för att lägga till information om 
 msgid "Filling in these fields does not guarantee the display of this data in search results."
 msgstr "Att fylla i dessa fält garanterar inte att uppgifterna kommer att visas i sökresultaten."
 
-#: inc/admin/wizard/admin-wizard.php:1533
+#: inc/admin/wizard/admin-wizard.php:1548
 msgid "Start monitoring your rankings and backlinks directly from your WordPress admin"
 msgstr "Börja övervaka din rankning och dina inkommande länkar direkt i din WordPress-adminpanel"
 
-#: inc/admin/wizard/admin-wizard.php:1259
+#: inc/admin/wizard/admin-wizard.php:1274
 msgid "Final step before being ready to rank on search engines."
 msgstr "Det sista steget innan du är klar att börja rankas hos sökmotorer."
 
@@ -1145,11 +1195,11 @@ msgstr "Dölj SEO-nyheter"
 msgid "The XML sitemap is an <strong>exploration aid</strong>. Not having a sitemap will absolutely <strong>NOT prevent engines from indexing your content</strong>. For this, opt for meta robots."
 msgstr "En XML-webbplatskarta är ett <strong>hjälpmedel för att utforska</strong> webbplatsen. Avsaknad av en webbplatskarta innebär verkligen <strong>INTE att sökmotorer förhindras indexera ditt innehåll</strong>. Om du önskar detta måste du aktivera taggar av typen meta-robots."
 
-#: inc/admin/wizard/admin-wizard.php:1542
+#: inc/admin/wizard/admin-wizard.php:1557
 msgid "Export your data to CSV, PDF, Excel."
 msgstr "Exportera dina data till CSV, PDF, Excel."
 
-#: inc/admin/wizard/admin-wizard.php:1554
+#: inc/admin/wizard/admin-wizard.php:1569
 msgid "Get SEOPress Insights"
 msgstr "Få SEOPress-insikter"
 
@@ -1199,7 +1249,7 @@ msgstr "Miniatyrbild för Facebook"
 msgid "Post thumbnail / Product category thumbnail (Featured image)"
 msgstr "Miniatyrbild för inlägg/produktkategori (utvald bild)"
 
-#: inc/admin/wizard/admin-wizard.php:1539
+#: inc/admin/wizard/admin-wizard.php:1554
 msgid "Monitor and analyse your top 1,000 Backlinks weekly."
 msgstr "Övervaka och analysera dina 1 000 bästa inkommande länkar varje vecka."
 
@@ -1207,7 +1257,7 @@ msgstr "Övervaka och analysera dina 1 000 bästa inkommande länkar varje vecka
 msgid "Title and meta description are used by search engines to generate the snippet of your site in search results page."
 msgstr "Rubriken och metabeskrivningen används av sökmotorer för att skapa webbplatsens sammanfattning i sidan med sökresultat."
 
-#: inc/admin/wizard/admin-wizard.php:1536
+#: inc/admin/wizard/admin-wizard.php:1551
 msgid "Track your keyword positions from Google Search results daily."
 msgstr "Spåra dagligen dina positioner för sökord i Google."
 
@@ -1227,11 +1277,11 @@ msgstr "Välj typ av omdirigering:"
 msgid "Enabled redirection?"
 msgstr "Vill du aktivera omdirigering?"
 
-#: inc/admin/sections/Analytics.php:127
+#: inc/admin/sections/Analytics.php:132
 msgid "Custom dimensions and custom metrics are like the default dimensions and metrics in your Analytics account, except you create them yourself."
 msgstr "Anpassade dimensioner och anpassade mätvärden fungerar som standarddimensionerna och standardmätvärdena i ditt Analytics-konto, men det är du som skapar dem."
 
-#: inc/admin/sections/Analytics.php:130
+#: inc/admin/sections/Analytics.php:135
 msgid "Use them to collect and analyze data that Analytics doesn't automatically track."
 msgstr "Använd dem till att samla in och analysera data som Analytics inte spårar automatiskt."
 
@@ -1267,7 +1317,7 @@ msgstr "Importera metadata för inlägg och termer (om de finns) från %s"
 msgid "Don't index images for this page (noimageindex)"
 msgstr "Indexera inte bilder från denna sida (noimageindex)"
 
-#: inc/admin/sections/Advanced.php:61
+#: inc/admin/sections/Advanced.php:55 inc/admin/sections/Advanced.php:82
 msgid "SEOPress settings pages"
 msgstr "Inställningssidor för SEOPress"
 
@@ -1275,11 +1325,11 @@ msgstr "Inställningssidor för SEOPress"
 msgid "LinkedIn, Instagram, WhatsApp and Pinterest use the same social metadata as Facebook. Twitter does the same if no Twitter cards tags are defined below."
 msgstr "LinkedIn, Instagram, WhatsApp och Pinterest använder samma sociala metadata som Facebook. Twitter gör det också om inga taggar för Twitter-kort definieras nedan."
 
-#: inc/admin/sections/Advanced.php:48
+#: inc/admin/sections/Advanced.php:69
 msgid "Check a user role to prevent it to edit a specific metabox."
 msgstr "Markera en användarroll för att förhindra att rollen tillåts redigera en viss metaruta."
 
-#: inc/admin/sections/Advanced.php:65
+#: inc/admin/sections/Advanced.php:86
 msgid "Check a user role to allow it to edit a specific settings page."
 msgstr "Markera en användarroll för att låta den redigera en viss inställningssida."
 
@@ -1287,11 +1337,11 @@ msgstr "Markera en användarroll för att låta den redigera en viss inställnin
 msgid "Focus / target keywords"
 msgstr "Nyckelord för fokus/mål"
 
-#: inc/admin/sections/Analytics.php:133
+#: inc/admin/sections/Analytics.php:138
 msgid "Please note that you also have to setup your custom dimensions in your Google Analytics account. More info by clicking on the help icon."
 msgstr "Observera att du också måste konfigurera dina anpassade dimensioner i ditt Google Analytics-konto. Mer information hittar du om du klickar på hjälpikonen."
 
-#: inc/admin/sections/Advanced.php:44
+#: inc/admin/sections/Advanced.php:54 inc/admin/sections/Advanced.php:65
 msgid "SEOPress metaboxes"
 msgstr "SEOPress metarutor"
 
@@ -1311,7 +1361,7 @@ msgstr "Visa ingen länk till ”cachelagrad version” i Googles sökresultat (
 msgid "Don't display this page in search engine results / XML - HTML sitemaps (noindex)"
 msgstr "Visa inte denna sida i sökmotorers resultat eller i XML/HTML webbplatskartor (noindex)"
 
-#: inc/admin/docs/DocsLinks.php:160
+#: inc/admin/docs/DocsLinks.php:162
 msgid "Activate your license key to receive automatic updates"
 msgstr "Aktivera din licensnyckel för att erhålla automatiska uppdateringar"
 
@@ -1319,39 +1369,39 @@ msgstr "Aktivera din licensnyckel för att erhålla automatiska uppdateringar"
 msgid "This is your <strong>Shop page</strong>. Go to <a href=\"%s\"><strong>SEO > Titles & Metas > Archives > Products</strong></a> to edit your title and meta description."
 msgstr "Detta är din <strong>butikssida</strong>. Gå till <a href=\"%s\"><strong>SEO > rubriker och metadata > Arkiv > Produkter</strong></a> för att redigera din rubrik och metabeskrivning."
 
-#: inc/admin/docs/DocsLinks.php:163
+#: inc/admin/docs/DocsLinks.php:165
 msgid "Promote the exploration of your WordPress site by search engine robots"
 msgstr "Främja sökmotorers genomsökning av din WordPress-webbplats"
 
-#: inc/admin/docs/DocsLinks.php:159
+#: inc/admin/docs/DocsLinks.php:161
 msgid "Installation of SEOPress"
 msgstr "Installation av SEOPress"
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:80
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:70
 msgid "Click on a suggestion below to add it as a target keyword."
 msgstr "Klicka på ett förslag nedan för att lägga till ordet som nyckelord."
 
-#: inc/admin/docs/DocsLinks.php:161
+#: inc/admin/docs/DocsLinks.php:163
 msgid "Configure SEOPress in 5 minutes"
 msgstr "Konfigurera SEOPress på 5 minuter"
 
-#: inc/admin/docs/DocsLinks.php:166
+#: inc/admin/docs/DocsLinks.php:168
 msgid "Add your WordPress site to Google’s index"
 msgstr "Lägg till din WordPress-webbplats i Googles index"
 
-#: inc/admin/docs/DocsLinks.php:165
+#: inc/admin/docs/DocsLinks.php:167
 msgid "Measure your traffic with Google Analytics"
 msgstr "Mät din trafik med Google Analytics"
 
-#: inc/admin/docs/DocsLinks.php:162
+#: inc/admin/docs/DocsLinks.php:164
 msgid "Migrate your SEO metadata from other plugins"
 msgstr "Migrera dina SEO-metadata från andra tillägg"
 
-#: inc/admin/docs/DocsLinks.php:167
+#: inc/admin/docs/DocsLinks.php:169
 msgid "Optimize your click-through rate on social networks"
 msgstr "Optimera din klickfrekvens i sociala nätverk"
 
-#: inc/admin/docs/DocsLinks.php:164
+#: inc/admin/docs/DocsLinks.php:166
 msgid "Optimize content from A to Z with SEOPress"
 msgstr "Optimera innehållet från A till Ö med SEOPress"
 
@@ -1359,7 +1409,7 @@ msgstr "Optimera innehållet från A till Ö med SEOPress"
 msgid "Please define a <strong>default OG Image</strong> from the field above"
 msgstr "Ange en <strong>standardbild för OG Image</strong> från fältet ovan"
 
-#: inc/admin/callbacks/Titles.php:392
+#: inc/admin/callbacks/Titles.php:410
 msgid "This option does not apply to traditional search results. <a href=\"%s\" target=\"_blank\">Learn more</a>"
 msgstr "Detta alternativ gäller inte för traditionella sökresultat. <a href=\"%s\" target=\"_blank\">Läs mer</a>"
 
@@ -1387,19 +1437,7 @@ msgstr "Spara"
 msgid "Your SEO today"
 msgstr "Din SEO idag"
 
-#: inc/admin/blocks/insights.php:118
-msgid "Page Views"
-msgstr "Sidvisningar"
-
-#: inc/admin/blocks/insights.php:115
-msgid "Users"
-msgstr "Användare"
-
-#: inc/admin/blocks/insights.php:112
-msgid "Sessions"
-msgstr "Sessioner"
-
-#: inc/admin/blocks/insights.php:69
+#: inc/admin/blocks/insights.php:55
 msgid "PageSpeed"
 msgstr "PageSpeed"
 
@@ -1414,7 +1452,7 @@ msgstr "Avfärda"
 #: inc/admin/admin-pages/Advanced.php:52 inc/admin/admin-pages/Analytics.php:70
 #: inc/admin/admin-pages/InstantIndexing.php:51
 #: inc/admin/admin-pages/Sitemaps.php:43 inc/admin/admin-pages/Social.php:43
-#: inc/admin/admin-pages/Titles.php:54 seopress-functions.php:757
+#: inc/admin/admin-pages/Titles.php:54 seopress-functions.php:755
 msgid "Save changes"
 msgstr "Spara ändringar"
 
@@ -1430,15 +1468,11 @@ msgstr "Dokumentation"
 msgid "Display"
 msgstr "Visa"
 
-#: inc/admin/blocks/insights.php:130
-msgid "New sessions"
-msgstr "Nya sessioner"
-
 #: inc/admin/callbacks/Analytics.php:128
 msgid "<strong>/wp-content/plugins/wp-seopress/assets/js/seopress-cookies-ajax.js</strong> and this cookie <strong>seopress-user-consent-accept</strong>"
 msgstr "<strong>/wp-content/plugins/wp-seopress/assets/js/seopress-cookies-ajax.js</strong> och följande cookie: <strong>seopress-user-consent-accept</strong>"
 
-#: inc/admin/callbacks/Advanced.php:417
+#: inc/admin/callbacks/Advanced.php:424
 msgid "Enable the universal SEO metabox for the Block Editor (Gutenberg)"
 msgstr "Aktivera den universella SEO-metarutan för blockredigeraren (Gutenberg)"
 
@@ -1446,17 +1480,9 @@ msgstr "Aktivera den universella SEO-metarutan för blockredigeraren (Gutenberg)
 msgid "Enable our universal SEO metabox for the Block Editor"
 msgstr "Aktivera vår universella SEO-metaruta för blockredigeraren"
 
-#: inc/admin/blocks/insights.php:155
-msgid "Connect Google Analytics"
-msgstr "Anslut Google Analytics"
-
 #: inc/admin/callbacks/Analytics.php:117
 msgid "The user must click the <strong>Accept button</strong> to allow tracking."
 msgstr "Användaren måste klicka på knappen <strong>Acceptera</strong> för att tillåta spårning."
-
-#: inc/admin/blocks/insights.php:127
-msgid "Bounce rate"
-msgstr "Avvisningsfrekvens"
 
 #: inc/admin/ajax.php:132
 msgid "Your site is protected by an authentification. <a href=\"%s\" target=\"_blank\">Fix this</a> <span class=\"dashicons dashicons-external\"></span>"
@@ -1466,11 +1492,11 @@ msgstr "Din webbplats skyddas av inloggning. <a href=\"%s\" target=\"_blank\">Å
 msgid "Your XML sitemap is cached!"
 msgstr "Din XML-webbplatskarta är lagrad i cacheminne!"
 
-#: inc/admin/callbacks/Advanced.php:565
+#: inc/admin/callbacks/Advanced.php:572
 msgid "Hide SEO News in SEO Dashboard page"
 msgstr "Dölj SEO-nyheterna på sidan SEO-adminpanel"
 
-#: inc/admin/callbacks/Advanced.php:151
+#: inc/admin/callbacks/Advanced.php:156
 msgid "You need to enable <strong>WooCommerce</strong> to apply these settings."
 msgstr "Du behöver aktivera <strong>WooCommerce</strong> för att kunna tillämpa dessa inställningar."
 
@@ -1482,23 +1508,19 @@ msgstr "Förbättra din lokala SEO"
 msgid "Enabling cross domain linking lets you track all the actions and pageviews of a specific visitor into the same visit even when they view pages on several domains."
 msgstr "Genom att aktivera sammankoppling mellan domäner kan du spåra alla åtgärder och sidvisningar för samma besökare inom samma besök, även om personen öppnar sidor på olika domäner."
 
-#: inc/admin/blocks/insights.php:124
-msgid "Average session duration"
-msgstr "Genomsnittlig längd på sessionen"
-
-#: inc/admin/blocks/notifications-center.php:414
+#: inc/admin/blocks/notifications-center.php:415
 msgid "Global meta description missing for several custom post types!"
 msgstr "Global metabeskrivning saknas för flera anpassade inläggstyper!"
 
-#: inc/admin/blocks/notifications-center.php:452
+#: inc/admin/blocks/notifications-center.php:453
 msgid "Global meta description missing for several taxonomies!"
 msgstr "Global metabeskrivning saknas för flera taxonomier!"
 
-#: inc/admin/blocks/notifications-center.php:395
+#: inc/admin/blocks/notifications-center.php:396
 msgid "Global meta title missing for several custom post types!"
 msgstr "Global metarubrik saknas för flera anpassade inläggstyper!"
 
-#: inc/admin/blocks/notifications-center.php:433
+#: inc/admin/blocks/notifications-center.php:434
 msgid "Global meta title missing for several taxonomies!"
 msgstr "Global metarubrik saknas för flera taxonomier!"
 
@@ -1510,17 +1532,13 @@ msgstr "Gör dig redo att förbättra din SEO"
 msgid "How many items would you like to display?"
 msgstr "Hur många objekt vill du visa?"
 
-#: inc/admin/callbacks/Advanced.php:443
+#: inc/admin/callbacks/Advanced.php:450
 msgid "Disable the universal SEO metabox"
 msgstr "Inaktivera den universella SEO-metarutan"
 
 #: inc/admin/blocks/news.php:96
 msgid "No items"
 msgstr "Inga val"
-
-#: inc/admin/blocks/insights.php:146
-msgid "No stats found"
-msgstr "Ingen statistik hittades"
 
 #: inc/admin/blocks/tasks.php:117
 msgid "Add Structured Data Types to increase visibility in SERPs"
@@ -1542,11 +1560,11 @@ msgstr "När en användare klickar på en länk till någon av webbplatsens alia
 msgid "If you use a caching plugin, you have to exclude this JS file in your settings:"
 msgstr "Om du använder ett tillägg för cachelagring måste du utesluta följande JS-fil i inställningarna:"
 
-#: inc/admin/admin-pages/Tools.php:254
+#: inc/admin/admin-pages/Tools.php:158
 msgid "Redirections feature is disabled. Please activate it from the <strong>PRO page</strong>."
 msgstr "Omdirigeringsfunktionen är inaktiverad. Aktivera den på <strong>PRO-sidan</strong>."
 
-#: inc/admin/blocks/insights.php:207
+#: inc/admin/blocks/insights.php:163
 msgid "See full report"
 msgstr "Se hela rapporten"
 
@@ -1557,10 +1575,6 @@ msgstr "Senaste nytt från SEOPress-bloggen"
 #: inc/admin/blocks/features-list.php:10
 msgid "SEO management"
 msgstr "SEO-hantering"
-
-#: inc/admin/blocks/insights.php:121
-msgid "Page view / session"
-msgstr "Sidvisningar/session"
 
 #: inc/admin/admin-bar/admin-header.php:51
 msgid "Search our documentation"
@@ -1578,19 +1592,11 @@ msgstr "Som standard lagras besökarens ID som identifierar en unik besökare i 
 msgid "Swift Performance is caching your XML sitemap. You must disable this option to prevent any compatibility issue (Swift Performance > Settings > Caching, General tab)."
 msgstr "Swift Performance cachelagrar din XML-webbplatskarta. Du måste inaktivera denna inställning för att undvika kompatibilitetsproblem (Swift Performance > Inställningar > Cachelagring, fliken Allmänt)."
 
-#: inc/admin/callbacks/Advanced.php:83 inc/admin/callbacks/Advanced.php:127
-#: inc/admin/wizard/admin-wizard.php:1301
-#: inc/admin/wizard/admin-wizard.php:1326
+#: inc/admin/callbacks/Advanced.php:88 inc/admin/callbacks/Advanced.php:132
+#: inc/admin/wizard/admin-wizard.php:1316
+#: inc/admin/wizard/admin-wizard.php:1341
 msgid "Remove <strong>%s</strong> in your permalinks"
 msgstr "Ta bort <strong>%s</strong> i dina permalänkar"
-
-#: inc/admin/admin-pages/Tools.php:102
-msgid "Learn how to export SEO metadata to a CSV file"
-msgstr "Ta reda på hur du exporterar SEO-metadata till en CSV-fil"
-
-#: inc/admin/admin-pages/Tools.php:56
-msgid "Learn how to import SEO metadata from a CSV file"
-msgstr "Ta reda på hur du importerar SEO-metadata från en CSV-fil"
 
 #: inc/admin/admin-bar/admin-header.php:89
 msgid "Choose the way it looks"
@@ -1616,7 +1622,7 @@ msgstr "XML- och HTML-webbplatskarta"
 msgid "XML - HTML Sitemap"
 msgstr "XML/HTML-webbplatskarta"
 
-#: inc/admin/callbacks/Advanced.php:140
+#: inc/admin/callbacks/Advanced.php:145
 msgid "Make sure you don't have identical URLs after activating this option to prevent conflicts."
 msgstr "För att undvika konflikter ska du se till att du inte använder identiska webbadresser efter att du har aktiverat detta alternativ."
 
@@ -1624,15 +1630,15 @@ msgstr "För att undvika konflikter ska du se till att du inte använder identis
 msgid "x"
 msgstr "x"
 
-#: inc/admin/callbacks/Titles.php:1555
+#: inc/admin/callbacks/Titles.php:1573
 msgid "eg: https://example.com/my-media-attachment-page"
 msgstr "t.ex.: https://example.com/my-media-attachment-page"
 
-#: inc/admin/callbacks/Titles.php:1551
+#: inc/admin/callbacks/Titles.php:1569
 msgid "Add a \"noindex\" meta robots for all attachment pages"
 msgstr "Lägg till en metatagg för robotar ”noindex” för alla sidor med bilagor"
 
-#: inc/admin/settings/Titles.php:314
+#: inc/admin/settings/Titles.php:322
 msgid "noindex on attachment pages"
 msgstr "noindex på sidor för bilagor"
 
@@ -1656,11 +1662,11 @@ msgstr "Författarens förnamn"
 msgid "Check a user role to authorized it to edit a specific SEO page."
 msgstr "Markera en användarroll för att ge den rätten att redigera en viss SEO-sida."
 
-#: inc/admin/callbacks/Advanced.php:847 inc/admin/settings/Advanced.php:203
+#: inc/admin/callbacks/Advanced.php:854 inc/admin/settings/Advanced.php:203
 msgid "Remove Content Analysis Metabox"
 msgstr "Ta bort metarutan för innehållsanalys"
 
-#: inc/admin/callbacks/Advanced.php:322
+#: inc/admin/callbacks/Advanced.php:327
 msgid "WordPress Site Health feature will return a HTTPS warning if you enable this option. This is a false positive of course."
 msgstr "WordPress funktion för hälsokontroll av webbplatsen kommer att varna om HTTPS om du aktiverar denna inställning. Det är givetvis ett falsklarm."
 
@@ -1778,11 +1784,11 @@ msgstr "Anpassa knappen <strong>Stäng</strong>."
 msgid "Backdrop"
 msgstr "Bakgrund"
 
-#: inc/admin/callbacks/Titles.php:303
+#: inc/admin/callbacks/Titles.php:321
 msgid "This custom post type is <strong>NOT</strong> excluded from your XML sitemaps despite the fact that it is set to <strong>NOINDEX</strong>. We recommend that you <a href=\"%s\">check this out here</a>."
 msgstr "Denna anpassade inläggstyp är <strong>INTE</strong> utesluten i dina XML-webbplatskartor trots att den har inställningen <strong>NOINDEX</strong>. Vi rekommenderar att du <a href=\"%s\">kollar upp detta</a>."
 
-#: inc/admin/callbacks/Titles.php:755
+#: inc/admin/callbacks/Titles.php:773
 msgid "This custom taxonomy is <strong>NOT</strong> excluded from your XML sitemaps despite the fact that it is set to <strong>NOINDEX</strong>. We recommend that you check this out."
 msgstr "Denna anpassade taxonomi är <strong>INTE</strong> utesluten i dina XML-webbplatskartor trots att den har inställningen <strong>NOINDEX</strong>. Vi rekommenderar att du kollar upp detta."
 
@@ -1806,7 +1812,7 @@ msgstr "Inget av dina önskade nyckelord finns med i rubriken på nivå 1 (H1)."
 msgid "Internal links are important for SEO and user experience. Always try to link your content together, with quality link anchors."
 msgstr "Interna länkar är viktiga för SEO och för användarupplevelsen. Försök alltid att länka samman ditt innehåll med länktexter av hög kvalitet."
 
-#: inc/admin/callbacks/Titles.php:362
+#: inc/admin/callbacks/Titles.php:380
 msgid "Unchecking this doesn't prevent Google to display post date in search results."
 msgstr "Om du avmarkerar detta hindrar det inte Google från att visa inläggsdatum i sökresultat."
 
@@ -1818,7 +1824,7 @@ msgstr "Önskat nyckelord"
 msgid "default: Manage cookies"
 msgstr "standard: Hantera cookies"
 
-#: inc/admin/callbacks/Sitemaps.php:373
+#: inc/admin/callbacks/Sitemaps.php:362
 msgid "Remove links from archive pages (eg: Products)"
 msgstr "Ta bort länkar från arkivsidor (t.ex. produkter)"
 
@@ -1830,7 +1836,7 @@ msgstr "Tillåt att användare ändrar sina cookie-val"
 msgid "We found %s internal links to this page."
 msgstr "Vi hittade %s interna länkar till denna sida."
 
-#: inc/admin/callbacks/Titles.php:358
+#: inc/admin/callbacks/Titles.php:376
 msgid "Display date in Google search results by adding <code>article:published_time</code> and <code>article:modified_time</code> meta?"
 msgstr "Vill du visa datum i Googles sökresultat genom att lägga till metaelementen <code>article:published_time</code> och <code>article:modified_time</code>?"
 
@@ -1846,7 +1852,7 @@ msgstr "Ta bort länkar från arkivsidor"
 msgid "Allow user to change its choice"
 msgstr "Tillåt att användaren kan ändra sitt val"
 
-#: inc/admin/admin-pages/Tools.php:240 inc/admin/wizard/admin-wizard.php:626
+#: inc/admin/admin-pages/Tools.php:144 inc/admin/wizard/admin-wizard.php:631
 msgid "You don't have to enable the selected SEO plugin to run the import."
 msgstr "Du behöver inte aktivera det valda SEO-tillägget för att genomföra importen."
 
@@ -1854,15 +1860,15 @@ msgstr "Du behöver inte aktivera det valda SEO-tillägget för att genomföra i
 msgid "Image SEO"
 msgstr "SEO för bilder"
 
-#: inc/admin/wizard/admin-wizard.php:697
+#: inc/admin/wizard/admin-wizard.php:704
 msgid "This separator will be used by the dynamic variable <strong>%%sep%%</strong> in your title and meta description templates."
 msgstr "Denna avgränsare kommer att infogas via den dynamiska variabeln <strong>%%sep%%</strong> i mallarna för rubriker och metabeskrivningar."
 
-#: inc/admin/blocks/notifications-center.php:639
+#: inc/admin/blocks/notifications-center.php:640
 msgid "You have activated Google Analytics tracking without adding identifiers!"
 msgstr "Du har aktiverat spårning med Google Analytics-spårning utan att ange något ID!"
 
-#: inc/admin/blocks/notifications-center.php:640
+#: inc/admin/blocks/notifications-center.php:641
 msgid "Google Analytics will not track your visitors until you finish the configuration."
 msgstr "Google Analytics kommer inte att spåra dina besökare förrän du har fullföljt konfigurationen."
 
@@ -1874,7 +1880,7 @@ msgstr "Inställningssida för SEOPress"
 msgid "Edit your meta robots"
 msgstr "Redigera dina taggar för meta robots"
 
-#: inc/admin/wizard/admin-wizard.php:701
+#: inc/admin/wizard/admin-wizard.php:708
 msgid "Home site title"
 msgstr "Rubrik på startsidan"
 
@@ -1936,7 +1942,7 @@ msgstr "Hitta ditt mätnings-ID"
 msgid "Disable all heatmaps and session recordings"
 msgstr "Inaktivera alla aktivitetskartor och sessionsinspelningar"
 
-#: inc/admin/callbacks/Analytics.php:1291
+#: inc/admin/callbacks/Analytics.php:1294
 msgid "Disabling all heatmaps and session recordings"
 msgstr "Inaktivera alla aktivitetskartor och sessionsinspelningar"
 
@@ -1960,7 +1966,7 @@ msgstr "Textjustering"
 msgid "Center (default)"
 msgstr "Centrerat (standard)"
 
-#: inc/admin/callbacks/Advanced.php:392
+#: inc/admin/callbacks/Advanced.php:399
 msgid "Remove SEO from Admin Bar in backend and frontend"
 msgstr "Ta bort SEO-funktionerna i verktygsfältet på adminsidorna och i front-end"
 
@@ -1976,7 +1982,7 @@ msgstr "Ändra bakgrundens färg"
 msgid "Change the cookie bar width"
 msgstr "Anpassa bredden på fältet för cookie-hantering"
 
-#: inc/admin/sections/Advanced.php:29
+#: inc/admin/sections/Advanced.php:38
 msgid "Customize the plugin to fit your needs."
 msgstr "Anpassa tillägget efter dina behov."
 
@@ -1996,7 +2002,7 @@ msgstr "Bildtaggen för Open Graph saknar innehåll!"
 msgid "Your Twitter Image tag is empty!"
 msgstr "Bildtaggen för Twitter saknar innehåll!"
 
-#: inc/admin/callbacks/Titles.php:1326
+#: inc/admin/callbacks/Titles.php:1344
 msgid "Check also the <strong>\"Search engine visibility\"</strong> setting from the <a href=\"%s\">WordPress Reading page</a>."
 msgstr "Kontrollera även inställningen <strong>”Synlighet för sökmotorer”</strong> på <a href=\"%s\">sidan WordPress-läsning</a>."
 
@@ -2032,23 +2038,23 @@ msgstr "URL-taggen för Open Graph saknar innehåll!"
 msgid "Display a backdrop with the cookie bar"
 msgstr "Visa cookie-fältet med en bakgrund"
 
-#: seopress.php:409
+#: seopress.php:408
 msgid "Color value"
 msgstr "Färgvärde"
 
-#: seopress.php:408
+#: seopress.php:407
 msgid "Select Color"
 msgstr "Välj färg"
 
-#: seopress.php:407
+#: seopress.php:406
 msgid "Select default color"
 msgstr "Välj standardfärg"
 
-#: seopress.php:405
+#: seopress.php:404
 msgid "Clear color"
 msgstr "Rensa färg"
 
-#: seopress.php:404
+#: seopress.php:403
 msgid "Clear"
 msgstr "Rensa"
 
@@ -2061,10 +2067,6 @@ msgstr "Ange vilken kategori som används för %category% i permalänkar och i v
 #: inc/admin/settings/Analytics.php:137
 msgid "Cookie bar width"
 msgstr "Cookie-fältets bredd"
-
-#: inc/admin/admin-pages/Tools.php:101
-msgid "Export your post (post, page, single post type) and term metadata for this site as a .csv file."
-msgstr "Exportera metadata om inlägg (inlägg, sidor, anpassade inläggstyper) och termer för denna webbplats som en .csv-fil."
 
 #: inc/admin/admin-dyn-variables-helper.php:53
 msgid "Author biography"
@@ -2086,14 +2088,6 @@ msgstr "Inläggets URL"
 msgid "Post content / product description"
 msgstr "Inläggsinnehåll/produktbeskrivning"
 
-#: inc/admin/admin-pages/Tools.php:55
-msgid "Upload a CSV file to quickly import post (post, page, single post type) and term metadata."
-msgstr "Ladda upp en CSV-fil för att snabbt importera metadata för inlägg (inlägg, sidor, anpassade inläggstyper) och termer."
-
-#: inc/admin/admin-pages/Tools.php:66 inc/admin/admin-pages/Tools.php:112
-msgid "Meta robots (noindex, nofollow...)"
-msgstr "Meta robots (noindex, nofollow...)"
-
 #: inc/admin/settings/Advanced.php:244
 msgid "Noindex in admin bar"
 msgstr "Noindex i adminfältet"
@@ -2109,14 +2103,6 @@ msgstr "Sidnummer med sammanhang"
 #: inc/admin/settings/Analytics.php:113
 msgid "User consent cookie expiration date"
 msgstr "Sista giltighetsdatum för användarens samtycke till cookies"
-
-#: inc/admin/admin-pages/Tools.php:69 inc/admin/admin-pages/Tools.php:115
-msgid "Facebook Open Graph tags (title, description, image)"
-msgstr "Taggar för Facebook Open Graph (rubrik, beskrivning, bild)"
-
-#: inc/admin/admin-pages/Tools.php:72 inc/admin/admin-pages/Tools.php:118
-msgid "Twitter cards tags (title, description, image)"
-msgstr "Taggar för Twitter-kort (rubrik, beskrivning, bild)"
 
 #: inc/admin/page-builders/elementor/inc/controls/class-social-preview-control.php:73
 msgid ". The closer to 1 the better (with large card, 2 is better)."
@@ -2138,11 +2124,11 @@ msgstr "<p class=\"elementor-control-field-description\"><strong>Visste du detta
 msgid "<p class=\"elementor-control-field-description\"><span class=\"dashicons dashicons-external\"></span><a href=\"https://developers.facebook.com/tools/debug/sharing/?q="
 msgstr "<p class=\"elementor-control-field-description\"><span class=\"dashicons dashicons-external\"></span><a href=\"https://developers.facebook.com/tools/debug/sharing/?q="
 
-#: inc/admin/callbacks/Titles.php:478
+#: inc/admin/callbacks/Titles.php:496
 msgid "Do not display BuddyPress groups in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte BuddyPress-grupper i sökmotorers resultat <strong>(noindex)</strong>"
 
-#: inc/admin/callbacks/Titles.php:414
+#: inc/admin/callbacks/Titles.php:432
 msgid "BuddyPress groups"
 msgstr "BuddyPress-grupper"
 
@@ -2229,11 +2215,10 @@ msgstr "Denna inställning används för bilder som saknar alt-text endast i fro
 msgid "Do not follow links for this page (nofollow)"
 msgstr "Följ inte länkar från denna sida (nofollow)"
 
-#: inc/admin/blocks/notifications-center.php:376
+#: inc/admin/blocks/notifications-center.php:377
 msgid "You must disable \"Meta tag robots\" option from Enfold settings (SEO Support tab) to avoid any SEO issues."
 msgstr "För att slippa eventuella problem med SEO måste du inaktivera alternativet ”Meta tag robots” i Enfolds inställningar (fliken SEO Support)."
 
-#: inc/admin/admin-pages/Tools.php:78 inc/admin/admin-pages/Tools.php:124
 #: inc/admin/migrate/MigrationTools.php:34
 msgid "Primary category"
 msgstr "Huvudkategori"
@@ -2258,7 +2243,7 @@ msgstr "SEO innehållsanalys"
 msgid "SEO Redirection"
 msgstr "SEO-omdirigering"
 
-#: inc/admin/blocks/notifications-center.php:375
+#: inc/admin/blocks/notifications-center.php:376
 msgid "Enfold theme is not correctly setup for SEO!"
 msgstr "Temat Enfold är inte korrekt konfigurerat för SEO!"
 
@@ -2278,11 +2263,11 @@ msgstr "Visa inte denna sida i sökmotorers resultat/XML- och HTML-webbplatskart
 msgid "Show Insights column in post types"
 msgstr "Visa kolumnen insikter för inläggstyper"
 
-#: inc/admin/callbacks/Advanced.php:806
+#: inc/admin/callbacks/Advanced.php:813
 msgid "Display SEO Insights column to check rankings"
 msgstr "Visa kolumnen SEO-insikter för att kontrollera rankningen"
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:67
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:58
 #: inc/admin/page-builders/elementor/inc/admin/class-document-settings-section.php:590
 msgid "To get the most accurate analysis, save your post first. We analyze all of your source code as a search engine would."
 msgstr "För att få en så exakt analys som möjligt ska du spara ditt inlägg först. Vi analyserar din kompletta HTML-kod på samma sätt som en sökmotor skulle göra det."
@@ -2291,11 +2276,11 @@ msgstr "För att få en så exakt analys som möjligt ska du spara ditt inlägg 
 msgid "The Social Networks feature is disabled. Still seing informations from the Twitter Preview? You probably have social tags added by your theme or a plugin."
 msgstr "Funktionen för sociala nätverk är inaktiverad. Om du trots detta ser uppgifter i förhandsvisning för Twitter beror det antagligen på att ditt tema eller något tillägg lägger till dessa taggar."
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:61
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:52
 msgid "Track with Insights"
 msgstr "Spårning och insikter"
 
-#: inc/admin/callbacks/Titles.php:1529
+#: inc/admin/callbacks/Titles.php:1547
 msgid "eg: https://example.com/category/my-category/page/2/"
 msgstr "t.ex.: https://example.com/category/my-category/page/2/"
 
@@ -2311,11 +2296,11 @@ msgstr "E-handel"
 msgid "Works with <strong>Google Analytics</strong> and <strong>Matomo</strong>."
 msgstr "Fungerar med <strong>Google Analytics</strong> och <strong>Matomo</strong>."
 
-#: inc/admin/callbacks/Titles.php:1525
+#: inc/admin/callbacks/Titles.php:1543
 msgid "Add a \"noindex\" meta robots for all paginated archive pages"
 msgstr "Lägg till en meta-robots ”noindex” för alla sidindelade arkivsidor"
 
-#: inc/admin/settings/Titles.php:307
+#: inc/admin/settings/Titles.php:315
 msgid "noindex on paged archives"
 msgstr "noindex på sidindelade arkiv"
 
@@ -2342,7 +2327,7 @@ msgstr "Detta är din startsida. Denna kontroll är tillämplig här eftersom si
 msgid "File URL is not valid."
 msgstr "Filens URL är ogiltig."
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:78
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:68
 #: inc/admin/page-builders/elementor/inc/controls/class-google-suggestions-control.php:52
 msgid "Get suggestions from Google"
 msgstr "Hämta förslag från Google"
@@ -2363,16 +2348,16 @@ msgstr "Följ upp din placering för nyckelorden och inkommande länkar direkt p
 msgid "Track your keywords positions and backlinks directly on your WordPress site."
 msgstr "Följ upp din placering för nyckelorden och inkommande länkar direkt på din WordPress-webbplats."
 
-#: inc/admin/blocks/notifications-center.php:688
+#: inc/admin/blocks/notifications-center.php:689
 msgid "To reduce the number pages search engines have to crawl to find all your articles, it is recommended displaying more posts per page. This should not be a problem for your users. Using mobile, we prefer to scroll down rather than clicking on next page links."
 msgstr "För att minska antalet sidor sökmotorerna behöver genomsöka för att hitta alla dina artiklar bör du visa fler inlägg per sida. Dina besökare upplever troligen inte detta som något problem. Om vi använder mobilen är det enklare att rulla nedåt på sidan än att klicka på en länk till nästa sida."
 
-#: inc/admin/wizard/admin-wizard.php:1652
+#: inc/admin/wizard/admin-wizard.php:1667
 msgid "Join our Facebook Community group"
 msgstr "Gå med i vår Facebook-grupp"
 
 #: inc/admin/admin-bar/admin-bar.php:144 inc/admin/blocks/features-list.php:56
-#: inc/admin/wizard/admin-wizard.php:262 src/Actions/Admin/ManageColumn.php:94
+#: inc/admin/wizard/admin-wizard.php:266 src/Actions/Admin/ManageColumn.php:94
 msgid "Insights"
 msgstr "Inblickar"
 
@@ -2380,21 +2365,17 @@ msgstr "Inblickar"
 msgid "Configure SEOPress Insights in a few minutes with our installation wizard"
 msgstr "Konfigurera SEOPress insikter på några minuter med vår installationsguide"
 
-#: inc/admin/wizard/admin-wizard.php:1666
+#: inc/admin/wizard/admin-wizard.php:1681
 msgid "Read our blog posts about SEO concepts, tutorials and more"
 msgstr "Läs våra blogginlägg med SEO-beskrivningar, handledningar med mera"
 
-#: inc/admin/callbacks/Advanced.php:518
+#: inc/admin/callbacks/Advanced.php:525
 msgid "Automatic tab (default)"
 msgstr "Automatisk flik (standard)"
 
-#: inc/admin/callbacks/Advanced.php:523
+#: inc/admin/callbacks/Advanced.php:530
 msgid "Manual tab"
 msgstr "Manuell flik"
-
-#: inc/admin/callbacks/Analytics.php:1272
-msgid "By default, any file ending with one of these extensions will be considered a \"download\" in the Matomo interface: 7z|aac|arc|arj|apk|asf|asx|avi|bin|bz|bz2|csv|deb|dmg|doc|exe|flv|gif|gz|gzip|hqx|jar|jpg|jpeg|js|mp2|mp3|mp4|mpg|mpeg|mov|movie|msi|msp|odb|odf|odg|odp|ods|odt|ogg|ogv| pdf|phps|png|ppt|qt|qtm|ra|ram|rar|rpm|sea|sit|tar|tbz|tbz2|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"
-msgstr "Som standard kommer alla filer, vars namn slutar på någon av följande ändelser att betraktas som ”nedladdningar” i Matomo-gränssnittet: 7z|aac|arc|arj|apk|asf|asx|avi|bin|bz|bz2|csv|deb|dmg|doc|exe|flv|gif|gz|gzip|hqx|jar|jpg|jpeg|js|mp2|mp3|mp4|mpg|mpeg|mov|movie|msi|msp|odb|odf|odg|odp|ods|odt|ogg|ogv| pdf|phps|png|ppt|qt|qtm|ra|ram|rar|rpm|sea|sit|tar|tbz|tbz2|tgz|torrent|txt|wav|wma|wmv|wpd|xls|xml|z|zip"
 
 #: inc/admin/callbacks/Analytics.php:1225
 msgid "Enable client side DoNotTrack detection"
@@ -2412,31 +2393,31 @@ msgstr "Begäran om spårning kommer inte att skickas om en besökare inte vill 
 msgid "Disables all first party cookies. Existing Matomo cookies for this website will be deleted on the next page view."
 msgstr "Inaktiverar alla cookies från den egna webbplatsen. Befintliga Matomo-cookies för denna webbplats kommer att raderas vid nästa sidvisning."
 
-#: inc/admin/callbacks/Social.php:255 inc/admin/wizard/admin-wizard.php:894
+#: inc/admin/callbacks/Social.php:255 inc/admin/wizard/admin-wizard.php:909
 msgid "eg: http://linkedin.com/company/my-company-url/"
 msgstr "t.ex.: http://linkedin.com/company/my-company-url/"
 
-#: inc/admin/callbacks/Social.php:244 inc/admin/wizard/admin-wizard.php:887
+#: inc/admin/callbacks/Social.php:244 inc/admin/wizard/admin-wizard.php:902
 msgid "eg: https://www.youtube.com/my-channel-url"
 msgstr "t.ex.: https://www.youtube.com/my-channel-url"
 
-#: inc/admin/callbacks/Social.php:233 inc/admin/wizard/admin-wizard.php:880
+#: inc/admin/callbacks/Social.php:233 inc/admin/wizard/admin-wizard.php:895
 msgid "eg: https://www.instagram.com/my-page-url/"
 msgstr "t.ex.: https://www.instagram.com/my-page-url/"
 
-#: inc/admin/callbacks/Social.php:222 inc/admin/wizard/admin-wizard.php:873
+#: inc/admin/callbacks/Social.php:222 inc/admin/wizard/admin-wizard.php:888
 msgid "eg: https://pinterest.com/my-page-url/"
 msgstr "t.ex.: https://pinterest.com/my-page-url/"
 
-#: inc/admin/callbacks/Social.php:211 inc/admin/wizard/admin-wizard.php:866
+#: inc/admin/callbacks/Social.php:211 inc/admin/wizard/admin-wizard.php:881
 msgid "eg: @my_twitter_account"
 msgstr "t.ex.: @my_twitter_account"
 
-#: inc/admin/callbacks/Social.php:200 inc/admin/wizard/admin-wizard.php:859
+#: inc/admin/callbacks/Social.php:200 inc/admin/wizard/admin-wizard.php:874
 msgid "eg: https://facebook.com/my-page-url"
 msgstr "t.ex.: https://facebook.com/my-page-url"
 
-#: inc/admin/wizard/admin-wizard.php:740
+#: inc/admin/wizard/admin-wizard.php:754
 msgid "eg: My Company Name"
 msgstr "t.ex: Mitt företagsnamn"
 
@@ -2469,7 +2450,7 @@ msgstr "Ange ditt webbplats-ID här"
 msgid "Set default tab for Structured data metabox"
 msgstr "Ange standardflik för metarutan med strukturerade data"
 
-#: inc/admin/sections/Analytics.php:176
+#: inc/admin/sections/Analytics.php:181
 msgid "Your <strong>Custom Dimensions</strong> will also work with Matomo tracking code."
 msgstr "Även dina <strong>anpassade dimensioner</strong> kommer att fungera med spårningskoden för Matomo."
 
@@ -2526,7 +2507,7 @@ msgstr "Lägg till webbplatsens domän före sidans rubrik vid spårning"
 msgid "Prepend the site domain"
 msgstr "Lägg till webbplatsens domän i början"
 
-#: inc/admin/admin-pages/Analytics.php:22 inc/admin/sections/Analytics.php:156
+#: inc/admin/admin-pages/Analytics.php:22 inc/admin/sections/Analytics.php:161
 msgid "Matomo"
 msgstr "Matomo"
 
@@ -2718,19 +2699,19 @@ msgstr "Hittar du inte din kod? Kontrollera att ditt tema anropar <strong>wp_bod
 msgid "Titles are critical to give users a quick insight into the content of a result and why it’s relevant to their query. It's often the primary piece of information used to decide which result to click on, so it's important to use high-quality titles on your web pages."
 msgstr "Rubriken är avgörande för att ge användare snabb förståelse av vad sidan innehåller och varför den är relevant för deras sökning. Detta är ofta den viktigaste informationsbiten när användaren väljer vilka sökresultat som ska besökas. Använd därför rubriker av god kvalitet för dina webbsidor."
 
-#: inc/admin/admin-pages/Tools.php:211
+#: inc/admin/admin-pages/Tools.php:114
 msgid "Import posts and terms metadata from"
 msgstr "Importera metadata för inlägg och termer från"
 
-#: inc/admin/admin-pages/Tools.php:232 inc/admin/wizard/admin-wizard.php:618
+#: inc/admin/admin-pages/Tools.php:136 inc/admin/wizard/admin-wizard.php:623
 msgid "Select an option"
 msgstr "Välj ett alternativ"
 
-#: inc/admin/wizard/admin-wizard.php:1079
+#: inc/admin/wizard/admin-wizard.php:1094
 msgid "Do not display this post type archive in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte arkivsidor för denna enstaka inläggstyp i resultat från sökmotorer <strong>(noindex)</strong>"
 
-#: inc/admin/wizard/admin-wizard.php:980
+#: inc/admin/wizard/admin-wizard.php:995
 msgid "Do not display this single post type in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte denna enstaka poster av denna inläggstyp i resultat från sökmotorer <strong>(noindex)</strong>"
 
@@ -2762,7 +2743,7 @@ msgstr "Hur får jag reda på ID för min Facebook-sida?"
 msgid "Apply this image to all your og:image tag"
 msgstr "Lägg in denna bild i alla taggar av typen og:image"
 
-#: inc/admin/blocks/notifications-center.php:813
+#: inc/admin/blocks/notifications-center.php:814
 msgid "The PRO version of SEOPress allows you to easily manage your structured data (schemas), add a breadcrumb optimized for SEO and accessibility, improve SEO for WooCommerce, gain productivity with our import / export tool from a CSV of your metadata and so much more."
 msgstr "Med PRO-versionen av SEOPress kan du enkelt hantera strukturerade data (scheman), lägga till SEO-optimerade och tillgänglighetsanpassade synliga sökvägar, förbättra SEO för WooCommerce, arbeta effektivare tack vare import och export av metadata i CSV-format och mycket mer."
 
@@ -2774,7 +2755,7 @@ msgstr "Stängningsknapp"
 msgid "Post thumbnail URL"
 msgstr "URL till miniatyrbild för inlägget"
 
-#: inc/admin/callbacks/Advanced.php:827
+#: inc/admin/callbacks/Advanced.php:834
 msgid "Display Content Analysis results column (\"Good\" or \"Should be improved\")"
 msgstr "Visa kolumn med resultat av innehållsanalys (”Bra” eller ”Bör förbättras”)"
 
@@ -2782,27 +2763,27 @@ msgstr "Visa kolumn med resultat av innehållsanalys (”Bra” eller ”Bör f�
 msgid "Show content analysis score column in post types"
 msgstr "Visa kolumn med resultatet av innehållsanalysen för inläggstyper"
 
-#: inc/admin/blocks/notifications-center.php:771
+#: inc/admin/blocks/notifications-center.php:772
 msgid "Please enable <strong>Structured Data Types metabox for your posts, pages and custom post types</strong> option in order to use automatic and manual schemas. (SEO > PRO > Structured Data Types (schema.org)"
 msgstr "Aktivera <strong>metarutan för strukturerade datatyper för dina inlägg, sidor och anpassade inläggstyper</strong> i inställningarna för att kunna använda automatiska och manuella scheman. (SEO &gt; PRO &gt; Strukturerade datatyper (schema.org)"
 
-#: inc/admin/blocks/notifications-center.php:790
+#: inc/admin/blocks/notifications-center.php:791
 msgid "Please activate the SEOPress PRO license key to automatically receive updates to guarantee you the best user experience possible."
 msgstr "Aktivera licensnyckeln för SEOPress PRO för att automatiskt få uppdateringar och säkerställa bästa möjliga användarupplevelse."
 
-#: inc/admin/blocks/notifications-center.php:753
+#: inc/admin/blocks/notifications-center.php:754
 msgid "Is your brand new site online? So reference it as quickly as possible on Google to get your first visitors via Google Search Console. Already the case? Click on the cross on the right to remove this alert."
 msgstr "Är din helt nya webbplats online? Då bör du så snabbt som möjligt hänvisa till den på Google för att få dina första besökare via Google Search Console. Redan klart? Klicka på krysset till höger för att ta bort denna notis."
 
-#: inc/admin/blocks/notifications-center.php:770
+#: inc/admin/blocks/notifications-center.php:771
 msgid "Structured data types is not correctly enabled"
 msgstr "Strukturerade datatyper är inte korrekt aktiverade"
 
-#: inc/admin/blocks/notifications-center.php:728
+#: inc/admin/blocks/notifications-center.php:729
 msgid "Local Business websites should have a My Business page to improve visibility in search results. Click on the cross on the right to delete this notification if you are not concerned."
 msgstr "Webbplatser för lokala företag bör ha en företagsprofil hos Google för att förbättra synligheten i sökresultaten. Klicka på krysset till höger för att avfärda detta meddelande om detta inte rör dig."
 
-#: inc/admin/blocks/notifications-center.php:706
+#: inc/admin/blocks/notifications-center.php:707
 msgid "XML Sitemaps are useful to facilitate the crawling of your content by search engine robots. Indirectly, this can benefit your ranking by reducing the crawl bugdet."
 msgstr "XML-webbplatskartor är nyttiga genom att de underlättar för sökmotorernas indexeringsrobotar. Indirekt kan detta gynna din rankning genom att indexeringen effektiviseras."
 
@@ -2810,8 +2791,8 @@ msgstr "XML-webbplatskartor är nyttiga genom att de underlättar för sökmotor
 msgid "The best way to quickly setup SEOPress on your site."
 msgstr "Bästa sättet att snabbt konfigurera SEOPress på din webbplats."
 
-#: inc/admin/blocks/notifications-center.php:497
-#: inc/admin/blocks/notifications-center.php:515
+#: inc/admin/blocks/notifications-center.php:498
+#: inc/admin/blocks/notifications-center.php:516
 msgid "This PHP module, installed by default with PHP, is required by many plugins including SEOPress. Please contact your host as soon as possible to solve this."
 msgstr "Denna PHP-modul, som normalt installeras tillsammans med PHP, krävs av många tillägg, däribland SEOPress. Kontakta ditt webbhotell och be dem att lösa detta så snart som möjligt."
 
@@ -2819,19 +2800,19 @@ msgstr "Denna PHP-modul, som normalt installeras tillsammans med PHP, krävs av 
 msgid "This error indicates that your theme uses a deprecated function to generate the title tag of your pages. SEOPress will not be able to generate your custom title tags if this error is not fixed."
 msgstr "Detta fel tyder på att att ditt tema använder en föråldrad funktion för att generera sidornas rubrik-tagg. SEOPress kommer inte att kunna generera anpassade rubrik-taggar åt dig om inte detta fel åtgärdas."
 
-#: inc/admin/blocks/notifications-center.php:544
+#: inc/admin/blocks/notifications-center.php:545
 msgid "You have activated the blocking of the indexing of your site. If your site is under development, this is probably normal. Otherwise, check your settings. Delete this notification using the cross on the right if you are not concerned."
 msgstr "Du har aktiverat blockering av indexering för webbplatsen. Om din webbplats håller på att utvecklas är detta troligen helt OK. I annat fall bör du kontrollera dina inställningar. Om du inte oroar dig över detta kan du ta bort denna avisering med hjälp av krysset på höger sida."
 
-#: inc/admin/blocks/notifications-center.php:354
+#: inc/admin/blocks/notifications-center.php:355
 msgid "You have enabled 404 cleaning BUT the scheduled task is not running."
 msgstr "Du har aktiverat rensning av 404 MEN den schemalagda uppgiften körs inte."
 
-#: inc/admin/blocks/notifications-center.php:478
+#: inc/admin/blocks/notifications-center.php:479
 msgid "Https is considered by Google as a positive signal for the ranking of your site. It also reassures your visitors for data security, and improves trust."
 msgstr "Google betraktar https som en positiv signal i rankningen av din webbplats. Samtidigt stärker detta skyddet för dina besökares data och ökar förtroendet."
 
-#: inc/admin/blocks/notifications-center.php:355
+#: inc/admin/blocks/notifications-center.php:356
 msgid "To solve this, please disable and re-enable SEOPress PRO. No data will be lost."
 msgstr "Lös detta genom att inaktivera och därefter åter aktivera SEOPress PRO. Inga data går förlorade i samband med detta."
 
@@ -2839,7 +2820,7 @@ msgstr "Lös detta genom att inaktivera och därefter åter aktivera SEOPress PR
 msgid "Current breadcrumbs: %s"
 msgstr "Nuvarande synliga sökvägar: %s"
 
-#: inc/admin/blocks/notifications-center.php:664
+#: inc/admin/blocks/notifications-center.php:665
 msgid "Enabling this option will create duplicate content for each article beyond x comments. This can have a disastrous effect by creating a large number of poor quality pages, and slowing the Google bot unnecessarily, so your ranking in search results."
 msgstr "Om du aktiverar detta alternativ uppstår duplicerat innehåll för varje artikel som innehåller fler än x kommentarer. Det kan ge katastrofala effekter genom att det skapar ett stort antal sidor av låg kvalitet och skapar onödigt merarbete för Googles robot. Resultatet kan bli att webbplatsens placering i sökresultaten försämras."
 
@@ -2847,24 +2828,24 @@ msgstr "Om du aktiverar detta alternativ uppstår duplicerat innehåll för varj
 msgid "Support the development and improvement of the plugin by taking 15 seconds of your time to leave us a user review on the official WordPress plugins repository. Thank you!"
 msgstr "Stöd utvecklingen och förbättringen av detta tillägg genom att lägga 15 sekunder på att skicka in en användarrecension i WordPress officiella tilläggskatalog. Tack på förhand!"
 
-#: inc/admin/blocks/notifications-center.php:580
-#: inc/admin/blocks/notifications-center.php:603
+#: inc/admin/blocks/notifications-center.php:581
+#: inc/admin/blocks/notifications-center.php:604
 msgid "Why is this important? Showing only the summary of each article significantly reduces the theft of your content by third party sites. Not to mention, the increase in your traffic, your advertising revenue, conversions..."
 msgstr "Varför är detta viktigt? Om du bara visar en sammanfattning av varje artikel kan du till stor del begränsa stölder av ditt innehåll från utomstående webbplatser. Dessutom ger det dig mer trafik, högre annonsintäkter och bättre konvertering …"
 
 #. translators: %s name of a SEO plugin (eg: Yoast SEO)
 #. translators: %s name of a WP plugin (eg: IndexNow)
-#: inc/admin/blocks/notifications-center.php:307
-#: inc/admin/blocks/notifications-center.php:334
+#: inc/admin/blocks/notifications-center.php:308
+#: inc/admin/blocks/notifications-center.php:335
 #: inc/admin/sections/InstantIndexing.php:41
 msgid "We noticed that you use <strong>%s</strong> plugin."
 msgstr "Vi ser att du använder tillägget <strong>%s</strong>."
 
-#: inc/admin/blocks/notifications-center.php:308
+#: inc/admin/blocks/notifications-center.php:309
 msgid "Do you want to migrate all your metadata to SEOPress? Do not use multiple SEO plugins at once to avoid conflicts!"
 msgstr "Vill du flytta alla dina metadata till SEOPress? För att undvika konflikter mellan dem ska du inte använda flera SEO-tillägg samtidigt!"
 
-#: inc/admin/blocks/notifications-center.php:563
+#: inc/admin/blocks/notifications-center.php:564
 msgid "Your Site Title is used by WordPress, your theme and your plugins including SEOPress. It is an essential component in the generation of title tags, but not only. Enter one!"
 msgstr "Webbplatsens rubrik används av WordPress, ditt tema och av dina tillägg, inklusive SEOPress. Uppgiften utgör bland annat en viktig del i kompositionen av rubrik-taggar. Du bör lägga in en rubrik!"
 
@@ -2904,7 +2885,7 @@ msgstr "<strong>Bör förbättras:</strong> röd eller orange punkt <br> <strong
 msgid "Analysis in progress..."
 msgstr "Analys pågår …"
 
-#: inc/admin/wizard/admin-wizard.php:597
+#: inc/admin/wizard/admin-wizard.php:601
 msgid "The first step is to import your previous post and term metadata from other plugins to keep your SEO."
 msgstr "Börja med att importera dina tidigare metadata för inlägg och termer från andra tillägg för att behålla dina befintliga SEO-inställningar."
 
@@ -2916,7 +2897,7 @@ msgstr "Denna sida saknar utgående länkar."
 msgid "Manage all your titles & metas for post types, taxonomies, archives..."
 msgstr "Hantera alla dina rubriker och metadata för inläggstyper, taxonomier, arkiv …"
 
-#: inc/admin/wizard/admin-wizard.php:633
+#: inc/admin/wizard/admin-wizard.php:638
 msgid "No data to migrate? Click \"Next step\" button!"
 msgstr "Om du inte har några data som behöver föras över klickar du på knappen ”Nästa steg”!"
 
@@ -2932,8 +2913,8 @@ msgstr "Så kommer du igång"
 msgid "Launch our installation wizard to quickly and easily configure the basic SEO settings for your site. Browse our video guides to go further. Can't find the answers to your questions? Open a ticket from your customer area. A happiness engineer will be happy to help you."
 msgstr "Starta vår installationsguide för att snabbt och enkelt konfigurera de grundläggande SEO-inställningarna för din webbplats. Studera våra videoguider för att göra mer. Om du inte hittar svar på någon fråga kan du öppna ett ärende på dina kundsidor. Våra supporttekniker hjälper dig gärna."
 
-#: inc/admin/wizard/admin-wizard.php:154 inc/admin/wizard/admin-wizard.php:158
-#: inc/admin/wizard/admin-wizard.php:168
+#: inc/admin/wizard/admin-wizard.php:158 inc/admin/wizard/admin-wizard.php:162
+#: inc/admin/wizard/admin-wizard.php:172
 msgid "Welcome"
 msgstr "Välkommen"
 
@@ -3199,7 +3180,7 @@ msgstr "Sida %d av %2$d"
 msgid "You should add one of your target keyword in your permalink."
 msgstr "Du bör lägga till något av dina önskade nyckelord i permalänken."
 
-#: inc/admin/blocks/notifications-center.php:496
+#: inc/admin/blocks/notifications-center.php:497
 msgid "PHP module \"DOM\" is missing on your server."
 msgstr "PHP-modulen ”DOM” finns inte på din server."
 
@@ -3211,15 +3192,15 @@ msgstr "Stiligt, ett av dina önskade nyckelord används i permalänken."
 msgid "Remove website field in comment form"
 msgstr "Ta bort fältet för webbplats i kommentarsformuläret"
 
-#: inc/admin/callbacks/Advanced.php:229
+#: inc/admin/callbacks/Advanced.php:236
 msgid "Remove website field from comment form to reduce spam"
 msgstr "Ta bort fältet för webbplats i kommentarsformuläret för att minska mängden skräppost"
 
-#: inc/admin/callbacks/Advanced.php:209
+#: inc/admin/callbacks/Advanced.php:216
 msgid "Remove comment author URL in comments if the website is filled from profile page"
 msgstr "Ta bort författarens URL i kommentarer om webbplatsen anges från profilsidan"
 
-#: inc/admin/callbacks/Advanced.php:189
+#: inc/admin/callbacks/Advanced.php:196
 msgid "Remove hentry post class to prevent Google from seeing this as structured data (schema)"
 msgstr "Ta bort inläggsklassen hentry för Google inte ska betrakta detta som strukturerade data (schema)"
 
@@ -3239,23 +3220,23 @@ msgstr "Vi rekommenderar tillägget Image SEO för optimering av dina alt-texter
 msgid "[BODY (FOOTER)] Add an additional tracking code (like Google Tag Manager...)"
 msgstr "[BODY (FOOTER)]Lägg till en extra spårningskod, t.ex. Google Tag Manager …"
 
-#: inc/admin/callbacks/Titles.php:523 inc/admin/callbacks/Titles.php:534
-#: inc/admin/callbacks/Titles.php:539 inc/admin/callbacks/Titles.php:548
+#: inc/admin/callbacks/Titles.php:541 inc/admin/callbacks/Titles.php:552
+#: inc/admin/callbacks/Titles.php:557 inc/admin/callbacks/Titles.php:566
 msgid "Click to hide any SEO metaboxes for this taxonomy"
 msgstr "Klicka för att dölja alla SEO-metarutor för denna taxonomi"
 
-#: inc/admin/callbacks/Titles.php:116 inc/admin/callbacks/Titles.php:126
-#: inc/admin/callbacks/Titles.php:131 inc/admin/callbacks/Titles.php:140
+#: inc/admin/callbacks/Titles.php:134 inc/admin/callbacks/Titles.php:144
+#: inc/admin/callbacks/Titles.php:149 inc/admin/callbacks/Titles.php:158
 msgid "Click to hide any SEO metaboxes / columns for this post type"
 msgstr "Klicka för att dölja alla SEO-metarutor och -kolumner för denna inläggstyp"
 
-#: inc/admin/callbacks/Titles.php:530 inc/admin/callbacks/Titles.php:543
-#: inc/admin/callbacks/Titles.php:547
+#: inc/admin/callbacks/Titles.php:548 inc/admin/callbacks/Titles.php:561
+#: inc/admin/callbacks/Titles.php:565
 msgid "Click to display any SEO metaboxes for this taxonomy"
 msgstr "Klicka för att visa alla SEO-metarutor för denna taxonomi"
 
-#: inc/admin/callbacks/Titles.php:122 inc/admin/callbacks/Titles.php:135
-#: inc/admin/callbacks/Titles.php:139
+#: inc/admin/callbacks/Titles.php:140 inc/admin/callbacks/Titles.php:153
+#: inc/admin/callbacks/Titles.php:157
 msgid "Click to display any SEO metaboxes / columns for this post type"
 msgstr "Klicka för att visa alla SEO-metarutor och -kolumner för denna inläggstyp"
 
@@ -3263,35 +3244,23 @@ msgstr "Klicka för att visa alla SEO-metarutor och -kolumner för denna inlägg
 msgid "This code will be added just after the closing body tag of your page."
 msgstr "Koden läggs in precis efter den avslutande body-taggen på din sida."
 
-#: seopress.php:613
+#: seopress.php:612
 msgid "Docs"
 msgstr "Dokument"
 
-#: inc/admin/wizard/admin-wizard.php:132 seopress.php:371
+#: inc/admin/wizard/admin-wizard.php:136 seopress.php:370
 msgid "Export completed!"
 msgstr "Exporten är klar!"
 
-#: inc/admin/admin-pages/Tools.php:98
-msgid "Export metadata to a CSV"
-msgstr "Exportera metadata till CSV-fil"
-
-#: seopress.php:614
+#: seopress.php:613
 msgid "Configuration Wizard"
 msgstr "Konfigurationsguide"
 
-#: inc/admin/admin-pages/Tools.php:21 inc/admin/admin-pages/Tools.php:47
+#: inc/admin/admin-pages/Tools.php:20
 msgid "Data"
 msgstr "Data"
 
-#: inc/admin/admin-pages/Tools.php:52
-msgid "Import data from a CSV"
-msgstr "Importera data från CSV"
-
-#: inc/admin/admin-pages/Tools.php:90
-msgid "Run the importer"
-msgstr "Kör importfunktionen"
-
-#: inc/admin/blocks/notifications-center.php:820
+#: inc/admin/blocks/notifications-center.php:821
 msgid "Upgrade now!"
 msgstr "Uppgradera nu!"
 
@@ -3299,7 +3268,7 @@ msgstr "Uppgradera nu!"
 msgid "Enable Author Sitemap"
 msgstr "Aktivera webbplatskarta per författare"
 
-#: inc/admin/blocks/notifications-center.php:812
+#: inc/admin/blocks/notifications-center.php:813
 msgid "Take your SEO to the next level with SEOPress PRO!"
 msgstr "Lyft din SEO till en ny nivå med SEOPress PRO!"
 
@@ -3319,23 +3288,23 @@ msgstr "Antalet ord utgör inte i sig självt någon rankningsfaktor. Men ditt i
 msgid "Additional tracking code field added to body"
 msgstr "Fält för extra spårningskod som placeras inom body"
 
-#: inc/admin/wizard/admin-wizard.php:686
+#: inc/admin/wizard/admin-wizard.php:693
 msgid "To build title tags and knowledge graph for Google, you need to fill out the fields below to configure the general settings."
 msgstr "För att skapa rubriktaggar och ”knowledge graph” för Google måste du fylla i fälten nedan för att konfigurera de allmänna inställningarna."
 
-#: inc/admin/wizard/admin-wizard.php:1055
+#: inc/admin/wizard/admin-wizard.php:1070
 msgid "For which post type archives, should indexing be disabled?"
 msgstr "För vilka inläggstyper ska indexering av arkivsidor vara inaktiverad?"
 
-#: inc/admin/wizard/admin-wizard.php:954
+#: inc/admin/wizard/admin-wizard.php:969
 msgid "For which single post types, should indexing be disabled?"
 msgstr "För vilka sidor med enstaka inläggstyper ska indexering vara inaktiverad?"
 
-#: inc/admin/wizard/admin-wizard.php:1156
+#: inc/admin/wizard/admin-wizard.php:1171
 msgid "For which taxonomy archives, should indexing be disabled?"
 msgstr "För vilka taxonomier ska indexering av arkivsidor vara inaktiverad?"
 
-#: inc/admin/callbacks/Titles.php:1481
+#: inc/admin/callbacks/Titles.php:1499
 msgid "Prevents Google to display a sitelinks searchbox in search results. Enable this option will remove the \"Website\" schema from your source code."
 msgstr "Förhindrar att Google visar en sökruta för webbplatslänkar i sökresultaten. Om du aktiverar detta alternativ tas schemat ”Website” bort ur din HTML-kod."
 
@@ -3355,7 +3324,7 @@ msgstr "Läs mer om att ha <a href=\"https://www.youtube.com/watch?v=Rk4qgQdp2UA
 msgid "Exactly match all parameters"
 msgstr "Matcha alla parametrar exakt"
 
-#: inc/admin/wizard/admin-wizard.php:131 seopress.php:369
+#: inc/admin/wizard/admin-wizard.php:135 seopress.php:368
 msgid "Migration completed!"
 msgstr "Migreringen klar!"
 
@@ -3367,7 +3336,7 @@ msgstr "Nyckelordstäthet"
 msgid "Outbound Links"
 msgstr "Utgående länkar"
 
-#: inc/admin/callbacks/Titles.php:388
+#: inc/admin/callbacks/Titles.php:406
 msgid "Display post thumbnail in Google Custom Search results?"
 msgstr "Vill du visa miniatyr av inlägget i Googles anpassade sökresultat?"
 
@@ -3375,7 +3344,7 @@ msgstr "Vill du visa miniatyr av inlägget i Googles anpassade sökresultat?"
 msgid "[BODY] Add an additional tracking code (like Google Tag Manager...)"
 msgstr "[BODY] Lägg till en extra spårningskod (t.ex. Google Tag Manager) …"
 
-#: inc/admin/admin-pages/Tools.php:259
+#: inc/admin/admin-pages/Tools.php:163
 msgid "Activate Redirections"
 msgstr "Aktivera omdirigeringar"
 
@@ -3383,7 +3352,7 @@ msgstr "Aktivera omdirigeringar"
 msgid "Customize your title & meta description for homepage."
 msgstr "Anpassa rubriken och metabeskrivningen på startsidan."
 
-#: seopress.php:259
+#: seopress.php:267
 msgid "has been successfully updated!"
 msgstr "har uppdaterats!"
 
@@ -3433,86 +3402,86 @@ msgstr "En kanonisk URL är webbadressen till den sida som Google anser vara mes
 msgid "Minimum size: 200x200px, ideal ratio 1.91:1, 8Mb max. (eg: 1640x856px or 3280x1712px for retina screens)"
 msgstr "Minsta storlek: 200×200px, idealiskt förhållande 1,91:1, max 8 Mb (t.ex. 1640×856px eller 3280×1712px för retinaskärmar)"
 
-#: inc/admin/admin-pages/Tools.php:26 inc/admin/admin-pages/Tools.php:308
+#: inc/admin/admin-pages/Tools.php:25 inc/admin/admin-pages/Tools.php:212
 msgid "Reset"
 msgstr "Återställ"
 
-#: inc/admin/admin-pages/Tools.php:23 inc/admin/admin-pages/Tools.php:208
+#: inc/admin/admin-pages/Tools.php:22 inc/admin/admin-pages/Tools.php:111
 msgid "Plugins"
 msgstr "Tillägg"
 
-#: inc/admin/wizard/admin-wizard.php:1701
+#: inc/admin/wizard/admin-wizard.php:1716
 msgid "Review Settings"
 msgstr "Granska inställningar"
 
-#: inc/admin/wizard/admin-wizard.php:1697
+#: inc/admin/wizard/admin-wizard.php:1712
 msgid "Visit Dashboard"
 msgstr "Besök adminpanel"
 
-#: inc/admin/wizard/admin-wizard.php:1690
+#: inc/admin/wizard/admin-wizard.php:1705
 msgid "You can also:"
 msgstr "Du kan också:"
 
-#: inc/admin/wizard/admin-wizard.php:1636
+#: inc/admin/wizard/admin-wizard.php:1651
 msgid "Follow us:"
 msgstr "Följ oss:"
 
-#: inc/admin/wizard/admin-wizard.php:747
+#: inc/admin/wizard/admin-wizard.php:761
 msgid "eg: https://www.example.com/logo.png"
 msgstr "t.ex.: https://www.example.com/logo.png"
 
-#: inc/admin/wizard/admin-wizard.php:567 inc/admin/wizard/admin-wizard.php:569
-#: inc/admin/wizard/admin-wizard.php:637 inc/admin/wizard/admin-wizard.php:639
-#: inc/admin/wizard/admin-wizard.php:1594
-#: inc/admin/wizard/admin-wizard.php:1616
+#: inc/admin/wizard/admin-wizard.php:571 inc/admin/wizard/admin-wizard.php:573
+#: inc/admin/wizard/admin-wizard.php:642 inc/admin/wizard/admin-wizard.php:644
+#: inc/admin/wizard/admin-wizard.php:1609
+#: inc/admin/wizard/admin-wizard.php:1631
 msgid "Next step"
 msgstr "Nästa steg"
 
-#: inc/admin/wizard/admin-wizard.php:436
+#: inc/admin/wizard/admin-wizard.php:440
 msgid "Skip this step"
 msgstr "Hoppa över detta steg"
 
-#: inc/admin/wizard/admin-wizard.php:416
+#: inc/admin/wizard/admin-wizard.php:420
 msgid "Not right now"
 msgstr "Inte just nu"
 
-#: inc/admin/wizard/admin-wizard.php:230 inc/admin/wizard/admin-wizard.php:240
-#: inc/admin/wizard/admin-wizard.php:1252
-#: inc/admin/wizard/admin-wizard.php:1390
+#: inc/admin/wizard/admin-wizard.php:234 inc/admin/wizard/admin-wizard.php:244
+#: inc/admin/wizard/admin-wizard.php:1267
+#: inc/admin/wizard/admin-wizard.php:1405
 msgid "Advanced options"
 msgstr "Avancerade alternativ"
 
-#: inc/admin/wizard/admin-wizard.php:196 inc/admin/wizard/admin-wizard.php:207
-#: inc/admin/wizard/admin-wizard.php:218 inc/admin/wizard/admin-wizard.php:943
-#: inc/admin/wizard/admin-wizard.php:1037
-#: inc/admin/wizard/admin-wizard.php:1143
+#: inc/admin/wizard/admin-wizard.php:200 inc/admin/wizard/admin-wizard.php:211
+#: inc/admin/wizard/admin-wizard.php:222 inc/admin/wizard/admin-wizard.php:958
+#: inc/admin/wizard/admin-wizard.php:1052
+#: inc/admin/wizard/admin-wizard.php:1158
 #: src/Services/ContentAnalysis/RenderGSCInspectUrl.php:271
 msgid "Indexing"
 msgstr "Indexering"
 
-#: inc/admin/wizard/admin-wizard.php:175 inc/admin/wizard/admin-wizard.php:185
-#: inc/admin/wizard/admin-wizard.php:678 inc/admin/wizard/admin-wizard.php:844
+#: inc/admin/wizard/admin-wizard.php:179 inc/admin/wizard/admin-wizard.php:189
+#: inc/admin/wizard/admin-wizard.php:685 inc/admin/wizard/admin-wizard.php:859
 msgid "Your site"
 msgstr "Din webbplats"
 
-#: inc/admin/wizard/admin-wizard.php:692
+#: inc/admin/wizard/admin-wizard.php:699
 msgid "eg: |"
 msgstr "t.ex.: |"
 
-#: inc/admin/wizard/admin-wizard.php:562
+#: inc/admin/wizard/admin-wizard.php:566
 msgid "The following wizard will help you configure %s and get you started quickly."
 msgstr "Följande guide hjälper dig att konfigurera %s och komma igång snabbt."
 
-#: inc/admin/wizard/admin-wizard.php:1305
-#: inc/admin/wizard/admin-wizard.php:1330
+#: inc/admin/wizard/admin-wizard.php:1320
+#: inc/admin/wizard/admin-wizard.php:1345
 msgid "Shorten your URLs by removing %s and improve your SEO."
 msgstr "Förkorta dina webbadresser genom att ta bort %s och därigenom förbättra din SEO."
 
-#: inc/admin/wizard/admin-wizard.php:1645
+#: inc/admin/wizard/admin-wizard.php:1660
 msgid "Like our Facebook page"
 msgstr "Gilla vår Facebook-sida"
 
-#: inc/admin/wizard/admin-wizard.php:308 inc/admin/wizard/admin-wizard.php:312
+#: inc/admin/wizard/admin-wizard.php:312 inc/admin/wizard/admin-wizard.php:316
 msgid "Ready!"
 msgstr "Klart!"
 
@@ -3520,7 +3489,7 @@ msgstr "Klart!"
 msgid "Configuration wizard"
 msgstr "Konfigurationsguide"
 
-#: inc/admin/wizard/admin-wizard.php:1627
+#: inc/admin/wizard/admin-wizard.php:1642
 msgid "Configure your XML sitemaps"
 msgstr "Konfigurera dina XML-webbplatskartor"
 
@@ -3528,15 +3497,15 @@ msgstr "Konfigurera dina XML-webbplatskartor"
 msgid "Configure SEOPress in a few minutes with our installation wizard"
 msgstr "Konfigurera SEOPress på några minuter med hjälp av vår installationsguide"
 
-#: inc/admin/wizard/admin-wizard.php:1620
+#: inc/admin/wizard/admin-wizard.php:1635
 msgid "Build custom XML sitemaps to improve Google's crawling of your site."
 msgstr "Konstruera anpassade XML-webbplatskartor för att effektivisera Googles genomsökning av webbplatsen."
 
-#: inc/admin/wizard/admin-wizard.php:1659
+#: inc/admin/wizard/admin-wizard.php:1674
 msgid "Watch our guided tour videos to learn more about SEOPress"
 msgstr "Lär dig mer om SEOPress med hjälp av våra videovägledningar"
 
-#: inc/admin/wizard/admin-wizard.php:1583
+#: inc/admin/wizard/admin-wizard.php:1598
 msgid "Your site is now ready for search engines!"
 msgstr "Nu är webbplatsen klar för sökmotorer!"
 
@@ -3544,19 +3513,19 @@ msgstr "Nu är webbplatsen klar för sökmotorer!"
 msgid "The previous option must be checked to use this."
 msgstr "Om du använder detta alternativ måste det föregående alternativet vara markerat."
 
-#: inc/admin/wizard/admin-wizard.php:1273
+#: inc/admin/wizard/admin-wizard.php:1288
 msgid "You only have one author on your site? Check this option to avoid duplicate content."
 msgstr "Om webbplatsen endast har en författare ska du markera detta alternativ för att undvika dubblering av innehåll."
 
-#: inc/admin/wizard/admin-wizard.php:1680
+#: inc/admin/wizard/admin-wizard.php:1695
 msgid "The off side of SEOPress"
 msgstr "SEOPress undanskymda sida"
 
-#: inc/admin/wizard/admin-wizard.php:1618
+#: inc/admin/wizard/admin-wizard.php:1633
 msgid "Create your XML sitemaps"
 msgstr "Skapa XML-webbplatskartor"
 
-#: inc/admin/wizard/admin-wizard.php:1286
+#: inc/admin/wizard/admin-wizard.php:1301
 msgid "By default, SEOPress redirects your Attachment pages to the parent post. Optimize this by redirecting the user directly to the URL of the media file."
 msgstr "Som standard omdirigerar SEOPress bilagesidor till det överordnade inlägget. Optimera detta genom att omdirigera användaren direkt till mediefilens URL."
 
@@ -3565,11 +3534,11 @@ msgstr "Som standard omdirigerar SEOPress bilagesidor till det överordnade inl�
 msgid "Start the wizard"
 msgstr "Starta guiden"
 
-#: inc/admin/wizard/admin-wizard.php:703
+#: inc/admin/wizard/admin-wizard.php:710
 msgid "eg: My super website"
 msgstr "t.ex. Min bästa webbplats"
 
-#: inc/admin/wizard/admin-wizard.php:714
+#: inc/admin/wizard/admin-wizard.php:728
 msgid "Choose a knowledge type"
 msgstr "Välj en typ av kunskapsinnehåll"
 
@@ -3577,7 +3546,7 @@ msgstr "Välj en typ av kunskapsinnehåll"
 msgid "Display and automatically accept the user‘s consent on page load (not fully GDPR)"
 msgstr "Visa och registrera automatiskt användarens samtycke när sidan laddas (inte helt kompatibelt med GDRP)"
 
-#: inc/admin/wizard/admin-wizard.php:857
+#: inc/admin/wizard/admin-wizard.php:872
 msgid "Facebook page URL"
 msgstr "Webbadress till Facebook-sida"
 
@@ -3629,7 +3598,7 @@ msgstr "[HEAD] Lägg till en extra spårningskod (t.ex. Facebook-pixel, Hotjar �
 msgid "This code will be added in the head section of your page."
 msgstr "Denna kod läggs till i sidans head-sektion."
 
-#: inc/admin/admin-pages/Tools.php:159
+#: inc/admin/admin-pages/Tools.php:62
 msgid "Export plugin settings"
 msgstr "Exportera tilläggets inställningar"
 
@@ -3637,7 +3606,7 @@ msgstr "Exportera tilläggets inställningar"
 msgid "Additional tracking code field"
 msgstr "Fält för extra spårningskod"
 
-#: inc/admin/admin-pages/Tools.php:178
+#: inc/admin/admin-pages/Tools.php:81
 msgid "Import plugin settings"
 msgstr "Importera inställningar för tillägget"
 
@@ -3677,7 +3646,7 @@ msgstr "Ange automatiskt rubriken för bilden"
 msgid "Enter your Google Optimize container ID"
 msgstr "Ange ID för din Google Optimize-behållare"
 
-#: inc/admin/callbacks/ImageSEO.php:36 inc/admin/wizard/admin-wizard.php:1282
+#: inc/admin/callbacks/ImageSEO.php:36 inc/admin/wizard/admin-wizard.php:1297
 msgid "Redirect attachment pages to their file URL (https://www.example.com/my-image-file.jpg)"
 msgstr "Dirigera om bilagesidor till URL:en för själva filen (https://www.example.com/min-bildfil.jpg)"
 
@@ -3696,22 +3665,6 @@ msgstr "GTM-XXXXXXX"
 #: inc/admin/metaboxes/admin-metaboxes-form.php:734
 msgid "Exclude all parameters and pass them to the redirection"
 msgstr "Ignorera eventuella parametrar och skicka med dem till omdirigeringen"
-
-#: inc/admin/callbacks/ImageSEO.php:108
-msgid "When sending an image file, automatically set the alternative text based on the filename"
-msgstr "När en bildfil skickas sätter detta automatiskt alt-texten till samma som filnamnet"
-
-#: inc/admin/callbacks/ImageSEO.php:179
-msgid "When sending an image file, automatically set the description based on the filename"
-msgstr "När en bildfil skickas sätter detta automatiskt beskrivningen till samma som filnamnet"
-
-#: inc/admin/callbacks/ImageSEO.php:160
-msgid "When sending an image file, automatically set the caption based on the filename"
-msgstr "När en bildfil skickas sätter detta automatiskt bildtexten till samma som filnamnet"
-
-#: inc/admin/callbacks/ImageSEO.php:84
-msgid "When sending an image file, automatically set the title based on the filename"
-msgstr "När en bildfil skickas sätter detta automatiskt rubriken till samma som filnamnet"
 
 #: inc/admin/callbacks/ImageSEO.php:40
 msgid "If this option is checked, it will take precedence over the redirection of attachments to the post's parent."
@@ -3777,7 +3730,7 @@ msgstr "Välj huvudkategori"
 msgid "Hide advice in Structured Data Types metabox"
 msgstr "Dölj råden i metarutan för strukturerade datatyper"
 
-#: inc/admin/callbacks/Sitemaps.php:189
+#: inc/admin/callbacks/Sitemaps.php:183
 msgid "You should never include <strong>attachment</strong> post type in your sitemap. Be careful if you checked this."
 msgstr "Du bör aldrig inkludera inläggstypen <strong>bilaga</strong> i din webbplatskarta. Var försiktig om du har kryssat för detta."
 
@@ -3785,7 +3738,7 @@ msgstr "Du bör aldrig inkludera inläggstypen <strong>bilaga</strong> i din web
 msgid "Enter your domains: seopress.org,sub.seopress.org,sub2.seopress.org"
 msgstr "Fyll i dina domäner: seopress.org,sub.seopress.org,sub2.seopress.org"
 
-#: inc/admin/callbacks/Advanced.php:907
+#: inc/admin/callbacks/Advanced.php:914
 msgid "Remove the advice if None schema selected"
 msgstr "Ta bort detta råd om inget schema är valt"
 
@@ -3794,11 +3747,11 @@ msgstr "Ta bort detta råd om inget schema är valt"
 msgid "Do not display this page in search engine results / XML - HTML sitemaps <strong>(noindex)</strong>"
 msgstr "Visa inte denna sida i sökmotorernas sökresultat eller i XML- och HTML-webbplatskartor <strong>(noindex)</strong>"
 
-#: inc/admin/callbacks/Sitemaps.php:330
+#: inc/admin/callbacks/Sitemaps.php:319
 msgid "Menu order"
 msgstr "Menysortering"
 
-#: inc/admin/callbacks/Sitemaps.php:270 inc/admin/settings/Sitemaps.php:106
+#: inc/admin/callbacks/Sitemaps.php:259 inc/admin/settings/Sitemaps.php:106
 msgid "Exclude some Posts, Pages, Custom Post Types or Terms IDs"
 msgstr "Uteslut vissa inlägg, sidor, anpassade inläggstyper eller ID för termer"
 
@@ -3806,12 +3759,12 @@ msgstr "Uteslut vissa inlägg, sidor, anpassade inläggstyper eller ID för term
 msgid "Welcome to SEOPress PRO!"
 msgstr "Välkommen till SEOPress PRO!"
 
-#: inc/admin/wizard/admin-wizard.php:1607
+#: inc/admin/wizard/admin-wizard.php:1622
 #: inc/functions/options-advanced-admin.php:27
 msgid "Activate License"
 msgstr "Aktivera licens"
 
-#: inc/admin/wizard/admin-wizard.php:1600
+#: inc/admin/wizard/admin-wizard.php:1615
 #: inc/functions/options-advanced-admin.php:25
 msgid "Please activate your license to receive automatic updates and get premium support."
 msgstr "Aktivera din licens för att erhålla automatiska uppdateringar och premiumsupport."
@@ -3832,30 +3785,26 @@ msgstr "JPG, PNG, WebP och GIF är tillåtna."
 msgid "Remove ?replytocom link to avoid duplicate content"
 msgstr "Ta bort länken ?replytocom för att undvika dubblerat innehåll"
 
-#: inc/admin/callbacks/Advanced.php:16
-msgid "Remove ?replytocom link in source code"
-msgstr "Ta bort länken ?replytocom i källkoden"
-
-#: inc/admin/callbacks/Titles.php:1151
+#: inc/admin/callbacks/Titles.php:1169
 msgid "Do not display date archives in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte datumarkiv i sökmotorers resultat <strong>(noindex</strong>)"
 
-#: inc/admin/callbacks/Titles.php:1059 inc/admin/wizard/admin-wizard.php:1269
+#: inc/admin/callbacks/Titles.php:1077 inc/admin/wizard/admin-wizard.php:1284
 msgid "Do not display author archives in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte författarearkiv i sökmotorers resultat <strong>(noindex)</strong>"
 
-#: inc/admin/callbacks/Titles.php:1247
+#: inc/admin/callbacks/Titles.php:1265
 msgid "Do not display search archives in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte sökarkiv i sökmotorns resultat <strong>(noindex)</strong>"
 
 #: inc/admin/callbacks/Titles.php:13 inc/admin/callbacks/Titles.php:42
-#: inc/admin/callbacks/Titles.php:224 inc/admin/callbacks/Titles.php:434
-#: inc/admin/callbacks/Titles.php:653 inc/admin/callbacks/Titles.php:875
-#: inc/admin/callbacks/Titles.php:1018 inc/admin/callbacks/Titles.php:1112
-#: inc/admin/callbacks/Titles.php:1206 inc/admin/callbacks/Titles.php:1279
+#: inc/admin/callbacks/Titles.php:242 inc/admin/callbacks/Titles.php:452
+#: inc/admin/callbacks/Titles.php:671 inc/admin/callbacks/Titles.php:893
+#: inc/admin/callbacks/Titles.php:1036 inc/admin/callbacks/Titles.php:1130
+#: inc/admin/callbacks/Titles.php:1224 inc/admin/callbacks/Titles.php:1297
 #: inc/admin/metaboxes/admin-metaboxes-form.php:136
 #: inc/admin/page-builders/elementor/inc/controls/class-text-letter-counter-control.php:67
-#: inc/admin/settings/Titles.php:16 inc/admin/wizard/admin-wizard.php:690
+#: inc/admin/settings/Titles.php:16 inc/admin/wizard/admin-wizard.php:697
 #: src/Tags/Separator.php:17
 msgid "Separator"
 msgstr "Avgränsare"
@@ -3879,12 +3828,12 @@ msgstr "Du använder denna avdelare med hjälp av koden %%sep%% i rubrik och met
 #: inc/admin/callbacks/Social.php:15
 #: inc/admin/metaboxes/admin-metaboxes-form.php:346
 #: inc/admin/page-builders/elementor/inc/admin/class-document-settings-section.php:286
-#: inc/admin/wizard/admin-wizard.php:719 src/Helpers/Metas/RobotSettings.php:19
+#: inc/admin/wizard/admin-wizard.php:733 src/Helpers/Metas/RobotSettings.php:19
 #: public/editor/primary-category-select/index.js:1
 msgid "None (will disable this feature)"
 msgstr "Inget (inaktiverar denna funktion)"
 
-#: inc/admin/callbacks/Sitemaps.php:310
+#: inc/admin/callbacks/Sitemaps.php:299
 msgid "Default (date)"
 msgstr "Standard (datum)"
 
@@ -3912,19 +3861,19 @@ msgstr "451 Otillgänglig på grund av juridiska skäl"
 msgid "Do not use Open Directory project metadata for titles or excerpts for this page <strong>(noodp)</strong>"
 msgstr "Använd inte metadata från Open Directory-projektet för rubrik eller utdrag för denna sida <strong>(noodp)</strong>"
 
-#: inc/admin/callbacks/Sitemaps.php:290
-msgid "ASC (ascending order from lowest to highest values (1, 2, 3; a, b, c))"
-msgstr "ASC (stigande ordning från lägst till högst värde (1, 2, 3; a, b, c))"
-
 #: inc/admin/callbacks/Social.php:456
 msgid "The Facebook app ID of the site's app. In order to use Facebook Insights you must add the app ID to your page. Insights lets you view analytics for traffic to your site from Facebook. Find the app ID in your App Dashboard. <a class=\"seopress-help\" href=\"https://developers.facebook.com/apps/redirect/dashboard\" target=\"_blank\">More info here</a> <span class=\"seopress-help dashicons dashicons-external\"></span>"
 msgstr "App-ID i Facebook eller webbplatsens app. För att kunna använda Facebook Insights måste du lägga till app-ID för din sida. Med Insights kan du se analyser för trafik till din webbplats från Facebook. Du hittar ditt app-ID i din app-instrumentpanel. <a class=\"seopress-help\" href=\"https://developers.facebook.com/apps/redirect/dashboard\" target=\"_blank\">Här finns mer information</a> <span class=\"seopress-help dashicons dashicons-external\"></span>"
 
-#: inc/admin/callbacks/Sitemaps.php:320
+#: inc/admin/callbacks/Sitemaps.php:279
+msgid "ASC (ascending order from lowest to highest values (1, 2, 3; a, b, c))"
+msgstr "ASC (stigande ordning från lägst till högst värde (1, 2, 3; a, b, c))"
+
+#: inc/admin/callbacks/Sitemaps.php:309
 msgid "Modified date"
 msgstr "Datum senast ändrat"
 
-#: inc/admin/callbacks/Sitemaps.php:285
+#: inc/admin/callbacks/Sitemaps.php:274
 msgid "DESC (descending order from highest to lowest values (3, 2, 1; c, b, a))"
 msgstr "DESC (fallande ordning från högst till lägst värde (3, 2, 1; c, b, a))"
 
@@ -3932,7 +3881,7 @@ msgstr "DESC (fallande ordning från högst till lägst värde (3, 2, 1; c, b, a
 msgid "Hide Genesis SEO Settings link"
 msgstr "Dölj länken till Genesis SEO-inställningar"
 
-#: inc/admin/callbacks/Titles.php:785
+#: inc/admin/callbacks/Titles.php:803
 msgid "Do not follow links for this taxonomy archive <strong>(nofollow)</strong>"
 msgstr "Följ inte länkar från arkivsidor för denna taxonomi <strong>(nofollow)</strong>"
 
@@ -3941,11 +3890,11 @@ msgstr "Följ inte länkar från arkivsidor för denna taxonomi <strong>(nofollo
 msgid "Do not follow links for this page <strong>(nofollow)</strong>"
 msgstr "Följ inte länkar på denna sida <strong>(nofollow)</strong>"
 
-#: inc/admin/callbacks/Titles.php:981
+#: inc/admin/callbacks/Titles.php:999
 msgid "Do not follow links for this post type archive <strong>(nofollow)</strong>"
 msgstr "Följ inte länkarna från arkivsidor för inlägg av denna typ <strong>(nofollow</strong>)"
 
-#: inc/admin/callbacks/Titles.php:332
+#: inc/admin/callbacks/Titles.php:350
 msgid "Do not follow links for this single post type <strong>(nofollow)</strong>"
 msgstr "Följ inte länkarna från sidor för enstaka inlägg av denna typ <strong>(nofollow</strong>)"
 
@@ -3961,11 +3910,11 @@ msgstr "ID:n för en eller flera Facebook-sidor som är förknippade med en URL 
 msgid "Do not index images for this page <strong>(noimageindex)</strong>"
 msgstr "Indexera inte bilderna på denna sida <strong>(noimageindex)</strong>"
 
-#: inc/admin/callbacks/Sitemaps.php:325
+#: inc/admin/callbacks/Sitemaps.php:314
 msgid "Post ID"
 msgstr "Inläggs-ID"
 
-#: inc/admin/callbacks/Titles.php:1477 inc/admin/settings/Titles.php:291
+#: inc/admin/callbacks/Titles.php:1495 inc/admin/settings/Titles.php:299
 msgid "nositelinkssearchbox"
 msgstr "nositelinkssearchbox"
 
@@ -3977,7 +3926,7 @@ msgstr "Sortera inlägg efter"
 msgid "Sort order"
 msgstr "Sorteringsordning"
 
-#: inc/admin/callbacks/Advanced.php:887
+#: inc/admin/callbacks/Advanced.php:894
 msgid "Remove Genesis SEO link in WP Admin Menu"
 msgstr "Ta bort länken till Genesis SEO i WP admin-meny"
 
@@ -3989,19 +3938,19 @@ msgstr "Visa ingen beskrivning i sökresultaten för denna sida <strong>(nosnipp
 msgid "Do not display a \"Cached\" link in the Google search results <strong>(noarchive)</strong>"
 msgstr "Visa ingen länk till ”cachelagrad” variant i Googles sökresultat <strong>(noarchive)</strong>"
 
-#: inc/admin/callbacks/Titles.php:954
+#: inc/admin/callbacks/Titles.php:972
 msgid "Do not display this post type archive in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte arkivsidor för denna inläggstyp i resultat från sökmotorer <strong>(noindex)</strong>"
 
-#: inc/admin/callbacks/Titles.php:740
+#: inc/admin/callbacks/Titles.php:758
 msgid "Do not display this taxonomy archive in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte detta taxonomiarkiv i resultat från sökmotorer <strong>(noindex)</strong>"
 
-#: inc/admin/wizard/admin-wizard.php:1181
+#: inc/admin/wizard/admin-wizard.php:1196
 msgid "Do not display this taxonomy archive in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte detta taxonomiarkiv i resultat från sökmotorer <strong>(noindex)</strong>"
 
-#: inc/admin/callbacks/Titles.php:295
+#: inc/admin/callbacks/Titles.php:313
 msgid "Do not display this single post type in search engine results <strong>(noindex)</strong>"
 msgstr "Visa inte enstaka poster av denna inläggstyp i resultat från sökmotorer <strong>(noindex)</strong>"
 
@@ -4017,7 +3966,7 @@ msgstr "Är webbplatskartan tom?"
 msgid "To get your Google snippet preview, publish your post!"
 msgstr "Publicera inlägget för att kunna se en förhandsvisning av din Google-presentation!"
 
-#: inc/admin/callbacks/Titles.php:814
+#: inc/admin/callbacks/Titles.php:832
 msgid "See archive"
 msgstr "Se arkivet"
 
@@ -4033,15 +3982,15 @@ msgstr "Ändra knapptexten"
 msgid "Guide to enable XML video sitemaps - new window"
 msgstr "Guide för hur man aktiverar XML-videowebbplatskartor – öppnas i nytt fönster"
 
-#: inc/admin/callbacks/Advanced.php:354
+#: inc/admin/callbacks/Advanced.php:361
 msgid "If your site is already verified in <strong>Bing Webmaster tools</strong>, you can leave this field empty."
 msgstr "Om webbplatsen redan är verifierad i <strong>Bing Webmaster Tools</strong> kan du lämna detta fält tomt."
 
-#: inc/admin/callbacks/Advanced.php:339
+#: inc/admin/callbacks/Advanced.php:346
 msgid "If your site is already verified in <strong>Google Search Console</strong>, you can leave this field empty."
 msgstr "Om webbplatsen redan är verifierad i <strong>Google Search Console</strong> kan du lämna detta fält tomt."
 
-#: inc/admin/callbacks/Advanced.php:951 inc/admin/callbacks/Advanced.php:989
+#: inc/admin/callbacks/Advanced.php:958 inc/admin/callbacks/Advanced.php:996
 msgid "Hook to filter structured data types metabox call by post type - new window"
 msgstr "Webbhook för filtrering av metarutan för strukturerade datatyper per inläggstyp – öppnas i nytt fönster"
 
@@ -4068,8 +4017,8 @@ msgstr "Dölj aviseringscentralen"
 msgid "Facebook (Open Graph)"
 msgstr "Facebook (Open Graph)"
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:74
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:75
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:64
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:65
 #: inc/admin/page-builders/elementor/inc/admin/class-document-settings-section.php:577
 #: inc/admin/page-builders/elementor/inc/controls/class-google-suggestions-control.php:50
 #: inc/admin/page-builders/elementor/inc/controls/class-google-suggestions-control.php:51
@@ -4088,7 +4037,7 @@ msgstr "Läs mer på Googles officiella webbplats."
 msgid "Need help with your redirections? Read our guide."
 msgstr "Läs vår guide om du behöver hjälp med omdirigeringar."
 
-#: inc/admin/admin-pages/Tools.php:315
+#: inc/admin/admin-pages/Tools.php:219
 msgid "By clicking Reset Notices, all notices in the notifications center will be set to their initial status."
 msgstr "När du klickar på ”återställ notiser” kommer alla notiser i aviseringscentralen att återställas till sin ursprungliga status."
 
@@ -4097,7 +4046,7 @@ msgstr "När du klickar på ”återställ notiser” kommer alla notiser i avis
 msgid "You cannot uncheck a parameter? This is normal, and it‘s most likely defined in the <a href=\"%s\">global settings of the plugin.</a>"
 msgstr "Om det är någon parameter du inte kan avmarkera är detta normalt och är troligtvis definierat i <a href=\"%s\">tilläggets globala inställningar</a>."
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:75
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:65
 #: inc/admin/page-builders/elementor/inc/controls/class-google-suggestions-control.php:51
 msgid "Enter a keyword, or a phrase, to find the top 10 Google suggestions instantly. This is useful if you want to work with the long tail technique."
 msgstr "Skriv in ett nyckelord eller en fras för att omedelbart hitta de tio bästa förslagen från Google. Detta är användbart om du vill arbeta med tekniken för den långa svansen."
@@ -4189,7 +4138,7 @@ msgstr "Etiketter för videon"
 msgid "You like SEOPress? Please help us by rating us 5 stars!"
 msgstr "Gillar du SEOPress? Hjälp oss genom att ge oss betyget 5 stjärnor!"
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:84
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:74
 #: inc/admin/page-builders/elementor/inc/controls/class-google-suggestions-control.php:53
 msgid "Get suggestions!"
 msgstr "Inhämta förslag!"
@@ -4288,18 +4237,6 @@ msgstr "Vill du exkludera detta objekt från webbplatskartan över video?"
 msgid "Video Sitemap"
 msgstr "Webbplatskarta för video"
 
-#: inc/admin/blocks/insights.php:228
-msgid "Not found"
-msgstr "Hittades inte"
-
-#: inc/admin/blocks/insights.php:233
-msgid "No scrape."
-msgstr "Genomsök inte."
-
-#: inc/admin/blocks/insights.php:238
-msgid "No domain found."
-msgstr "Ingen domän hittades."
-
 #: inc/functions/options-google-analytics.php:37
 msgid "X"
 msgstr "X"
@@ -4365,7 +4302,7 @@ msgstr "Detta meddelande visas endast om funktionen att inhämta användarens sa
 msgid "Preview your Twitter card using the official validator"
 msgstr "Förhandsgranska ditt Twitter-kort med hjälp av den officiella validatorn"
 
-#: inc/admin/admin-pages/Tools.php:197
+#: inc/admin/admin-pages/Tools.php:100
 msgid "Import completed!"
 msgstr "Importen är klar!"
 
@@ -4422,11 +4359,11 @@ msgstr[1] "%s omdirigeringar inaktiverade."
 msgid "Disable redirection"
 msgstr "Inaktivera omdirigering"
 
-#: inc/admin/callbacks/Advanced.php:644
+#: inc/admin/callbacks/Advanced.php:651
 msgid "Add redirection enable column"
 msgstr "Lägg till kolumn ”aktivera omdirigering”"
 
-#: inc/admin/callbacks/Advanced.php:664
+#: inc/admin/callbacks/Advanced.php:671
 msgid "Add redirection URL column"
 msgstr "Lägg till kolumn för omdirigerings-URL"
 
@@ -4446,7 +4383,7 @@ msgstr "Beskrivning"
 msgid "Guide to enable a HTML Sitemap - new window"
 msgstr "Guide för aktivering av HTML-webbplatskarta – öppnas i nytt fönster"
 
-#: inc/admin/sections/Analytics.php:136
+#: inc/admin/sections/Analytics.php:141
 msgid "Guide to create custom dimensions in Google Analytics - new window"
 msgstr "Guide för att skapa anpassade dimensioner i Google Analytics – öppnas i nytt fönster"
 
@@ -4463,7 +4400,7 @@ msgstr "Guide för hur man aktiverar XML-webbplatskartor för bilder – öppnas
 msgid "How-to"
 msgstr "Hur-man-gör"
 
-#: inc/admin/callbacks/Advanced.php:58
+#: inc/admin/callbacks/Advanced.php:63
 msgid "Add TINYMCE editor to term description"
 msgstr "Lägg till redigeraren TINYMCE för termbeskrivning"
 
@@ -4522,7 +4459,7 @@ msgstr "Ägarskaps-ID för Facebook-länk"
 msgid "Canonical"
 msgstr "Kanonisk"
 
-#: inc/admin/callbacks/Advanced.php:684
+#: inc/admin/callbacks/Advanced.php:691
 msgid "Add canonical URL column"
 msgstr "Lägg till kolumn för kanonisk URL"
 
@@ -4538,10 +4475,6 @@ msgstr "Easy Digital Downloads"
 msgid "Improve Easy Digital Downloads SEO."
 msgstr "Förbättra SEO för Easy Digital Downloads."
 
-#: inc/admin/callbacks/Advanced.php:315
-msgid "Remove Really Simple Discovery meta tag in source code (eg:"
-msgstr "Ta bort meta-taggen för ”Really Simple Discovery” i HTML-koden (t.ex.:"
-
 #: inc/admin/settings/Advanced.php:112
 msgid "Remove RSD meta tag"
 msgstr "Ta bort meta-taggen för RSD"
@@ -4550,25 +4483,17 @@ msgstr "Ta bort meta-taggen för RSD"
 msgid "Remove Windows Live Writer meta tag"
 msgstr "Ta bort meta-taggen för Windows Live Writer"
 
-#: inc/admin/callbacks/Advanced.php:292
-msgid "Remove Windows Live Writer meta tag in source code (eg:"
-msgstr "Ta bort meta-taggen för Windows Live Writer i HTML-koden (t.ex.:"
-
 #: inc/admin/settings/Advanced.php:56
 msgid "Remove WordPress generator meta tag"
 msgstr "Ta bort meta-taggen generator = WordPress"
 
-#: inc/admin/callbacks/Advanced.php:169
+#: inc/admin/callbacks/Advanced.php:174
 msgid "Remove WordPress meta generator in source code"
 msgstr "Ta bort meta-taggen generator = WordPress i HTML-koden"
 
 #: inc/admin/settings/Advanced.php:96
 msgid "Remove WordPress shortlink meta tag"
 msgstr "Ta bort meta-taggen med kortlänk till WordPress"
-
-#: inc/admin/callbacks/Advanced.php:269
-msgid "Remove WordPress shortlink meta tag in source code (eg:"
-msgstr "Ta bort meta-taggen med kortlänk till WordPress i HTML-koden (t.ex.:"
 
 #: src/Services/ContentAnalysis/GetContent.php:247
 msgid "H3 (Heading 3)"
@@ -4605,10 +4530,6 @@ msgstr "<strong>nosnippet</strong> är avstängt. I sökresultaten kommer sökmo
 #: src/Services/ContentAnalysis/GetContent.php:752
 msgid "All alternative tags are filled in. Good work!"
 msgstr "Alla taggar för alt-text är ifyllda. Bra jobbat!"
-
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:48
-msgid "Analyze my content"
-msgstr "Analysera mitt innehåll"
 
 #: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:40
 msgid "Enter your target keywords"
@@ -4691,11 +4612,10 @@ msgstr "Inläggsinnehåll"
 msgid "Content analysis"
 msgstr "Innehållsanalys"
 
-#: inc/admin/callbacks/Advanced.php:704
+#: inc/admin/callbacks/Advanced.php:711
 msgid "Add target keyword column"
 msgstr "Lägg till kolumn för önskat nyckelord"
 
-#: inc/admin/admin-pages/Tools.php:60 inc/admin/admin-pages/Tools.php:106
 #: inc/admin/metaboxes/admin-metaboxes-form.php:104
 #: src/Helpers/ContentAnalysis.php:48
 msgid "Meta title"
@@ -4709,7 +4629,6 @@ msgstr "NoFollow-länkar"
 msgid "Target Kw"
 msgstr "Nyckelord"
 
-#: inc/admin/admin-pages/Tools.php:84 inc/admin/admin-pages/Tools.php:130
 #: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:36
 #: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:37
 #: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:41
@@ -4730,7 +4649,7 @@ msgstr "Ordräknare"
 msgid "unique words found."
 msgstr "unika ord hittades."
 
-#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:53
+#: inc/admin/metaboxes/admin-metaboxes-content-analysis-form.php:45
 #: inc/admin/page-builders/elementor/inc/controls/class-content-analysis-control.php:46
 msgid "Refresh analysis"
 msgstr "Uppdatera analysen"
@@ -4770,7 +4689,7 @@ msgstr "Inläggsetikett"
 msgid "Post category"
 msgstr "Inläggskategori"
 
-#: inc/admin/callbacks/Advanced.php:92 inc/admin/callbacks/Advanced.php:137
+#: inc/admin/callbacks/Advanced.php:97 inc/admin/callbacks/Advanced.php:142
 msgid "You have to flush your permalinks each time you change this setting."
 msgstr "Du måste rensa dina permalänkar varje gång du ändrar denna inställning."
 
@@ -4806,7 +4725,7 @@ msgstr "Kolla in vår webbplats"
 msgid "Read our FAQ"
 msgstr "Läs våra vanliga frågor och svar"
 
-#: inc/admin/callbacks/Advanced.php:470
+#: inc/admin/callbacks/Advanced.php:477
 msgid "Remove noindex item from Admin Bar in backend and frontend"
 msgstr "Ta bort noindex-objektet i adminfätet i back-end och front-end"
 
@@ -4814,7 +4733,7 @@ msgstr "Ta bort noindex-objektet i adminfätet i back-end och front-end"
 msgid "Your theme doesn't use <strong>add_theme_support('title-tag');</strong>"
 msgstr "Ditt tema använder inte <strong>add_theme_support('title-tag');</strong>"
 
-#: inc/admin/callbacks/Sitemaps.php:352
+#: inc/admin/callbacks/Sitemaps.php:341
 msgid "Disable date after each post, page, post type?"
 msgstr "Inaktivera datum efter varje inlägg, sida, inläggstyp?"
 
@@ -4854,13 +4773,9 @@ msgstr "Separera varje nyckelord med vertikalt streck ”|”"
 msgid "Track affiliate/outbound links"
 msgstr "Spåra agent-/utgående länkar"
 
-#: inc/admin/callbacks/Titles.php:74
+#: inc/admin/callbacks/Titles.php:92
 msgid "Looking to edit your blog page?"
 msgstr "Vill du redigera din bloggsida?"
-
-#: inc/admin/blocks/insights.php:70
-msgid "SEO Tools"
-msgstr "SEO-verktyg"
 
 #: inc/admin/sections/Analytics.php:17 inc/admin/sections/Analytics.php:90
 msgid "Events"
@@ -4878,15 +4793,11 @@ msgstr "Aktivera spårning av nedladdningar"
 msgid "Enable downloads tracking (eg: PDF, XLSX, DOCX...)"
 msgstr "Aktivera spårning av nedladdningar (t.ex. PDF, XLSX, DOCS m.fl.)"
 
-#: inc/admin/blocks/insights.php:263
-msgid "Number of websites on your server: "
-msgstr "Antal webbplatser på samma server: "
-
 #: inc/admin/sections/Sitemaps.php:96
 msgid "Your server uses NGINX. If XML Sitemaps doesn't work properly, you need to add this rule to your configuration:"
 msgstr "Din server använder NGINX. Om XML-webbplatskartor inte fungerar korrekt måste du lägga till följande regel i din konfiguration:"
 
-#: inc/admin/settings/Titles.php:299
+#: inc/admin/settings/Titles.php:307
 msgid "Indicate paginated content to Google"
 msgstr "Flagga sidindelat innehåll till Google"
 
@@ -4894,19 +4805,15 @@ msgstr "Flagga sidindelat innehåll till Google"
 msgid "Move SEO metabox's position"
 msgstr "Flytta SEO-metarutan till annan plats"
 
-#: inc/admin/blocks/insights.php:284
-msgid "Get list"
-msgstr "Hämta listan"
-
-#: inc/admin/callbacks/Advanced.php:488
+#: inc/admin/callbacks/Advanced.php:495
 msgid "High priority (top)"
 msgstr "Hög prioritet (längst upp)"
 
-#: inc/admin/callbacks/Titles.php:1173
+#: inc/admin/callbacks/Titles.php:1191
 msgid "Disable date archives"
 msgstr "Inaktivera datumarkiv"
 
-#: inc/admin/callbacks/Titles.php:1080
+#: inc/admin/callbacks/Titles.php:1098
 msgid "Disable author archives"
 msgstr "Inaktivera författararkiv"
 
@@ -4914,19 +4821,15 @@ msgstr "Inaktivera författararkiv"
 msgid "Configure default WordPress RSS."
 msgstr "Konfigurera standard-RSS för WordPress."
 
-#: inc/admin/blocks/insights.php:219
-msgid "Check websites setup on your server"
-msgstr "Kontrollera webbplatsens konfiguration på servern"
-
-#: inc/admin/callbacks/Advanced.php:498
+#: inc/admin/callbacks/Advanced.php:505
 msgid "Low priority"
 msgstr "Låg prioritet"
 
-#: inc/admin/callbacks/Titles.php:1503
+#: inc/admin/callbacks/Titles.php:1521
 msgid "Add rel next/prev link in head of paginated archive pages"
 msgstr "Lägg till länkar av typen rel next/rel prev i huvudet på sidindelade arkivsidor"
 
-#: inc/admin/callbacks/Advanced.php:493
+#: inc/admin/callbacks/Advanced.php:500
 msgid "Normal priority (default)"
 msgstr "Normal prioritet (standard)"
 
@@ -4934,17 +4837,9 @@ msgstr "Normal prioritet (standard)"
 msgid "pdf|docx|pptx|zip"
 msgstr "pdf|docx|pptx|zip"
 
-#: inc/admin/blocks/insights.php:256
-msgid "Last scrape: "
-msgstr "Senaste genomsökning: "
-
 #: inc/admin/callbacks/Analytics.php:856
 msgid "Separate each file type extensions with a pipe \"|\""
 msgstr "Separera varje filtypsändelse med vertikalt streck ”|”"
-
-#: inc/admin/blocks/insights.php:249
-msgid "Server IP Address: "
-msgstr "Serverns IP-adress: "
 
 #: inc/admin/sections/Analytics.php:93
 msgid "Track events in Google Analytics."
@@ -4962,7 +4857,7 @@ msgstr "Sidhastighet"
 msgid "Show Google Page Speed column in post types"
 msgstr "Visa kolumn för Google Page Speed i inläggstyper"
 
-#: inc/admin/callbacks/Advanced.php:785
+#: inc/admin/callbacks/Advanced.php:792
 msgid "Display Page Speed column to check performances"
 msgstr "Visa kolumnen Page Speed för att hålla koll på prestanda"
 
@@ -4995,11 +4890,11 @@ msgstr "När en Analytics-kund begär anonymisering av IP-adresser anonymiserar 
 msgid "Cross domain tracking makes it possible for Analytics to see sessions on two related sites (such as an ecommerce site and a separate shopping cart site) as a single session. This is sometimes called site linking."
 msgstr "Spårning mellan domäner gör det möjligt för Analytics att se sessioner på två webbplatser som hör samman (t.ex. en e-handelswebbplats och en separat webbplats för varukorgen) som en enda session. Ibland benämns detta sammankoppling av webbplatser (site linking)."
 
-#: inc/admin/blocks/notifications-center.php:687
+#: inc/admin/blocks/notifications-center.php:688
 msgid "Display more posts per page on homepage and archives"
 msgstr "Visa fler inlägg per sida på startsidan och på arkivsidor"
 
-#: inc/admin/callbacks/Advanced.php:764
+#: inc/admin/callbacks/Advanced.php:771
 msgid "Display total number of words in content"
 msgstr "Visa innehållets totala ordantal"
 
@@ -5055,7 +4950,7 @@ msgstr "Trasiga länkar"
 msgid "Scan your site to find SEO problems."
 msgstr "Sök igenom din webbplats efter problem med SEO."
 
-#: inc/admin/admin-pages/Advanced.php:23 inc/admin/sections/Advanced.php:40
+#: inc/admin/admin-pages/Advanced.php:23 inc/admin/sections/Advanced.php:49
 msgid "Security"
 msgstr "Säkerhet"
 
@@ -5107,15 +5002,15 @@ msgstr "Aktivera nofollow"
 msgid "Enable noindex"
 msgstr "Aktivera noindex"
 
-#: inc/admin/admin-pages/Tools.php:321
+#: inc/admin/admin-pages/Tools.php:225
 msgid "Reset notices"
 msgstr "Återställ notiser"
 
-#: inc/admin/admin-pages/Tools.php:312
+#: inc/admin/admin-pages/Tools.php:216
 msgid "Reset All Notices From Notifications Center"
 msgstr "Återställa alla meddelanden från aviseringscentralen"
 
-#: inc/admin/blocks/notifications-center.php:602
+#: inc/admin/blocks/notifications-center.php:603
 msgid "Your RSS feed shows full text!"
 msgstr "Ditt RSS-flöde visar fullständiga texter!"
 
@@ -5123,15 +5018,15 @@ msgstr "Ditt RSS-flöde visar fullständiga texter!"
 msgid "Hide Genesis SEO Metabox"
 msgstr "Dölj SEO meta-rutan för Genesis"
 
-#: inc/admin/blocks/notifications-center.php:670
+#: inc/admin/blocks/notifications-center.php:671
 msgid "Disable this!"
 msgstr "Inaktivera det!"
 
-#: inc/admin/blocks/notifications-center.php:663
+#: inc/admin/blocks/notifications-center.php:664
 msgid "Break comments into pages is ON!"
 msgstr "Siduppdelning av kommentarer är PÅ!"
 
-#: inc/admin/sections/Analytics.php:18 inc/admin/sections/Analytics.php:162
+#: inc/admin/sections/Analytics.php:18 inc/admin/sections/Analytics.php:167
 msgid "Stats in Dashboard"
 msgstr "Statistik i adminpanelen"
 
@@ -5139,11 +5034,11 @@ msgstr "Statistik i adminpanelen"
 msgid "Enable follow"
 msgstr "Ta bort nofollow"
 
-#: inc/admin/callbacks/Advanced.php:867
+#: inc/admin/callbacks/Advanced.php:874
 msgid "Remove Genesis SEO Metabox"
 msgstr "Ta bort SEO meta-rutan för Genesis"
 
-#: inc/admin/callbacks/Advanced.php:545
+#: inc/admin/callbacks/Advanced.php:552
 msgid "Hide Notifications Center in SEO Dashboard page"
 msgstr "Dölj aviseringscentralen på adminpanelens SEO-sida"
 
@@ -5151,11 +5046,11 @@ msgstr "Dölj aviseringscentralen på adminpanelens SEO-sida"
 msgid "Remove /category/ in URL"
 msgstr "Ta bort /category/ i URL:er"
 
-#: inc/admin/callbacks/Sitemaps.php:270
+#: inc/admin/callbacks/Sitemaps.php:259
 msgid "eg: 13, 8, 38"
 msgstr "t.ex.: 13, 8, 38"
 
-#: inc/admin/callbacks/Sitemaps.php:259
+#: inc/admin/callbacks/Sitemaps.php:248
 msgid "eg: 2, 28, 68"
 msgstr "t.ex.: 2, 28, 68"
 
@@ -5163,7 +5058,7 @@ msgstr "t.ex.: 2, 28, 68"
 msgid "Enable HTML Sitemap"
 msgstr "Aktivera HTML-webbplatskarta"
 
-#: inc/admin/callbacks/Sitemaps.php:259 inc/admin/settings/Sitemaps.php:98
+#: inc/admin/callbacks/Sitemaps.php:248 inc/admin/settings/Sitemaps.php:98
 msgid "Enter a post, page or custom post type ID(s) to display the sitemap"
 msgstr "Ange ett eller flera ID för inlägg, sida eller inläggstyp där webbplatskarta ska visas"
 
@@ -5256,28 +5151,28 @@ msgid "Add Dublin Core meta tags."
 msgstr "Lägg till meta-taggar för Dublin Core."
 
 #: inc/admin/blocks/notifications-center.php:249
-#: inc/admin/blocks/notifications-center.php:484
-#: inc/admin/blocks/notifications-center.php:504
-#: inc/admin/blocks/notifications-center.php:522
+#: inc/admin/blocks/notifications-center.php:485
+#: inc/admin/blocks/notifications-center.php:505
+#: inc/admin/blocks/notifications-center.php:523
 #: inc/admin/callbacks/Analytics.php:605 inc/admin/callbacks/Analytics.php:702
 #: inc/admin/callbacks/Analytics.php:730 inc/admin/callbacks/Analytics.php:759
 #: inc/admin/callbacks/Analytics.php:787
 msgid "Learn more"
 msgstr "Lär dig mer"
 
-#: inc/admin/blocks/notifications-center.php:789
+#: inc/admin/blocks/notifications-center.php:790
 msgid "You have to enter your licence key to get updates and support"
 msgstr "Du behöver ange din licensnyckel för att få uppdateringar och support"
 
-#: inc/admin/blocks/notifications-center.php:727
+#: inc/admin/blocks/notifications-center.php:728
 msgid "Do you have a Google My Business page? It's free!"
 msgstr "Har du skaffat en ”My Business”-sida hos Google? Det är gratis!"
 
-#: inc/admin/blocks/notifications-center.php:752
+#: inc/admin/blocks/notifications-center.php:753
 msgid "Add your site to Google. It's free!"
 msgstr "Lägg in din webbplats hos Google. Det är gratis!"
 
-#: inc/admin/blocks/notifications-center.php:759
+#: inc/admin/blocks/notifications-center.php:760
 msgid "Add your site to Search Console!"
 msgstr "Lägg till din webbplats i Search Console!"
 
@@ -5289,7 +5184,7 @@ msgstr "nofollow?"
 msgid "noindex?"
 msgstr "noindex?"
 
-#: inc/admin/blocks/notifications-center.php:734
+#: inc/admin/blocks/notifications-center.php:735
 msgid "Create your page now!"
 msgstr "Skapa din sida nu!"
 
@@ -5301,11 +5196,11 @@ msgstr "Visa kolumn för nofollow i inläggstyper"
 msgid "Show noindex column in post types"
 msgstr "Visa kolumn för noindex i inläggstyper"
 
-#: inc/admin/callbacks/Advanced.php:744
+#: inc/admin/callbacks/Advanced.php:751
 msgid "Display nofollow status"
 msgstr "Visa status för nofollow"
 
-#: inc/admin/callbacks/Advanced.php:724
+#: inc/admin/callbacks/Advanced.php:731
 msgid "Display noindex status"
 msgstr "Visa status för noindex"
 
@@ -5314,25 +5209,25 @@ msgstr "Visa status för noindex"
 msgid "Title tag"
 msgstr "Rubriketikett"
 
-#: inc/admin/callbacks/Titles.php:1201 src/Tags/SearchKeywords.php:15
+#: inc/admin/callbacks/Titles.php:1219 src/Tags/SearchKeywords.php:15
 msgid "Search Keywords"
 msgstr "Sök nyckelord"
 
-#: inc/admin/callbacks/Titles.php:718 src/Tags/TermDescription.php:15
+#: inc/admin/callbacks/Titles.php:736 src/Tags/TermDescription.php:15
 msgid "Term Description"
 msgstr "Termbeskrivning"
 
-#: inc/admin/callbacks/Titles.php:702 src/Tags/CategoryDescription.php:15
+#: inc/admin/callbacks/Titles.php:720 src/Tags/CategoryDescription.php:15
 msgid "Category Description"
 msgstr "Kategoribeskrivning"
 
-#: inc/admin/callbacks/Titles.php:629 src/Tags/CategoryTitle.php:15
+#: inc/admin/callbacks/Titles.php:647 src/Tags/CategoryTitle.php:15
 msgid "Category Title"
 msgstr "Kategorirubrik"
 
 #: inc/admin/admin-dyn-variables-helper.php:9
-#: inc/admin/callbacks/Sitemaps.php:315 inc/admin/callbacks/Titles.php:217
-#: inc/admin/callbacks/Titles.php:430
+#: inc/admin/callbacks/Sitemaps.php:304 inc/admin/callbacks/Titles.php:235
+#: inc/admin/callbacks/Titles.php:448
 #: inc/admin/metaboxes/admin-metaboxes-form.php:131
 #: inc/admin/page-builders/elementor/inc/controls/class-text-letter-counter-control.php:66
 #: src/Tags/PostTitle.php:17
@@ -5348,7 +5243,7 @@ msgid "Track Authors"
 msgstr "Spåra författare"
 
 #: inc/admin/admin-bar/admin-bar.php:166 inc/admin/blocks/features-list.php:172
-#: inc/admin/blocks/notifications-center.php:792
+#: inc/admin/blocks/notifications-center.php:793
 msgid "License"
 msgstr "Licens"
 
@@ -5364,7 +5259,7 @@ msgstr "Synliga sökvägar"
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: inc/admin/blocks/notifications-center.php:314
+#: inc/admin/blocks/notifications-center.php:315
 msgid "Migrate!"
 msgstr "Migrera!"
 
@@ -5376,16 +5271,16 @@ msgstr "Migrera nu"
 msgid "Appearance"
 msgstr "Utseende"
 
-#: inc/admin/sections/Analytics.php:121
+#: inc/admin/sections/Analytics.php:115 inc/admin/sections/Analytics.php:126
 msgid "Custom Dimensions"
 msgstr "Anpassade dimensioner"
 
 #: inc/admin/sections/Analytics.php:16 inc/admin/sections/Analytics.php:54
-#: inc/admin/sections/Analytics.php:161 inc/admin/sections/Analytics.php:171
+#: inc/admin/sections/Analytics.php:166 inc/admin/sections/Analytics.php:176
 msgid "Tracking"
 msgstr "Spårning"
 
-#: inc/admin/admin-pages/Analytics.php:21 inc/admin/blocks/insights.php:68
+#: inc/admin/admin-pages/Analytics.php:21 inc/admin/blocks/insights.php:53
 #: inc/admin/sections/Analytics.php:10
 msgid "Google Analytics"
 msgstr "Google Analytics"
@@ -5450,7 +5345,7 @@ msgstr "Ange ditt spårnings-ID (UA-XXXXXX-XX)"
 msgid "Custom Dimension #%d"
 msgstr "Anpassad dimension #%d"
 
-#: inc/admin/callbacks/Titles.php:1378
+#: inc/admin/callbacks/Titles.php:1396
 msgid "Do not use Open Directory project metadata for titles or excerpts for all pages."
 msgstr "Använd inte metadata från Open Directory-projektet för att skapa rubriker eller utdrag för någon sida."
 
@@ -5458,19 +5353,19 @@ msgstr "Använd inte metadata från Open Directory-projektet för att skapa rubr
 msgid "Archive date"
 msgstr "Arkivdatum"
 
-#: inc/admin/blocks/notifications-center.php:477
+#: inc/admin/blocks/notifications-center.php:478
 msgid "Your site doesn't use an SSL certificate!"
 msgstr "Din webbplats använder inte något SSL-certifikat!"
 
-#: inc/admin/callbacks/Titles.php:710 src/Tags/TagDescription.php:15
+#: inc/admin/callbacks/Titles.php:728 src/Tags/TagDescription.php:15
 msgid "Tag Description"
 msgstr "Etikettbeskrivning"
 
-#: inc/admin/callbacks/Titles.php:637 src/Tags/TagTitle.php:15
+#: inc/admin/callbacks/Titles.php:655 src/Tags/TagTitle.php:15
 msgid "Tag Title"
 msgstr "Etikettrubrik"
 
-#: inc/admin/callbacks/Titles.php:1352
+#: inc/admin/callbacks/Titles.php:1370
 msgid "Do not follow links for all pages."
 msgstr "Följ inte länkar på någon sida."
 
@@ -5486,28 +5381,28 @@ msgstr "Google Page Speed"
 #: inc/admin/blocks/notifications-center.php:219
 #: inc/admin/blocks/notifications-center.php:244
 #: inc/admin/blocks/notifications-center.php:273
-#: inc/admin/blocks/notifications-center.php:310
-#: inc/admin/blocks/notifications-center.php:337
-#: inc/admin/blocks/notifications-center.php:378
-#: inc/admin/blocks/notifications-center.php:398
-#: inc/admin/blocks/notifications-center.php:417
-#: inc/admin/blocks/notifications-center.php:436
-#: inc/admin/blocks/notifications-center.php:455
-#: inc/admin/blocks/notifications-center.php:499
-#: inc/admin/blocks/notifications-center.php:517
-#: inc/admin/blocks/notifications-center.php:546
-#: inc/admin/blocks/notifications-center.php:565
-#: inc/admin/blocks/notifications-center.php:582
-#: inc/admin/blocks/notifications-center.php:666
-#: inc/admin/blocks/notifications-center.php:730
-#: inc/admin/blocks/notifications-center.php:755
-#: inc/admin/blocks/notifications-center.php:773
-#: inc/admin/blocks/notifications-center.php:862
-#: inc/admin/blocks/notifications-center.php:893
+#: inc/admin/blocks/notifications-center.php:311
+#: inc/admin/blocks/notifications-center.php:338
+#: inc/admin/blocks/notifications-center.php:379
+#: inc/admin/blocks/notifications-center.php:399
+#: inc/admin/blocks/notifications-center.php:418
+#: inc/admin/blocks/notifications-center.php:437
+#: inc/admin/blocks/notifications-center.php:456
+#: inc/admin/blocks/notifications-center.php:500
+#: inc/admin/blocks/notifications-center.php:518
+#: inc/admin/blocks/notifications-center.php:547
+#: inc/admin/blocks/notifications-center.php:566
+#: inc/admin/blocks/notifications-center.php:583
+#: inc/admin/blocks/notifications-center.php:667
+#: inc/admin/blocks/notifications-center.php:731
+#: inc/admin/blocks/notifications-center.php:756
+#: inc/admin/blocks/notifications-center.php:774
+#: inc/admin/blocks/notifications-center.php:863
+#: inc/admin/blocks/notifications-center.php:894
 msgid "High impact"
 msgstr "Hög påverkan"
 
-#: inc/admin/callbacks/Titles.php:1404
+#: inc/admin/callbacks/Titles.php:1422
 msgid "Do not index images from the entire site."
 msgstr "Indexera inte bilder någonstans på hela webbplatsen."
 
@@ -5523,27 +5418,27 @@ msgstr "Klicka för att aktivera denna funktion"
 msgid "Click to disable this feature"
 msgstr "Klicka för att inaktivera denna funktion"
 
-#: inc/admin/sections/Analytics.php:124
+#: inc/admin/sections/Analytics.php:129
 msgid "Configure your Google Analytics custom dimensions."
 msgstr "Konfigurera dina anpassade dimensioner i Google Analytics."
 
-#: inc/admin/blocks/notifications-center.php:480
+#: inc/admin/blocks/notifications-center.php:481
 msgid "Low impact"
 msgstr "Låg påverkan"
 
-#: inc/admin/callbacks/Advanced.php:624
+#: inc/admin/callbacks/Advanced.php:631
 msgid "Add meta description column"
 msgstr "Lägg till kolumn för meta-beskrivning"
 
-#: inc/admin/callbacks/Advanced.php:604
+#: inc/admin/callbacks/Advanced.php:611
 msgid "Add title column"
 msgstr "Lägg till kolumn för rubrik"
 
 #: inc/admin/blocks/notifications-center.php:158
-#: inc/admin/blocks/notifications-center.php:605
-#: inc/admin/blocks/notifications-center.php:642
-#: inc/admin/blocks/notifications-center.php:690
-#: inc/admin/blocks/notifications-center.php:708
+#: inc/admin/blocks/notifications-center.php:606
+#: inc/admin/blocks/notifications-center.php:643
+#: inc/admin/blocks/notifications-center.php:691
+#: inc/admin/blocks/notifications-center.php:709
 msgid "Medium impact"
 msgstr "Medelstor påverkan"
 
@@ -5560,7 +5455,7 @@ msgstr "Meta Robots-taggar (noindex, nofollow osv.)"
 msgid "Meta Desc."
 msgstr "Metabeskr."
 
-#: inc/admin/callbacks/Titles.php:870
+#: inc/admin/callbacks/Titles.php:888
 msgid "Post Type Archive Name"
 msgstr "Namn på inläggstypens arkiv"
 
@@ -5597,7 +5492,7 @@ msgstr "Spåra inloggade användare"
 msgid "Track Tags"
 msgstr "Spårningstaggar"
 
-#: inc/admin/callbacks/Titles.php:645
+#: inc/admin/callbacks/Titles.php:663
 #: inc/admin/metaboxes/admin-metaboxes-form.php:128 src/Tags/TermTitle.php:15
 msgid "Term Title"
 msgstr "Termrubrik"
@@ -5610,15 +5505,15 @@ msgstr "Twitter-taggar (rubrik, beskrivning och miniatyrbild)"
 msgid "Exclude this post from Google News Sitemap?"
 msgstr "Vill du utesluta detta inlägg i webbplatskartan för Google Nyheter?"
 
-#: inc/admin/callbacks/Titles.php:1455
+#: inc/admin/callbacks/Titles.php:1473
 msgid "Do not display a description in the Google search results for all pages."
 msgstr "Visa ingen beskrivning i Googles sökresultat för någon sida."
 
-#: inc/admin/callbacks/Titles.php:1429
+#: inc/admin/callbacks/Titles.php:1447
 msgid "Do not display a \"Cached\" link in the Google search results."
 msgstr "Visa ingen länk till ”cachelagrad version” i Googles sökresultat."
 
-#: inc/admin/callbacks/Titles.php:1322
+#: inc/admin/callbacks/Titles.php:1340
 msgid "Do not display all pages of the site in Google search results and do not display \"Cached\" links in search results."
 msgstr "Visa inte alla webbplatsens sidor i Google-sökningar och visa inte länkar till cachelagrad version i sökresultaten."
 
@@ -5658,7 +5553,7 @@ msgstr "Övervaka 404-fel och skapa omdirigeringar av typerna 301, 302 och 307."
 msgid "Edit your robots.txt file."
 msgstr "Redigera filen robots.txt."
 
-#: seopress.php:616
+#: seopress.php:615
 msgid "GO PRO!"
 msgstr "SKAFFA PRO!"
 
@@ -5666,11 +5561,11 @@ msgstr "SKAFFA PRO!"
 msgid "Ping Google manually"
 msgstr "Avisera Google manuellt"
 
-#: inc/admin/blocks/notifications-center.php:562
+#: inc/admin/blocks/notifications-center.php:563
 msgid "Your site title is empty!"
 msgstr "Din rubrik för webbplatsen är tom!"
 
-#: inc/admin/blocks/notifications-center.php:579
+#: inc/admin/blocks/notifications-center.php:580
 msgid "Your permalinks are not SEO Friendly! Enable pretty permalinks to fix this."
 msgstr "Dina permalänkar är inte SEO-anpassade! Åtgärda detta genom att aktivera snygga permalänkar."
 
@@ -5682,64 +5577,64 @@ msgstr "Töm permalänkar"
 #: inc/admin/blocks/notifications-center.php:198
 #: inc/admin/blocks/notifications-center.php:224
 #: inc/admin/blocks/notifications-center.php:277
-#: inc/admin/blocks/notifications-center.php:341
-#: inc/admin/blocks/notifications-center.php:382
-#: inc/admin/blocks/notifications-center.php:402
-#: inc/admin/blocks/notifications-center.php:421
-#: inc/admin/blocks/notifications-center.php:440
-#: inc/admin/blocks/notifications-center.php:459
-#: inc/admin/blocks/notifications-center.php:550
-#: inc/admin/blocks/notifications-center.php:569
-#: inc/admin/blocks/notifications-center.php:586
-#: inc/admin/blocks/notifications-center.php:609
-#: inc/admin/blocks/notifications-center.php:646
-#: inc/admin/blocks/notifications-center.php:694
-#: inc/admin/blocks/notifications-center.php:712
-#: inc/admin/blocks/notifications-center.php:777
-#: inc/admin/blocks/notifications-center.php:796
-#: inc/admin/blocks/notifications-center.php:897
+#: inc/admin/blocks/notifications-center.php:342
+#: inc/admin/blocks/notifications-center.php:383
+#: inc/admin/blocks/notifications-center.php:403
+#: inc/admin/blocks/notifications-center.php:422
+#: inc/admin/blocks/notifications-center.php:441
+#: inc/admin/blocks/notifications-center.php:460
+#: inc/admin/blocks/notifications-center.php:551
+#: inc/admin/blocks/notifications-center.php:570
+#: inc/admin/blocks/notifications-center.php:587
+#: inc/admin/blocks/notifications-center.php:610
+#: inc/admin/blocks/notifications-center.php:647
+#: inc/admin/blocks/notifications-center.php:695
+#: inc/admin/blocks/notifications-center.php:713
+#: inc/admin/blocks/notifications-center.php:778
+#: inc/admin/blocks/notifications-center.php:797
+#: inc/admin/blocks/notifications-center.php:898
 #: inc/admin/sections/InstantIndexing.php:43
 #: src/Services/ContentAnalysis/RenderGSCInspectUrl.php:30
 msgid "Fix this!"
 msgstr "Åtgärda detta!"
 
-#: inc/admin/callbacks/Advanced.php:350
+#: inc/admin/callbacks/Advanced.php:357
 msgid "Enter Bing meta value site verification"
 msgstr "Ange Bings metavärde för webbplatsverifiering"
 
-#: inc/admin/callbacks/Advanced.php:335
+#: inc/admin/callbacks/Advanced.php:342
 msgid "Enter Google meta value site verification"
 msgstr "Ange Googles metavärde för webbplatsverifiering"
 
-#: inc/admin/callbacks/Advanced.php:365
+#: inc/admin/callbacks/Advanced.php:372
 msgid "Enter Pinterest meta value site verification"
 msgstr "Ange metavärde för webbplatsverifiering med Pinterest"
 
-#: inc/admin/callbacks/Advanced.php:375
+#: inc/admin/callbacks/Advanced.php:382
 msgid "Enter Yandex meta value site verification"
 msgstr "Ange metavärde för webbplatsverifiering med Yandex"
 
-#: inc/admin/blocks/notifications-center.php:543
+#: inc/admin/blocks/notifications-center.php:544
 msgid "Your site is not visible to Search Engines!"
 msgstr "Din webbplats är osynlig för sökmotorer!"
 
-#: inc/admin/blocks/notifications-center.php:705
+#: inc/admin/blocks/notifications-center.php:706
 msgid "You don't have an XML Sitemap!"
 msgstr "Du har ingen XML-webbplatskarta!"
 
-#: inc/admin/callbacks/Advanced.php:350 inc/admin/settings/Advanced.php:128
+#: inc/admin/callbacks/Advanced.php:357 inc/admin/settings/Advanced.php:128
 msgid "Bing site verification"
 msgstr "Webbplatsverifiering för Bing"
 
-#: inc/admin/callbacks/Advanced.php:335 inc/admin/settings/Advanced.php:120
+#: inc/admin/callbacks/Advanced.php:342 inc/admin/settings/Advanced.php:120
 msgid "Google site verification"
 msgstr "Webbplatsverifiering för Google"
 
-#: inc/admin/callbacks/Advanced.php:365 inc/admin/settings/Advanced.php:136
+#: inc/admin/callbacks/Advanced.php:372 inc/admin/settings/Advanced.php:136
 msgid "Pinterest site verification"
 msgstr "Webbplatsverifiering för Pinterest"
 
-#: inc/admin/callbacks/Advanced.php:375 inc/admin/settings/Advanced.php:144
+#: inc/admin/callbacks/Advanced.php:382 inc/admin/settings/Advanced.php:144
 msgid "Yandex site verification"
 msgstr "Webbplatsverifiering för Yandex"
 
@@ -5764,7 +5659,7 @@ msgid "Category title"
 msgstr "Kategorirubrik"
 
 #: inc/admin/admin-dyn-variables-helper.php:16
-#: inc/admin/callbacks/Titles.php:1014
+#: inc/admin/callbacks/Titles.php:1032
 msgid "Post author"
 msgstr "Inläggsförfattare"
 
@@ -5773,20 +5668,20 @@ msgid "Post date"
 msgstr "Inläggsdatum"
 
 #: inc/admin/admin-dyn-variables-helper.php:10
-#: inc/admin/callbacks/Titles.php:270
+#: inc/admin/callbacks/Titles.php:288
 msgid "Post excerpt"
 msgstr "Inläggsutdrag"
 
 #: inc/admin/admin-dyn-variables-helper.php:8 inc/admin/callbacks/Titles.php:47
-#: inc/admin/callbacks/Titles.php:65
+#: inc/admin/callbacks/Titles.php:83
 msgid "Tagline"
 msgstr "Slogan"
 
 #: inc/admin/admin-dyn-variables-helper.php:7 inc/admin/callbacks/Titles.php:37
-#: inc/admin/callbacks/Titles.php:231 inc/admin/callbacks/Titles.php:439
-#: inc/admin/callbacks/Titles.php:660 inc/admin/callbacks/Titles.php:880
-#: inc/admin/callbacks/Titles.php:1023 inc/admin/callbacks/Titles.php:1116
-#: inc/admin/callbacks/Titles.php:1211 inc/admin/callbacks/Titles.php:1275
+#: inc/admin/callbacks/Titles.php:249 inc/admin/callbacks/Titles.php:457
+#: inc/admin/callbacks/Titles.php:678 inc/admin/callbacks/Titles.php:898
+#: inc/admin/callbacks/Titles.php:1041 inc/admin/callbacks/Titles.php:1134
+#: inc/admin/callbacks/Titles.php:1229 inc/admin/callbacks/Titles.php:1293
 #: inc/admin/metaboxes/admin-metaboxes-form.php:134
 #: inc/admin/page-builders/elementor/inc/controls/class-text-letter-counter-control.php:68
 #: src/Tags/SiteTitle.php:22
@@ -5818,7 +5713,7 @@ msgstr "Testa din URL"
 msgid "Enable redirection?"
 msgstr "Aktivera omdirigering?"
 
-#: inc/admin/admin-bar/admin-bar.php:187 inc/admin/admin-pages/Tools.php:24
+#: inc/admin/admin-bar/admin-bar.php:187 inc/admin/admin-pages/Tools.php:23
 #: inc/admin/blocks/features-list.php:65
 msgid "Redirections"
 msgstr "Omdirigeringar"
@@ -5840,27 +5735,27 @@ msgid "Default value: "
 msgstr "Standardvärde: "
 
 #: inc/admin/admin-pages/Social.php:19 inc/admin/sections/Social.php:34
-#: inc/admin/wizard/admin-wizard.php:180 inc/admin/wizard/admin-wizard.php:190
+#: inc/admin/wizard/admin-wizard.php:184 inc/admin/wizard/admin-wizard.php:194
 msgid "Your social accounts"
 msgstr "Dina sociala konton"
 
 #: inc/admin/admin-pages/Titles.php:22 inc/admin/sections/Titles.php:93
-#: inc/admin/wizard/admin-wizard.php:201 inc/admin/wizard/admin-wizard.php:212
-#: inc/admin/wizard/admin-wizard.php:223
+#: inc/admin/wizard/admin-wizard.php:205 inc/admin/wizard/admin-wizard.php:216
+#: inc/admin/wizard/admin-wizard.php:227
 msgid "Archives"
 msgstr "Arkiv"
 
 #: inc/admin/admin-pages/InstantIndexing.php:24
 #: inc/admin/admin-pages/Sitemaps.php:18 inc/admin/sections/Analytics.php:15
 #: inc/admin/sections/Analytics.php:25 inc/admin/sections/Sitemaps.php:10
-#: inc/admin/wizard/admin-wizard.php:179 inc/admin/wizard/admin-wizard.php:189
+#: inc/admin/wizard/admin-wizard.php:183 inc/admin/wizard/admin-wizard.php:193
 msgid "General"
 msgstr "Allmänt"
 
 #: inc/admin/admin-pages/Sitemaps.php:20 inc/admin/admin-pages/Titles.php:23
 #: inc/admin/sections/Sitemaps.php:184 inc/admin/sections/Titles.php:78
-#: inc/admin/wizard/admin-wizard.php:202 inc/admin/wizard/admin-wizard.php:213
-#: inc/admin/wizard/admin-wizard.php:224
+#: inc/admin/wizard/admin-wizard.php:206 inc/admin/wizard/admin-wizard.php:217
+#: inc/admin/wizard/admin-wizard.php:228
 msgid "Taxonomies"
 msgstr "Taxonomier"
 
@@ -5890,7 +5785,7 @@ msgstr "Twitter-rubrik"
 #: inc/admin/metaboxes/admin-metaboxes-form.php:430
 #: inc/admin/metaboxes/admin-metaboxes-form.php:550
 #: inc/admin/metaboxes/admin-metaboxes-form.php:915
-#: inc/admin/wizard/admin-wizard.php:750
+#: inc/admin/wizard/admin-wizard.php:764
 msgid "Upload an Image"
 msgstr "Ladda upp en bild"
 
@@ -5928,7 +5823,7 @@ msgstr "Social"
 #: inc/admin/admin-pages/Analytics.php:24 inc/admin/admin-pages/Titles.php:24
 #: inc/admin/admin.php:105 inc/admin/metaboxes/admin-metaboxes-form.php:55
 #: inc/admin/sections/Advanced.php:10 inc/admin/sections/Titles.php:63
-#: inc/admin/wizard/admin-wizard.php:234 inc/admin/wizard/admin-wizard.php:244
+#: inc/admin/wizard/admin-wizard.php:238 inc/admin/wizard/admin-wizard.php:248
 msgid "Advanced"
 msgstr "Avancerat"
 
@@ -5940,12 +5835,11 @@ msgstr "Rubrikinställningar"
 msgid "SEOPress"
 msgstr "SEOPress"
 
-#: inc/admin/admin-pages/Tools.php:63 inc/admin/admin-pages/Tools.php:109
-#: inc/admin/callbacks/Titles.php:60
+#: inc/admin/callbacks/Titles.php:78
 #: inc/admin/metaboxes/admin-metaboxes-form.php:143
 #: inc/admin/metaboxes/admin-metaboxes-form.php:144
 #: inc/admin/metaboxes/admin-metaboxes-form.php:150
-#: inc/admin/migrate/MigrationTools.php:19 inc/admin/settings/Titles.php:32
+#: inc/admin/migrate/MigrationTools.php:19 inc/admin/settings/Titles.php:40
 #: inc/functions/options-advanced-admin.php:794
 #: src/Helpers/ContentAnalysis.php:53
 msgid "Meta description"
@@ -5957,8 +5851,8 @@ msgid "https://www.seopress.org/"
 msgstr "https://www.seopress.org/"
 
 #: inc/admin/admin-pages/InstantIndexing.php:25
-#: inc/admin/admin-pages/Tools.php:22 inc/admin/admin-pages/Tools.php:155
-#: inc/admin/sections/InstantIndexing.php:54 seopress.php:612
+#: inc/admin/admin-pages/Tools.php:21 inc/admin/admin-pages/Tools.php:58
+#: inc/admin/sections/InstantIndexing.php:54 seopress.php:611
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -5979,7 +5873,7 @@ msgstr "Ladda upp en giltig .json-fil"
 msgid "Large"
 msgstr "Stor"
 
-#: inc/admin/callbacks/Social.php:549 seopress.php:406
+#: inc/admin/callbacks/Social.php:549 seopress.php:405
 msgid "Default"
 msgstr "Standard"
 
@@ -5987,51 +5881,51 @@ msgstr "Standard"
 msgid "Select your logo"
 msgstr "Välj din logga"
 
-#: inc/admin/callbacks/Social.php:25 inc/admin/wizard/admin-wizard.php:729
+#: inc/admin/callbacks/Social.php:25 inc/admin/wizard/admin-wizard.php:743
 msgid "Organization"
 msgstr "Organisation"
 
-#: inc/admin/callbacks/Social.php:20 inc/admin/wizard/admin-wizard.php:724
+#: inc/admin/callbacks/Social.php:20 inc/admin/wizard/admin-wizard.php:738
 msgid "Person"
 msgstr "Person"
 
-#: inc/admin/callbacks/Sitemaps.php:183 inc/admin/callbacks/Sitemaps.php:241
+#: inc/admin/callbacks/Sitemaps.php:177 inc/admin/callbacks/Sitemaps.php:230
 msgid "Include"
 msgstr "Inkludera"
 
-#: inc/admin/callbacks/Titles.php:1092 inc/admin/callbacks/Titles.php:1108
+#: inc/admin/callbacks/Titles.php:1110 inc/admin/callbacks/Titles.php:1126
 msgid "Date archives"
 msgstr "Datumarkiv"
 
-#: inc/admin/callbacks/Titles.php:998
+#: inc/admin/callbacks/Titles.php:1016
 msgid "Author archives"
 msgstr "Författararkiv"
 
 #: inc/admin/callbacks/Social.php:255 inc/admin/settings/Social.php:113
-#: inc/admin/wizard/admin-wizard.php:892
+#: inc/admin/wizard/admin-wizard.php:907
 #: src/Tags/Schema/SocialAccount/Linkedin.php:15
 msgid "LinkedIn URL"
 msgstr "LinkedIn-URL"
 
 #: inc/admin/callbacks/Social.php:244 inc/admin/settings/Social.php:105
-#: inc/admin/wizard/admin-wizard.php:885
+#: inc/admin/wizard/admin-wizard.php:900
 #: src/Tags/Schema/SocialAccount/Youtube.php:15
 msgid "YouTube URL"
 msgstr "YouTube-URL"
 
 #: inc/admin/callbacks/Social.php:233 inc/admin/settings/Social.php:97
-#: inc/admin/wizard/admin-wizard.php:878
+#: inc/admin/wizard/admin-wizard.php:893
 #: src/Tags/Schema/SocialAccount/Instagram.php:15
 msgid "Instagram URL"
 msgstr "Instagram-URL"
 
 #: inc/admin/callbacks/Social.php:222 inc/admin/settings/Social.php:89
-#: inc/admin/wizard/admin-wizard.php:871
+#: inc/admin/wizard/admin-wizard.php:886
 #: src/Tags/Schema/SocialAccount/Pinterest.php:15
 msgid "Pinterest URL"
 msgstr "Pinterest-URL"
 
-#: inc/admin/settings/Social.php:81 inc/admin/wizard/admin-wizard.php:864
+#: inc/admin/settings/Social.php:81 inc/admin/wizard/admin-wizard.php:879
 msgid "Twitter Username"
 msgstr "Twitter-användarnamn"
 
@@ -6039,37 +5933,37 @@ msgstr "Twitter-användarnamn"
 msgid "Site title"
 msgstr "Webbplatsrubrik"
 
-#: inc/admin/settings/Social.php:16 inc/admin/wizard/admin-wizard.php:712
+#: inc/admin/settings/Social.php:16 inc/admin/wizard/admin-wizard.php:726
 msgid "Person or organization"
 msgstr "Person eller organisation"
 
-#: inc/admin/wizard/admin-wizard.php:1707
+#: inc/admin/wizard/admin-wizard.php:1722
 msgid "Knowledge base"
 msgstr "Kunskapsbas"
 
-#: inc/admin/wizard/admin-wizard.php:1673
+#: inc/admin/wizard/admin-wizard.php:1688
 msgid "Follow us on Twitter"
 msgstr "Följ oss på Twitter"
 
 #: inc/admin/admin-bar/admin-bar.php:172
-#: inc/admin/blocks/notifications-center.php:815
-#: inc/admin/wizard/admin-wizard.php:261
+#: inc/admin/blocks/notifications-center.php:816
+#: inc/admin/wizard/admin-wizard.php:265
 msgid "PRO"
 msgstr "PRO"
 
-#: inc/admin/admin-pages/Tools.php:339
+#: inc/admin/admin-pages/Tools.php:243
 msgid "Reset settings"
 msgstr "Återställ inställningar"
 
-#: inc/admin/admin-pages/Tools.php:328
+#: inc/admin/admin-pages/Tools.php:232
 msgid "Reset All Settings"
 msgstr "Återställ alla inställningar"
 
-#: inc/admin/admin-pages/Tools.php:193
+#: inc/admin/admin-pages/Tools.php:96
 msgid "Import"
 msgstr "Importera"
 
-#: inc/admin/admin-pages/Tools.php:138 inc/admin/admin-pages/Tools.php:170
+#: inc/admin/admin-pages/Tools.php:73
 msgid "Export"
 msgstr "Exportera"
 
@@ -6079,11 +5973,11 @@ msgstr "Exportera"
 msgid " (maximum recommended limit)"
 msgstr " (rekommenderade maxgräns)"
 
-#: inc/admin/admin-pages/Tools.php:332
+#: inc/admin/admin-pages/Tools.php:236
 msgid "<strong>WARNING:</strong> Delete all options related to this plugin in your database."
 msgstr "<strong>VARNING:</strong> Ta bort alla inställningar för detta tillägg ur databasen."
 
-#: inc/admin/callbacks/Titles.php:1259
+#: inc/admin/callbacks/Titles.php:1277
 msgid "404 archives"
 msgstr "404-arkiv"
 
@@ -6151,16 +6045,16 @@ msgid "Image size for Twitter Summary card"
 msgstr "Bildstorlek för Twitter sammanfattningskort"
 
 #: inc/admin/callbacks/Social.php:56 inc/admin/settings/Social.php:32
-#: inc/admin/wizard/admin-wizard.php:745
+#: inc/admin/wizard/admin-wizard.php:759
 msgid "Your photo/organization logo"
 msgstr "Ditt foto/organisationens logga"
 
 #: inc/admin/callbacks/Social.php:40 inc/admin/settings/Social.php:24
-#: inc/admin/wizard/admin-wizard.php:738
+#: inc/admin/wizard/admin-wizard.php:752
 msgid "Your name/organization"
 msgstr "Ditt namn/din organisation"
 
-#: inc/admin/admin-pages/Tools.php:162
+#: inc/admin/admin-pages/Tools.php:65
 msgid "Export the plugin settings for this site as a .json file. This allows you to easily import the configuration into another site."
 msgstr "Exportera tilläggets inställningar som en .JSON-fil. Detta gör att du enkelt kan importera konfigurationen på en annan webbplats."
 
@@ -6180,7 +6074,7 @@ msgstr "Förhandsvisning av utseende i Googles sökresultat"
 msgid "Facebook App ID"
 msgstr "ID för din Facebook-app"
 
-#: inc/admin/admin-pages/Tools.php:181
+#: inc/admin/admin-pages/Tools.php:84
 msgid "Import the plugin settings from a .json file. This file can be obtained by exporting the settings on another site using the form above."
 msgstr "Importera inställningarna för tillägget från en .JSON-fil. Filen kan erhållas genom att exportera inställningarna från en annan webbplats med formuläret ovan."
 
@@ -6190,12 +6084,11 @@ msgstr "Importera och/eller exportera inställningar för tillägget mellan olik
 
 #: inc/admin/admin-pages/Sitemaps.php:19 inc/admin/admin-pages/Titles.php:21
 #: inc/admin/sections/Sitemaps.php:169 inc/admin/sections/Titles.php:48
-#: inc/admin/wizard/admin-wizard.php:200 inc/admin/wizard/admin-wizard.php:211
-#: inc/admin/wizard/admin-wizard.php:222
+#: inc/admin/wizard/admin-wizard.php:204 inc/admin/wizard/admin-wizard.php:215
+#: inc/admin/wizard/admin-wizard.php:226
 msgid "Post Types"
 msgstr "Inläggstyper"
 
-#: inc/admin/admin-pages/Tools.php:81 inc/admin/admin-pages/Tools.php:127
 #: inc/admin/metaboxes/admin-metaboxes-form.php:321
 #: inc/admin/metaboxes/admin-metaboxes-form.php:322
 #: inc/admin/metaboxes/admin-metaboxes-form.php:328
@@ -6225,17 +6118,17 @@ msgstr "Kryssa i för att INKLUDERA inläggstyper"
 msgid "Check to INCLUDE Taxonomies"
 msgstr "Kryssa i för att INKLUDERA taxonomier"
 
-#: inc/admin/callbacks/Titles.php:241 inc/admin/callbacks/Titles.php:452
-#: inc/admin/callbacks/Titles.php:671 inc/admin/callbacks/Titles.php:890
-#: inc/admin/callbacks/Titles.php:1034 inc/admin/callbacks/Titles.php:1127
-#: inc/admin/callbacks/Titles.php:1221 inc/admin/callbacks/Titles.php:1291
+#: inc/admin/callbacks/Titles.php:259 inc/admin/callbacks/Titles.php:470
+#: inc/admin/callbacks/Titles.php:689 inc/admin/callbacks/Titles.php:908
+#: inc/admin/callbacks/Titles.php:1052 inc/admin/callbacks/Titles.php:1145
+#: inc/admin/callbacks/Titles.php:1239 inc/admin/callbacks/Titles.php:1309
 msgid "Meta description template"
 msgstr "Mall för metabeskrivning"
 
-#: inc/admin/callbacks/Titles.php:170 inc/admin/callbacks/Titles.php:418
-#: inc/admin/callbacks/Titles.php:583 inc/admin/callbacks/Titles.php:823
-#: inc/admin/callbacks/Titles.php:1002 inc/admin/callbacks/Titles.php:1096
-#: inc/admin/callbacks/Titles.php:1189 inc/admin/callbacks/Titles.php:1263
+#: inc/admin/callbacks/Titles.php:188 inc/admin/callbacks/Titles.php:436
+#: inc/admin/callbacks/Titles.php:601 inc/admin/callbacks/Titles.php:841
+#: inc/admin/callbacks/Titles.php:1020 inc/admin/callbacks/Titles.php:1114
+#: inc/admin/callbacks/Titles.php:1207 inc/admin/callbacks/Titles.php:1281
 msgid "Title template"
 msgstr "Mall för rubrik"
 
@@ -6256,27 +6149,27 @@ msgstr "Miniatyrbild för Facebook"
 msgid "Twitter Thumbnail"
 msgstr "Miniatyrbild för Twitter"
 
-#: inc/admin/callbacks/Titles.php:1425 inc/admin/settings/Titles.php:275
+#: inc/admin/callbacks/Titles.php:1443 inc/admin/settings/Titles.php:283
 msgid "noarchive"
 msgstr "noarchive"
 
-#: inc/admin/callbacks/Titles.php:1348 inc/admin/settings/Titles.php:251
+#: inc/admin/callbacks/Titles.php:1366 inc/admin/settings/Titles.php:259
 msgid "nofollow"
 msgstr "nofollow"
 
-#: inc/admin/callbacks/Titles.php:1400 inc/admin/settings/Titles.php:267
+#: inc/admin/callbacks/Titles.php:1418 inc/admin/settings/Titles.php:275
 msgid "noimageindex"
 msgstr "noimageindex"
 
-#: inc/admin/callbacks/Titles.php:1318 inc/admin/settings/Titles.php:243
+#: inc/admin/callbacks/Titles.php:1336 inc/admin/settings/Titles.php:251
 msgid "noindex"
 msgstr "noindex"
 
-#: inc/admin/callbacks/Titles.php:1374 inc/admin/settings/Titles.php:259
+#: inc/admin/callbacks/Titles.php:1392 inc/admin/settings/Titles.php:267
 msgid "noodp"
 msgstr "noodp"
 
-#: inc/admin/callbacks/Titles.php:1451 inc/admin/settings/Titles.php:283
+#: inc/admin/callbacks/Titles.php:1469 inc/admin/settings/Titles.php:291
 msgid "nosnippet"
 msgstr "nosnippet"
 
@@ -6294,11 +6187,11 @@ msgstr "Rubriker och metadata"
 msgid "Enter your Twitter description"
 msgstr "Skriv in din beskrivning för Twitter"
 
-#: inc/admin/callbacks/Titles.php:59
+#: inc/admin/callbacks/Titles.php:77
 msgid "This is a cool website about Wookiees"
 msgstr "Snyggaste webbplatsen om Wookiees"
 
-#: inc/admin/callbacks/Titles.php:1185
+#: inc/admin/callbacks/Titles.php:1203
 msgid "Search archives"
 msgstr "Sök i arkiven"
 
