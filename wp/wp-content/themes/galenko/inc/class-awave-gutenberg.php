@@ -27,10 +27,17 @@ class Awave_Gutenberg
 		);
 	}
 
-	public function allowed_block_types( $allowed_blocks )
-	{
-		$blocks = array();
-		$blocks[] = 'core/block';
+	public function allowed_block_types( $allowed_blocks ){
+		$blocks = [
+      'core/image',
+      'core/paragraph',
+      'core/heading',
+      'core/list',
+      'core/pullquote	',
+      'core/separator',
+      'core/post-featured-image',
+      'core/block'
+    ];
 	
 		foreach( glob( get_template_directory() . '/blocks/**/*.php' ) as $block ){
 	

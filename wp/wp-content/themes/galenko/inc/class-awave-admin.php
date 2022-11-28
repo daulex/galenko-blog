@@ -13,7 +13,6 @@ class Awave_Admin {
 		add_action( 'load-index.php', function() {
 			remove_action('welcome_panel', 'wp_welcome_panel');
 		} );
-		add_action( 'welcome_panel', [$this, 'welcome_panel'] );
 		add_action( 'admin_enqueue_scripts', [$this, 'admin_styles'] );
 		add_action( 'login_enqueue_scripts', [$this, 'login_style'] );
 		add_filter( 'login_headerurl', [$this, 'login_headerurl'] );
@@ -24,7 +23,7 @@ class Awave_Admin {
 
 	public function custom_footer_admin() 
 	{
-		echo '<span id="footer-thankyou">' . __('Built with love by', 'awave') . '<a href="https://www.awave.se/" target="_blank"> Awave.se</a></span>';
+		echo '<span id="footer-thankyou">' . __('Built with <3', 'galenko');
 	}
 
 	public function admin_bar()
@@ -53,79 +52,7 @@ class Awave_Admin {
 		remove_meta_box( 'dashboard_recent_comments',	 'dashboard', 'normal'); //Comments
 	}
 
-	public function welcome_panel()
-	{
-		list( $display_version ) = explode( '-', get_bloginfo( 'version' ) );
-		$edit_posts              = current_user_can( 'edit_posts' );
-		$edit_posts              = current_user_can( 'edit_posts' );
-		$edit_theme_options      = current_user_can( 'edit_theme_options' );
-		?>
-		<div class="welcome-panel-content">
-			<div class="welcome-panel-header">
-				<div class="welcome-panel-header-image">
-					<?php echo file_get_contents( get_admin_url() . 'images/about-header-about.svg' ); ?>
-				</div>
-				<h2>
-					<?php
-						printf(
-							__( 'Welcome to WordPress %s!', 'awave' ),
-							$display_version
-						);
-					?>
-				</h2>
-				<p class="welcome-panel-text">
-					<?php 
-						printf( 
-							__( 'This is a site created by Awave. If you have any question you could always contact us or send us an email by visiting %sour website%s.', 'awave' ),
-							' <a href="http://www.awave.com" target="_blank">',
-							'</a>'
-						);
-					?>
-					<br />
-					<?php
-						printf( 
-							__( 'We also have a %ssupport system%s where you can put all your questions or issues that you want fixed.', 'awave' ),
-							' <a href="http://clients.awave.com" target="_blank">',
-							'</a>'
-						);
-					?>
-				</p>
-			</div>
-			<div class="welcome-panel-column-container">
-				<div class="welcome-panel-column">
-					<div class="welcome-panel-icon-pages"></div>
-					<div class="welcome-panel-column-content">
-						<h3><?php _e( 'Create rich pages with blocks' ); ?></h3>
-						<p><?php _e( 'Blocks are little pieces of content which you can add to any page you create.' ); ?></p>
-						<?php if ( $edit_posts ) : ?>
-							<a href="<?php echo esc_url( admin_url( 'post-new.php?post_type=page' ) ); ?>"><?php _e( 'Add a new page' ); ?></a>
-						<?php endif; ?>
-					</div>
-				</div>
-				<div class="welcome-panel-column">
-					<div class="welcome-panel-icon-layout"></div>
-					<div class="welcome-panel-column-content">
-						<h3><?php _e( 'Customize your menu' ); ?></h3>
-						<p><?php _e( 'Configure your site&#8217;s menus to contain anything you want - both internal and external.' ); ?></p>
-						<?php if ( $edit_theme_options ) : ?>
-							<a href="<?php echo esc_url( admin_url('nav-menus.php') ); ?>"><?php _e( 'Edit your menus' ); ?></a>
-						<?php endif; ?>
-					</div>
-				</div>
-				<div class="welcome-panel-column">
-					<div class="welcome-panel-icon-styles"></div>
-					<div class="welcome-panel-column-content">
-						<h3><?php _e( 'Edit your site settings' ); ?></h3>
-						<p><?php _e( 'Tweak your site settings in the Theme Settings menu.' ); ?></p>
-						<?php if ( $edit_theme_options ) : ?>
-							<a href="<?php echo esc_url( admin_url( 'admin.php?page=theme-settings' ) ); ?>"><?php _e( 'Edit Theme Settings' ); ?></a>
-						<?php endif; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<?php
-	}
+	
 
 	public function admin_styles() {
 		$csstime = filemtime( get_template_directory() . '/inc/css/admin-styles.css' );
@@ -140,12 +67,12 @@ class Awave_Admin {
 
 	public function login_headerurl()
 	{
-		return "https://www.awave.com/";
+		return "https://galenko.lv/";
 	}
 
 	public function login_headertext()
 	{
-		return "Awave";
+		return "Galenko";
 	}
 
 	public function remove_unneccessary_tests( $tests )
