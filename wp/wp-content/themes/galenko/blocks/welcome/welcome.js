@@ -5,7 +5,13 @@ const roles = [
   'Problem solver',
   'Web Consultant'
 ];
-const animateOutClasses = ['fade-out', 'slide-out-fwd', 'slide-out-bck', 'slap-out', 'slap-out-back'];
+const animateOutClasses = [
+    'fade-out', 
+    'slide-out-fwd', 
+    'slide-out-bck', 
+    'slap-out', 
+    'slap-out-back'
+  ];
 
 const stage = document.querySelector(".role-stage");
 
