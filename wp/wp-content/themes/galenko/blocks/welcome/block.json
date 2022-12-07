@@ -1,0 +1,19 @@
+{
+	"name": "acf/welcome",
+	"title": "welcome",
+	"category": "common",
+	"icon": "heart",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "welcome.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview_image_help": "screenshot.png"
+			}
+		}
+	},
+	"awaveScripts": true
+}

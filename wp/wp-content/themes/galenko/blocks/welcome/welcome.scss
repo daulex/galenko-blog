@@ -1,0 +1,67 @@
+$animationDuration: .3s;
+p{
+  transform-style:preserve-3d;
+}
+.role-stage{
+  display: inline-block;
+  transform-style:preserve-3d;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: perspective(100px) rotateX(-100deg); transform-origin: top; }
+  100% { opacity: 1; transform: perspective(100px) rotateX(0deg); transform-origin: top; }
+}
+@keyframes slide-out-fwd {
+  0% { transform: perspective(100px) translate3d(0,0,0); opacity: 1;
+  }
+  100% {
+    transform: perspective(10px) translate3d(0,0,1px); opacity: 0;
+  }
+}
+@keyframes slide-out-bck {
+  0% { transform: perspective(100px) translate3d(0,0,0); opacity: 1;
+  }
+  100% {
+    transform: perspective(10px) translate3d(0,0,-1px); opacity: 0;
+  }
+}
+@keyframes slapOut {
+  0% { opacity: 1; transform: perspective(100px) rotateX(0deg); transform-origin: bottom; }
+  100% { opacity: 0; transform: perspective(100px) rotateX(-100deg); transform-origin: bottom; }
+}
+@keyframes slapOutBack {
+  0% { opacity: 1; transform: perspective(100px) rotateX(0deg); transform-origin: bottom; }
+  100% { opacity: 0; transform: perspective(100px) rotateX(100deg); transform-origin: bottom; }
+}
+
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+}
+
+.fade-out {
+  animation-name: fadeOut;
+  animation-duration: $animationDuration;
+  animation-fill-mode: forwards;
+}
+
+ 
+
+.slide-out-fwd {
+	animation: slide-out-fwd $animationDuration cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+.slide-out-bck {
+	animation: slide-out-bck $animationDuration cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+.slap-out {
+	animation: slapOut $animationDuration cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+.slap-out-back {
+	animation: slapOutBack $animationDuration cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
