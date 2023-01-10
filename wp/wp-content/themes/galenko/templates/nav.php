@@ -10,9 +10,12 @@ $args = array(
 $nav_menu = wp_nav_menu( $args );
 ?>
 <div class="container">
-  <header class="primary-header">
+  <div class="row">
+
+  
+  <header class="row__col primary-header">
     <a href="/" class="logo">
-      <img width="76" height="76" src="/logo-kg.svg" alt="<?php bloginfo(); ?>">
+      <img width="40" height="60" src="/logo-kg-nopadding.svg" alt="<?php bloginfo(); ?>">
     </a>
 
     <?php wp_nav_menu( array(
@@ -25,7 +28,7 @@ $nav_menu = wp_nav_menu( $args );
     <ul id="social-icons">
       <li>
         <a href="https://github.com/daulex" target="_blank" title="github">
-          <?php echo $custom_functions->kg_icons('github'); ?>
+          <?php echo $custom_functions->kg_icons('github-alt'); ?>
         </a>
       </li>
       <li>
@@ -35,4 +38,5 @@ $nav_menu = wp_nav_menu( $args );
       </li>
     </ul>
   </header>
+  </div>
 </div>

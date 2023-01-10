@@ -1,0 +1,20 @@
+{
+	"name": "acf/github-links",
+	"title": "github-links",
+	"category": "common",
+	"icon": "backup",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "github-links.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview_image_help": "screenshot.png"
+			}
+		}
+	},
+	"awaveScripts": [],
+	"awaveVendorScripts": []
+}

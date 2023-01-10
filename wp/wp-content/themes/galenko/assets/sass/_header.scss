@@ -2,15 +2,14 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
-  max-width: 100%;
-  width: 740px;
-  margin-left: auto;
-  margin-right: auto;
+  
+  padding-top: 15px;
+  padding-bottom: 15px;
 
   a.logo{
       display: block;
-      width: 76px;
+      width: 40px;
+      height: auto;
       margin-right: auto;
       img{
           display: block;

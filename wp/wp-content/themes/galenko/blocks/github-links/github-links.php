@@ -1,7 +1,7 @@
 <?php
-
+global $custom_functions;
 /**
- * welcome Block Template.
+ * github-links Block Template.
  *
  * @param	 array $block The block settings and attributes.
  * @param	 string $content The block inner HTML (empty).
@@ -15,13 +15,13 @@ if( isset( $block['data']['preview_image_help'] )  ) :
 endif;
 
 // Create id attribute allowing for custom 'anchor' value.
-$id = 'welcome-' . $block['id'];
+$id = 'github-links-' . $block['id'];
 if (!empty($block['anchor'])) :
 	$id = $block['anchor'];
 endif;
 
 // Create class attribute allowing for custom 'className' and 'align' values.
-$className = 'block welcome';
+$className = 'block github-links';
 if (!empty($block['className'])) :
 	$className .= ' ' . $block['className'];
 endif;
@@ -32,27 +32,29 @@ endif;
 $className = apply_filters( 'awave_block_class', $className, $block, $post_id );
 
 // Load values and assing defaults.
-// $header = get_field('header');
-$header = "Welcome to the new site";
-$roles = [
-  'WordPress developer',
-  'Full-stack developer',
-  'Problem solver',
-  'Web Consultant'
-];
-$current = rand(0,3);
+$download = get_field('download');
+$star = get_field('star');
+$repo = get_field('repo');
+
 ?>
 <section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-  <div class="container">
-    <div class="row">
-      <div class="row__col">
-        <p>Hi!</p>
-        <p>I'm a <span class="role-stage" data-current="<?=$current?>"><?=$roles[$current]?></span></p>
-        <p>Have been doing this professionally for over 15 years.</p>
-        <p>I work at <a href="https://www.awave.com" target="_blank">Awave</a> full time, but also tackle some freelance projects on the side.</p>
-        <p>Here's some <a href="#">cool stuff</a> I've built</p>
-        <p><a href="#contact">Contact me</a> if you have a project you'd like to discuss.</p>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="row__col">
+    
+      <?php if($star): ?>
+      <a href="https://github.com/daulex/<?=$repo?>" class="github-btn" title="View on GitHub">
+        <?php echo $custom_functions->kg_icons('github'); ?>
+        <span>View on Github</span>
+      </a>
+      <?php endif; ?>
+      <?php if($download): ?>
+      <a href="https://github.com/daulex/<?=$repo?>/archive/HEAD.zip" class="github-btn" title="Download">
+        <?php echo $custom_functions->kg_icons('download'); ?>
+        <span>Download</span>
+      </a>
+      <?php endif; ?> 
     </div>
   </div>
+</div>
 </section>

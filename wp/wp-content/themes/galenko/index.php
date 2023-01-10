@@ -20,8 +20,8 @@ $custom_functions = new Galenko_Custom_Functions;
 			<?php endwhile; ?>
 		</div>
 		
-		<div class="block__row">
-			<nav class="col col--12">
+		<div class="pagination">
+			<nav>
 				<?php
 					global $wp_query;
 					$big = 999999999; // need an unlikely integer

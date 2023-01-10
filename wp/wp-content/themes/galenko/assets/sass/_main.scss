@@ -27,3 +27,32 @@ body.page.page-template-default main#main{
     margin-right: auto;
   }
 }
+
+.pagination{
+  nav{
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .page-numbers{
+      display: inline-block;
+      padding: 5px 15px;
+      border: 1px solid #ddd;
+      margin-right: 5px;
+      font-size: 13px;
+      font-weight: bold;
+      &.current{
+        background-color: #333;
+        border: 1px solid #333;
+        color: #fff;
+      }
+    }
+    a.page-numbers{
+      color: #333;
+      opacity: 0.8;
+      &:hover{
+        opacity: 1;
+      }
+
+    }
+  }
+}
