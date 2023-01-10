@@ -4,7 +4,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
-	line-height: 1.66em;
+	line-height: 1.66;
+}
+h1,h2,h3,h4,h5,h6{
+  line-height: 1.4;
 }
 a{
   text-decoration: none;
@@ -13,19 +16,6 @@ a{
 img {
 	max-width: 100%;
 	height: auto;
-}
-
-body.page.page-template-default main#main{
-  & > p,
-  & > h1, & > h2, & > h3, & > h4, & > h5, & > h6,
-  & > ul, & > ol,
-  & > blockquote,
-  & > figure{
-    max-width: 90%;
-    width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 
 .pagination{

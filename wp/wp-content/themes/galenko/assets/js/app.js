@@ -2,15 +2,20 @@
 
 const siteFunctions = (function() {
 	
-	const testFunc = () => {
-		console.log( 'Test init!' );
-		const multiplyES6 = (x, y) => { return x * y; };
-		console.log( multiplyES6 );
+	const readMore = () => {
+		document.querySelectorAll('button.read-more').forEach((item) => {
+      item.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.currentTarget.parentNode.querySelector("h2 a").click();
+      });
+
+    });
+
 	};
 
 	let publicFunctions = {};
 	publicFunctions.init = function(options) {
-		testFunc();
+		readMore();
 	};
 
 	return publicFunctions;

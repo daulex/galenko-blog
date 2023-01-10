@@ -38,23 +38,18 @@ $repo = get_field('repo');
 
 ?>
 <section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-<div class="container">
-  <div class="row">
-    <div class="row__col">
-    
-      <?php if($star): ?>
-      <a href="https://github.com/daulex/<?=$repo?>" class="github-btn" title="View on GitHub">
-        <?php echo $custom_functions->kg_icons('github'); ?>
-        <span>View on Github</span>
-      </a>
-      <?php endif; ?>
-      <?php if($download): ?>
-      <a href="https://github.com/daulex/<?=$repo?>/archive/HEAD.zip" class="github-btn" title="Download">
-        <?php echo $custom_functions->kg_icons('download'); ?>
-        <span>Download</span>
-      </a>
-      <?php endif; ?> 
-    </div>
-  </div>
-</div>
+
+  <?php if($star): ?>
+  <a href="https://github.com/daulex/<?=$repo?>" class="github-btn" title="View on GitHub">
+    <?php echo $custom_functions->kg_icons('github'); ?>
+    <span>View on Github</span>
+  </a>
+  <?php endif; ?>
+  <?php if($download): ?>
+  <a href="https://github.com/daulex/<?=$repo?>/archive/HEAD.zip" class="github-btn" title="Download">
+    <?php echo $custom_functions->kg_icons('download'); ?>
+    <span>Download</span>
+  </a>
+  <?php endif; ?> 
+
 </section>

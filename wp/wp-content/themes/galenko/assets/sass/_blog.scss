@@ -1,16 +1,20 @@
 .blog section.block,
 .archive section.block{
-  max-width: 90%;
-  width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  
   a{
     text-decoration: none;
   }
   .read-more{
-    display: inline-block;
+    border: 1px solid rgba($color-secondary, .3);
+    border-radius: 3px;
+    padding: 7px 14px;
+    background-color: #fff;
+    color: $color-secondary;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 1px 3px 0 rgba(darken($color-secondary, 10), .2);
     &:hover{
-      text-decoration: underline;
+      box-shadow: 0 1px 3px 0 rgba(darken($color-secondary, 10), .4);
     }
   }
   article{
@@ -31,10 +35,7 @@
 }
 
 .single #main{
-  max-width: 90%;
-  width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  
   
   .post-meta{
     display: flex;

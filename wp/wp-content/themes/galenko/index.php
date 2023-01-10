@@ -4,7 +4,12 @@ $custom_functions = new Galenko_Custom_Functions;
 ?>
 <?php if( have_posts() ) : ?>
 <section class="blog block">
-	<div class="block__container">
+  <div class="container">
+    <div class="row">
+      <div class="row__col">
+
+    
+	
 		<?php if(is_category()): ?>
 		<div class="category-heading">
 			<?php echo $custom_functions->kg_icons('tag'); ?>
@@ -35,6 +40,8 @@ $custom_functions = new Galenko_Custom_Functions;
 			</nav>
 		</div>
 	</div>
+  </div>
+</div>
 </section>
 <?php endif; ?>
 <?php get_footer(); ?>
