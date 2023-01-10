@@ -1,20 +1,29 @@
 .blog section.block,
 .archive section.block{
-  
+  .post{
+    overflow: hidden;
+  }
   a{
     text-decoration: none;
   }
   .read-more{
-    border: 1px solid rgba($color-secondary, .3);
-    border-radius: 3px;
-    padding: 7px 14px;
-    background-color: #fff;
+    border:none;
+    background: none;
     color: $color-secondary;
+    padding: 0;
+    position: relative;
     cursor: pointer;
-    font-size: 12px;
-    box-shadow: 0 1px 3px 0 rgba(darken($color-secondary, 10), .2);
+    float: right;
+    margin-right: 10px;
+    &::after{
+      position: absolute;
+      left: 100%;
+      transform: trnaslateX(15px);
+      content: "\025B8";
+    }
     &:hover{
-      box-shadow: 0 1px 3px 0 rgba(darken($color-secondary, 10), .4);
+      color: $color-primary;
+      text-decoration: underline;
     }
   }
   article{
