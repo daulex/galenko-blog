@@ -1,6 +1,9 @@
 .blog section.block,
 .archive section.block{
-  
+  max-width: 90%;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   a{
     text-decoration: none;
   }
@@ -28,6 +31,10 @@
 }
 
 .single #main{
+  max-width: 90%;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   
   .post-meta{
     display: flex;

@@ -9,32 +9,30 @@ $args = array(
 ); 
 $nav_menu = wp_nav_menu( $args );
 ?>
-<header class="primary-header">
-  <a href="/" class="logo">
-    
-    <?php
-        $gravatar_link = 'http://www.gravatar.com/avatar/' . md5('kirillgalenko@gmail.com') . '?s=128';
-    ?>
-    <img src="<?php echo $gravatar_link; ?>" alt="<?php bloginfo(); ?>">
-  </a>
+<div class="container">
+  <header class="primary-header">
+    <a href="/" class="logo">
+      <img width="76" height="76" src="/logo-kg.svg" alt="<?php bloginfo(); ?>">
+    </a>
 
-  <?php wp_nav_menu( array(
-    'theme_location'  => 'primary',
-    'depth'           => 1, // 1 = no dropdowns, 2 = with dropdowns.
-    'container'       => 'nav',
-    'menu_class'      => 'primary-nav',
+    <?php wp_nav_menu( array(
+      'theme_location'  => 'primary',
+      'depth'           => 1, // 1 = no dropdowns, 2 = with dropdowns.
+      'container'       => 'nav',
+      'menu_class'      => 'primary-nav',
 
-) ); ?>
-  <ul id="social-icons">
-    <li>
-      <a href="https://github.com/daulex" target="_blank" title="github">
-        <?php echo $custom_functions->kg_icons('github'); ?>
-      </a>
-    </li>
-    <li>
-      <a href="https://www.instagram.com/daulex/" target="_blank" title="instagram">
-        <?php echo $custom_functions->kg_icons('instagram'); ?>
-      </a>
-    </li>
-  </ul>
-</header>
+  ) ); ?>
+    <ul id="social-icons">
+      <li>
+        <a href="https://github.com/daulex" target="_blank" title="github">
+          <?php echo $custom_functions->kg_icons('github'); ?>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/kirill.codes/" target="_blank" title="instagram">
+          <?php echo $custom_functions->kg_icons('instagram'); ?>
+        </a>
+      </li>
+    </ul>
+  </header>
+</div>

@@ -4,13 +4,13 @@
   align-items: center;
 
   max-width: 100%;
-  
+  width: 740px;
   margin-left: auto;
   margin-right: auto;
 
   a.logo{
       display: block;
-      width: 60px;
+      width: 76px;
       margin-right: auto;
       img{
           display: block;
@@ -20,41 +20,9 @@
   }
   .primary-nav{
       margin: 0;
-      padding: 0;
-      display: flex;
-      font-size: 0;
+      padding: 0 20px 0 0;
       li{
-          display: block;
-          margin: 0 0 0 10px;
-          padding: 0;
-          a{
-            display: block;
-            margin: 0;
-            padding: 0;
-            font-size: 14px;
-            font-weight: bold;
-            position: relative;
-            overflow: hidden;
-            &::after{
-              display: block;
-              content: " ";
-              height: 2px;
-              width: 100%;
-              background: $blue;
-              position: absolute;
-              bottom: 0;
-              left:0;
-              opacity: 0;
-              transform: translateX(-100%);
-              transition: all cubic-bezier(0.075, 0.82, 0.165, 1) .6s;
-            }
-            &:hover{
-              &::after{
-                opacity: 1;
-                transform: translateX(0);
-              }
-            }
-          }
+          display: inline-block;
       }
   }
   #social-icons{
@@ -70,11 +38,9 @@
         display: block;
         width: 20px;
         height: 20px;
-        
         svg{
           width: 20px;
           height: 20px;
-          fill: $blue;
         }
       }
     }

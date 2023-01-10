@@ -7,7 +7,6 @@ body {
 	line-height: 1.66em;
 }
 a{
-  color: $blue;
   text-decoration: none;
 }
 
@@ -16,16 +15,15 @@ img {
 	height: auto;
 }
 
-body.page.page-template-default main#main,
-body.single-post main#main{
+body.page.page-template-default main#main{
   & > p,
   & > h1, & > h2, & > h3, & > h4, & > h5, & > h6,
   & > ul, & > ol,
   & > blockquote,
   & > figure{
-    @include strap;
+    max-width: 90%;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
   }
-}
-.blog.block{
-  @include strap;
 }
