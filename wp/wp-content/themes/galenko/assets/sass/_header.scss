@@ -2,19 +2,49 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
-  padding-top: 15px;
-  padding-bottom: 15px;
+  position: fixed;
+  top:0;
+  right:0;
+  left:0;
+  padding: 5px 15px;
+  background: #fff;
+  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  z-index: 10;
 
   a.logo{
-      display: block;
-      width: 40px;
-      height: auto;
+      display: flex;
       margin-right: auto;
+      position: relative;
+      flex-direction: column;
+      padding-left: 25px;
+      &::before{
+        position: absolute;
+        content: " ";
+        display: block;
+        background: #0f0;
+        top:0;
+        bottom:0;
+        right: calc( 100% + 5px );
+        width: 10px;
+      }
       img{
           display: block;
-          width: 100%;
+          width: 16px;
           height: auto;
+          position: absolute;
+          left:0;
+          top:50%;
+          transform: translateY(-50%);
+      }
+      span{
+        font-size: 12px;
+        line-height: 1;
+        
+        color: #333;
+        display: block;
+        &.galenko{
+          font-weight: bold;
+        }
       }
   }
   .primary-nav{

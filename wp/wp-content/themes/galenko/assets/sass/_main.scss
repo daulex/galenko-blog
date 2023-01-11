@@ -5,6 +5,18 @@ body {
 	-webkit-font-smoothing: antialiased;
 	font-size: 16px;
 	line-height: 1.66;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding-top: 46px;
+}
+body.admin-bar{
+  padding-top: 32px;
+  .primary-header{
+    top: 32px;
+  }
 }
 h1,h2,h3,h4,h5,h6{
   line-height: 1.4;
