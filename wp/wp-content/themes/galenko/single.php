@@ -2,10 +2,12 @@
 <main id="main" role="main">
 	<div class="container">
 		<div class="row">
-      <div class="row__col row__col--10">
+      <div class="row__col">
       <?php while ( have_posts() ) : the_post(); ?>
         <h1><?php the_title(); ?></h1>
-        <?php the_content(); ?>
+        <div class="the_content">
+          <?php the_content(); ?>
+        </div>
         <div class="post-meta">
           <div class="post-meta__categories">
             <?php echo $custom_functions->kg_icons('tag'); ?>

@@ -7,14 +7,8 @@
 .editor-content,
 html .mceContentBody {
 
-	h1, .h1 {}
-	h2, .h2 {}
-	h3, .h3 {}
-	h4, .h4 {}
-
 	p {
 		margin: 0 0 1.44em 0;
-		a {}
 	}
 
 	ul, ol {
@@ -22,10 +16,13 @@ html .mceContentBody {
 		margin-bottom: 1.44em;
 	}
 
-	blockquote, q {}
 	
 	> *:last-child {
 		margin-bottom: 0;
 	}
 
+}
+
+.the_content{
+  max-width: 640px;
 }
