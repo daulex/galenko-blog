@@ -18,7 +18,7 @@
     &::after{
       position: absolute;
       left: 100%;
-      transform: trnaslateX(15px);
+      transform: trnaslateX($gutter);
       content: "\025B8";
     }
     &:hover{
@@ -51,14 +51,13 @@
     justify-content: flex-start;
     align-items: center;
     border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 15px 0;
-    margin-bottom: 15px;
+    padding: $gutter 0;
+    margin-bottom: $gutter;
     a{
       text-decoration: none;
     }
     &__categories{
-      margin-right: 15px;
+      margin-right: $gutter;
     }
     .icon{
       width: 14px;

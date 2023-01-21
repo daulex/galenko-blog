@@ -18,7 +18,6 @@
             <?php the_time("Y-m-d"); ?>
           </div>
         </div>
-        <a href="javascript:history.back()" class="back">&larr; back</a>
       <?php endwhile; ?>
       </div>
     </div>

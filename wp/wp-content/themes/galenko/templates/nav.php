@@ -12,6 +12,28 @@ $nav_menu = wp_nav_menu( $args );
 
   
 <header class="primary-header">
+  <div id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="row__col">
+          <ul>
+            <li>
+              <div class="ico">✉️</div> <span>k@galenko.lv</span>
+            </li>
+            <li>
+              <div class="ico"><?php echo $custom_functions->kg_icons('instagram'); ?></div> <a href="https://instagram.com/kirill.codes">kirill.codes</a>
+            </li>
+            <li>
+              <div class="ico"><?php echo $custom_functions->kg_icons('linkedin'); ?></div> <a href="https://www.linkedin.com/in/kirillgalenko/">kirillgalenko</a>
+            </li>
+            
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="row__col">

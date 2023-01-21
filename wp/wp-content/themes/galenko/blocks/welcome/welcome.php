@@ -45,13 +45,10 @@ $current = rand(0,3);
 <section id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
   <div class="container">
     <div class="row">
-      <div class="row__col">
-        <p>Hi!</p>
-        <p>I'm a <span class="role-stage" data-current="<?=$current?>"><?=$roles[$current]?></span></p>
-        <p>Have been doing this professionally for over 15 years.</p>
-        <p>I work at <a href="https://www.awave.com" target="_blank">Awave</a> full time, but also tackle some freelance projects on the side.</p>
-        <p>Here's some <a href="#">cool stuff</a> I've built</p>
-        <p><a href="#contact">Contact me</a> if you have a project you'd like to discuss.</p>
+      <div class="row__col row__col--md-7">
+        <h2><em>Coding since 1999</em></h2>
+        <p>I wear many hats and frequently participate during different stages of web site and application production.</p>
+        <p>My strongest skill is frontend web development.</p>
       </div>
     </div>
   </div>
