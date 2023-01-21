@@ -96,14 +96,16 @@
 body{
   header.primary-header,
   main#main,
-  .blog.block{
+  .blog.block,
+  .site-footer{
     transition: transform cubic-bezier(0.6, -0.28, 0.735, 0.045) 0.3s;
   }
 }
 body.contact-is-open{
   header.primary-header,
   main#main,
-  .blog.block{
+  .blog.block,
+  .site-footer{
     transform: translateY(100px);
   }
 }
