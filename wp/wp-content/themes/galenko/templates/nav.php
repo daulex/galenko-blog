@@ -17,7 +17,6 @@ $nav_menu = wp_nav_menu( $args );
       <div class="row__col">
         <div class="header-content">
           <a href="/" class="logo">
-            <img width="40" height="60" src="/logo-kg-nopadding.svg" alt="<?php bloginfo(); ?>">
             <span class="kirill">Kirill</span>
             <span class="galenko">Galenko</span>
           </a>
@@ -29,18 +28,6 @@ $nav_menu = wp_nav_menu( $args );
             'menu_class'      => 'primary-nav',
 
         ) ); ?>
-          <ul id="social-icons">
-            <li>
-              <a href="https://github.com/daulex" target="_blank" title="github">
-                <?php echo $custom_functions->kg_icons('github-alt'); ?>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/kirill.codes/" target="_blank" title="instagram">
-                <?php echo $custom_functions->kg_icons('instagram'); ?>
-              </a>
-            </li>
-          </ul>
         </div>
       </div>
     </div>

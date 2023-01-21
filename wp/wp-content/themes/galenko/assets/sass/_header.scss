@@ -3,89 +3,37 @@
   
   .header-content{
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 15px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
   
 
   a.logo{
-      display: flex;
-      margin-right: auto;
-      position: relative;
-      flex-direction: column;
-      padding-left: 25px;
-      &::before{
-        position: absolute;
-        content: " ";
-        display: block;
-        background: #0f0;
-        top:0;
-        bottom:0;
-        right: calc( 100% + 5px );
-        width: 10px;
-      }
-      img{
-          display: block;
-          width: 16px;
-          height: auto;
-          position: absolute;
-          left:0;
-          top:50%;
-          transform: translateY(-50%);
-      }
-      span{
-        font-size: 12px;
-        line-height: 1;
-        
-        color: #333;
-        display: block;
-        &.galenko{
-          font-weight: bold;
-        }
-      }
+      font-size: 36px;
+      line-height: 1;
+      font-weight: 500;
+      color: $black;
   }
   .primary-nav{
       margin: 0;
-      padding: 0 20px 0 0;
+      padding: 0 0;
       display: flex;
       li{
           list-style: none;
           padding: 0;
-          margin: 0 0 0 20px;
+          margin: 0 0 0 40px;
           a{
               display: block;
               padding: 5px 0;
               font-size: 16px;
-              color: $color-primary;
-              font-weight: 600;
+              color: $black;
+              font-weight: 700;
               &:hover{
                   color: $color-secondary;
               }
           }
       }
-  }
-  #social-icons{
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-start;
-    li{
-      list-style: none;
-      padding: 0;
-      margin: 0 0 0 10px;
-      a{
-        display: block;
-        width: 20px;
-        height: 20px;
-        svg{
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
   }
 }
