@@ -1,0 +1,19 @@
+{
+	"name": "acf/portfolio-links",
+	"title": "Portfolio links",
+	"category": "common",
+	"icon": "welcome-learn-more",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "portfolio-links.php"
+	},
+	"example": {
+		"attributes": {
+			"mode": "preview",
+			"data": {
+				"preview_image_help": "screenshot.png"
+			}
+		}
+	},
+	"awaveScripts": true
+}
