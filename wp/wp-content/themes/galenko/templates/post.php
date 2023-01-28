@@ -11,7 +11,8 @@
             $args = array(
                 'categories' => true,
                 'stamp' => true,
-                'read_more' => true
+                'read_more' => true,
+                'like' => true
             );
             get_template_part('templates/post', 'meta', $args);
         ?>

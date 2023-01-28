@@ -113,4 +113,20 @@ class galenko_Custom_Functions {
           return $time_units . ' ' . $time_unit . 's ago';
       }
   }
+  /**
+   * KG Like button
+   */
+    public function kg_like_button($post_id){
+        $like_count = get_post_meta($post_id, 'kg_like_count', true);
+        $like_count = ($like_count == '') ? 0 : $like_count;
+        
+        
+        $like_button = '<a href="#" class="like-button" data-post-id="'.$post_id.'">';
+        $like_button .= '<svg class="icon icon-heart"><use xlink:href="#icon-heart"></use></svg>';
+        $like_button .= '<svg class="icon icon-heart-solid"><use xlink:href="#icon-heart-solid"></use></svg>';
+        
+        $like_button .= '<span class="like-count">'.$like_count.'</span>';
+        $like_button .= '</a>';
+        return $like_button;
+    }
 }

@@ -1,0 +1,21 @@
+.post-meta__like{
+    margin-left: auto;
+}
+.like-button{
+    
+    .icon-heart-solid{
+        display: none;
+    }
+    .icon-heart{
+        display: inline-block;
+    }
+    &.liked{
+        cursor: default;
+        .icon-heart-solid{
+            display: inline-block;
+        }
+        .icon-heart{
+            display: none;
+        }
+    }
+}

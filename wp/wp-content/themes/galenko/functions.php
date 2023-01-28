@@ -13,6 +13,8 @@ require_once(get_template_directory() . '/inc/class-awave-gutenberg.php');
 require_once(get_template_directory() . '/inc/class-galenko-custom-functions.php');
 require_once(get_template_directory() . '/inc/class-galenko-custom-hooks.php');
 
+require_once(get_template_directory() . '/inc/rest/like.php');
+
 $theme_setup = new Awave_Theme_Setup;
 $custom_functions = new galenko_Custom_Functions;
 
