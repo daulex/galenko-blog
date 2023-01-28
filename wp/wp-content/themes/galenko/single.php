@@ -8,16 +8,14 @@
         <div class="the_content">
           <?php the_content(); ?>
         </div>
-        <div class="post-meta">
-          <div class="post-meta__categories">
-            <?php echo $custom_functions->kg_icons('tag'); ?>
-            <?php the_category(","); ?>
-          </div>
-          <div class="post-meta__time">
-            <?php echo $custom_functions->kg_icons('calendar'); ?>
-            <?php the_time("Y-m-d"); ?>
-          </div>
-        </div>
+        <?php
+            $args = array(
+                'categories' => true,
+                'stamp' => true,
+                'read_more' => false
+            );
+            get_template_part('templates/post', 'meta', $args);
+        ?>
       <?php endwhile; ?>
       </div>
     </div>

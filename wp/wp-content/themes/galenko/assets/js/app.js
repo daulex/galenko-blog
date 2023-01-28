@@ -15,7 +15,7 @@ const siteFunctions = (function() {
 		document.querySelectorAll('button.read-more').forEach((item) => {
       item.addEventListener('click', function(event) {
         event.preventDefault();
-        event.currentTarget.parentNode.querySelector("h2 a").click();
+        event.currentTarget.parentNode.parentNode.querySelector("h2 a").click();
       });
 
     });

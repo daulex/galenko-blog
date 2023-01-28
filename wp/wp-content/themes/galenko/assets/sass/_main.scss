@@ -1,18 +1,18 @@
 body {
-	font-family: 'Satoshi-Variable', serif;
-	font-size: 16px;
-	line-height: 1.375;
-	font-display: swap;
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  max-width: 100vw;
-  overflow-x: hidden;
+    font-family: $mainFont;
+    font-size: 16px;
+    line-height: 1.375;
+    font-display: swap;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 em{ 
-  font-family: 'Satoshi-VariableItalic', serif;
+    font-family: $mainFontItalic;
 }
 
 h1,h2,h3,h4,h5,h6{
