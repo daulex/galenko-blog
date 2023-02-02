@@ -64,14 +64,6 @@ const siteFunctions = (function() {
                     document.cookie = `liked_${postId}=true; max-age=31536000; path=/`;
 
                 }
-                // 
-                // 
-                // if (!event.currentTarget.classList.contains('liked')) {
-                //     
-                //     
-                //     console.log(postId);
-                //     
-                // }
                 
 
             });

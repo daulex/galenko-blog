@@ -153,6 +153,23 @@
         margin-right: calc($gutter/2);
         transform: translateY(2px);
     }
+    @include media-breakpoint-down(sm){
+        flex-wrap: wrap;
+        button.read-more{
+            width: 100%;
+            order: 100;
+        }
+        .icon{
+            width: 24px;
+            height: 24px;
+            transform: translateY(5px);
+            margin-right: calc($gutter / 4);
+
+        }
+        .like-button{
+            font-size: 1.2rem;
+        }
+    }
     
 }
 .single .post-meta{
