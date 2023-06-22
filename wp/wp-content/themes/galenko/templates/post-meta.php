@@ -26,7 +26,7 @@
     ?>
     </div>
     <?php endif; ?>
-    <?php if(isset($args['like']) && $args['like']): ?>
+    <?php if(false && isset($args['like']) && $args['like']): ?>
     <div class="post-meta__like">
     <?php 
         echo $custom_functions->kg_like_button(get_the_ID());

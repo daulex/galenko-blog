@@ -21,7 +21,7 @@ $nav_menu = wp_nav_menu( $args );
               <div class="ico">✉️</div> <span>k@galenko.lv</span>
             </li>
             <li>
-              <div class="ico"><?php echo $custom_functions->kg_icons('instagram'); ?></div> <a href="https://instagram.com/kirill.codes">kirill.codes</a>
+              <div class="ico"><?php echo $custom_functions->kg_icons('instagram'); ?></div> <a href="https://instagram.com/daulex">daulex</a>
             </li>
             <li>
               <div class="ico"><?php echo $custom_functions->kg_icons('linkedin'); ?></div> <a href="https://www.linkedin.com/in/kirillgalenko/">kirillgalenko</a>
