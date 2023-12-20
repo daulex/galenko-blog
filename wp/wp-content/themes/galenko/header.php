@@ -8,7 +8,7 @@
 	<?php wp_head(); ?>
   <?php require_once('inc/icons.php'); ?>
 </head>
-<body <?php body_class(); ?>>
+<body data-pid="<?php if(is_single() || is_page()){ the_ID(); }else{ echo "111"; } ?>" <?php body_class(); ?>>
 
 	<?php wp_body_open(); ?>
 	<?php get_template_part( 'templates/nav' );  ?>

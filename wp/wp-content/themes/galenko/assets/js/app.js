@@ -1,6 +1,24 @@
 'use strict';
 
 const siteFunctions = (function() {
+    const dispatchPageView = () => {
+        const body = document.querySelector('body');
+        const pageTitle = document.querySelector('head title').innerText;
+        const url = window.location.href;
+        const id = body.getAttribute("data-pid");
+
+        fetch('/wp-json/kg/v1/pageview', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                page_title: pageTitle,
+                url: url,
+                id: id
+            })
+        }).then((response) => {});
+    };
 
   const contactToggle = () => {
     document.querySelectorAll('.contact-toggle a').forEach((item) => {
@@ -74,7 +92,7 @@ const siteFunctions = (function() {
 	publicFunctions.init = function(options) {
 		readMore();
         contactToggle();
-        like();
+        dispatchPageView();
 	};
 
 	return publicFunctions;
